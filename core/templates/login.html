@@ -3,4 +3,13 @@
 {%block main%}
 <link rel="stylesheet" href="{%static 'css/login.css' %}">
 
+<div class="container">
+    <img id="img-basquete" src="{% static 'images/basketball.png'%}" alt="basquete">
+    <form class="form-login" action="/processa-formulário" method="post">
+        <input id="nome" type="text" name="nome" placeholder="Seu nome">
+        <input id="email" type="email" name="email" placeholder="Seu e-mail">
+        <input id="enviar" type="submit" value="Enviar">
+    </form>
+</div>
+
 {%endblock main%}

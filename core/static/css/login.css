@@ -1,0 +1,39 @@
+#img-basquete{
+    width: 350px;
+    padding-left: 10rem;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.form-login {
+    width: 500px;
+    height: 200px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 35px 45px;
+  }
+  
+  #nome{
+    border-radius: 14px;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  input[type="submit"] {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+
+.form-login{
+    border-radius: 25px;
+}
