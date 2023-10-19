@@ -5,12 +5,11 @@
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-	font-family: Arial, Helvetica, sans-serif;
-
+	font-family: Istok Web, Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-color: rgb(0, 0, 9);
+    background-color: rgb(0, 0, 9);	
   }
   
   h1, h2, h3 {
@@ -19,10 +18,10 @@ body {
     font-size: 30px;
   }
 
-img {
+.Logo {
 	width: 200px;
-	height: 100px;
-	left: 30px;
+	margin-left: 25px;
+	margin: 15px;
 }
 
 header {
@@ -64,13 +63,20 @@ header {
 	gap: 1rem;
 }
 
-.button {
+.entrar, .cadastrar {
 	color: white;
 	background-color: #52AC6C;
-	border-radius: 5px;
-	padding: 8px;
+	border-radius: 8px;
+	padding: 12px 20px;
 	font-weight: bold;
+	text-align: center;
 }
+
+.cadastrar{
+	padding: 14px 26px;
+	text-align: center;
+}
+
 
 .button:hover {
 	background-color: #2abc4cbb;
@@ -80,8 +86,8 @@ header {
 }
 
 #image {
-	width: 25%;
-	height: 25%;
+	width: 300px;
+	height: 300px;
 }
 
 #content-box {
