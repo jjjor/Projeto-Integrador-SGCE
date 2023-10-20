@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+<link rel="stylesheet" href="{%static 'css/profile.css' %}">
+
+<div class="box-profile">
+    <div class="box-profile-container">
+        <div id="profile-foto">
+            <img src="{% static 'images/image_84.png' %}" alt="messi">
+            <h1>Olá, [Nome Da pessoa]</h1>
+        </div>
+        <div class="options-container">
+            <div class="option-container">
+                <a href="#" class="options">Alterar Informações Pessoais</a>
+                <img src="{% static 'images/person_.svg' %}" alt="">
+            </div>
+            <div class="option-container">
+                <a href="" class="options">Alterar Informações de Segurança</a>
+                <img src="{% static 'images/security.svg' %}" alt="">
+            </div>
+            <div class="option-container">
+                <a href="" class="options">Solicitar troca de time</a>
+                <img src="{% static 'images/celebration_.svg' %}" alt="">
+            </div>
+            <div class="option-container">
+                <a href="" class="options">Reportar Bug</a>
+                <img src="{% static 'images/Group_3.svg' %}" alt="">
+            </div>
+            <div class="option-container">
+                <a href="" class="options">Sair da conta</a>
+                <img src="{% static 'images/logout_.svg'%}" alt="">
+            </div>
+        </div>
+        
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
+    

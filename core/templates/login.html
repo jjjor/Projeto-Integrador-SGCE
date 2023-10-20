@@ -2,13 +2,18 @@
 {%load static%}
 {%block main%}
 <link rel="stylesheet" href="{%static 'css/login.css' %}">
+<div id="content-box-login">
+    <img id="img-basquete" src="{% static 'images/basketball.png'%}" alt="basquete">
 
-<img id="img-basquete" src="{% static 'images/basketball.png'%}" alt="basquete">
 
-    <form class="form-login" action="/processa-formulário" method="post">
-        <input id="email_login" type="email" name="email" placeholder="Seu Email">
-        <input id="senha_login" type="senha" name="senha" placeholder="Sua senha">
-        <p id="fazer_login">Fazer login como:</p>
+<div id="form-button">
+<form class="form-login" action="/processa-formulário" method="post">
+        <label for="email">E-mail:</label>
+        <input id="email_login" type="email" name="email" placeholder="exemplo@gmail.com">
+
+        <label for="senha">Senha:</label>
+        <input id="senha_login" type="senha" name="senha" placeholder="palmeirasderrotado">
+        <p id="fazer_login">Fazer login com:</p>
         <div class="img_container">
             <img id='login_com' src="{% static 'images/instagram_1.png'%}" alt="insta">
             <img id='login_com' src="{% static 'images/pesquisa_1.png'%}" alt="google">
@@ -17,6 +22,8 @@
         </div>
     </form>
     <button id="enviar">Continuar</button>
+</div>
+
 
 
 {%endblock main%}
