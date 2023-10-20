@@ -9,7 +9,7 @@
 }
 
 body {
-    background-color: rgb(0, 0, 9);	
+    background-color: rgba(0, 0, 9, 0.899);	
   }
 
 
@@ -160,8 +160,9 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 12rem;
-	margin-top: 20px;
+	gap: 10rem;
+	margin-top: 60px;
+	margin-right: 0px;
 }
 
 /* form register ----------------------------------*/
@@ -185,6 +186,7 @@ label {
 	display: block;
 	margin-bottom: 10px;
 	color: #333;
+	font-weight: bold;
 }
 
 input[type="text"],
@@ -205,17 +207,35 @@ select {
 }
 
 #form-button {
-	background-color: #52AC6C;
 	font-weight: bold;
 	color: #fff;
-	padding: 15px 15px;
+	padding: 20px 40px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+	gap: 2rem;
 }
 
-#form-button:hover {
-	background-color: #2abc4c;
+#form-button-register {
+	font-weight: bold;
+	color: #fff;
+	padding: 20px 40px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	gap: 2rem;
+}
+
+#form-button button {
+	background-color: #52AC6C;
+	padding: 20px 200px;
+}
+
+#form-button-register button {
+	background-color: #52AC6C;
+}
+
+#form-button button:hover {
 	cursor: pointer;
 	transition: 0.6s;
 	transform: translate(0, -2px);

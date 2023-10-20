@@ -6,26 +6,30 @@
 }
 
 #img-basquete {
-  width: 350px;
-  height: 420px;
-  padding-left: 10%;
-  padding-right: 14%;
+  width: 20%;
+  height: 20%;
 }
 
 .form-login {
+
+  display: flex;
+  align-items: center;
   width: 500px;
   background-color: #fff;
-  padding: 35px 45px;
-  border-radius: 25px;
+  padding: 35px 70px;
+  border-radius: 10px;
   display: inline-grid;
-  align-content: center;
-  margin-top: 10px;
+  margin-top: 120px;
 }
 
 #email_login,
-#senha_login {
-  border-radius: 14px;
-  margin-bottom: 20px;
+#senha_login,
+label {
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 0 20px;
 }
 
 p#fazer_login{
@@ -61,4 +65,32 @@ input[type="senha"] {
 #login_com{
   width: 40px;
   height: 40px;
+}
+
+#content-box-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem;
+}
+
+button {
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #52AC6C;
+}
+
+button:hover{
+  cursor: pointer;
+  transition: 0.6s;
+  background-color: #2abc4cbb;
+  transform: translate(0px, -2px);
+}
+
+#form-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
