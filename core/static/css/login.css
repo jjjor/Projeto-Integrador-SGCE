@@ -10,13 +10,18 @@
 
 .form-login {
     width: 500px;
-    height: 200px;
     background-color: #fff;
     margin: 0 auto;
     padding: 35px 45px;
+    align-items: center;
   }
   
-  #nome{
+  #email{
+    border-radius: 14px;
+    margin-bottom: 20px;
+  }
+
+  #senha{
     border-radius: 14px;
     margin-bottom: 20px;
   }
