@@ -30,15 +30,15 @@ body {
 
 /* images ----------------------------*/
 
-img {
+#logo_site {
 	width: 200px;
 	height: 100px;
-	left: 30px;
+	left: 36px;
 }
 
 #register-image {
-	width: 31%;
-	height: 31%;
+	width: 16rem;
+	height: 16rem;
 	padding-bottom: 3%;
 }
 
@@ -63,7 +63,6 @@ header {
 	display: flex;
 	gap: 1.5rem;
 	margin: 0;
-	
 }
 
 #header-content a {
@@ -214,7 +213,7 @@ select {
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	gap: 2rem;
+
 }
 
 #form-button-register {
