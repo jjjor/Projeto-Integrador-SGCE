@@ -25,6 +25,7 @@ body {
 	color: rgb(219, 219, 219);
 	font-size: 30px;
 	font-weight: bold;
+	text-align: center;
 }
 
 
@@ -146,12 +147,3 @@ header {
 	transition: 0.6s;
 	transform: translate(0, -2px);
 }
-
-
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 #register-image {
-	width: 24rem;
-	height: 24rem;
-    margin-right: 6rem;
+	width: 29%;
+	height: 29%;
+    margin-right: 2rem;
 	display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +12,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 8rem;
-	margin-top: 60px;
+	margin-top: 30px;
 	margin-right: 0px;
 }
 
