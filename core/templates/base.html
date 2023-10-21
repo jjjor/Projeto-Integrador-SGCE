@@ -1,41 +1,40 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="{%static 'css/style.css'%}">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Sofia+Sans&display=swap" rel="stylesheet">
-
-   <title>SGCE</title>
-</head>
-<body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Sofia+Sans&display=swap" rel="stylesheet" />
+    <title>SGCE</title>
+   </head>
+   <body>
+     <script href="{% static 'js/scripts.js' %}'"></script>
     <header>
-      <a href="index"><img id="logo_site" src="{%static 'images/IFRN_Arena__Where_Dreams_Are_Made.svg'%}"></a>
+      <a href="index"><img id="logo_site" src="{% static 'images/IFRN_Arena__Where_Dreams_Are_Made.svg' %}" /></a>
       <div id="header-content">
-         <nav>
-            <ul>
-               <li>
-                  <a href="#">Classificação</a>
-               </li>
-               <li>
-                  <a href="#">Partidas</a>
-               </li>
-            </ul>
-         </nav>
-         <div id="buttons">
-            <a href="login"><button type="button">Entrar</button></a>
-            <a href="register"><button type="button">Cadastrar</button></a>
-         </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="#">Classificação</a>
+            </li>
+            <li>
+              <a href="#">Partidas</a>
+            </li>
+          </ul>
+        </nav>
+        <div id="buttons">
+          <a href="login"><button type="button">Entrar</button></a>
+          <a href="register"><button type="button">Cadastrar</button></a>
+        </div>
       </div>
-      
     </header>
 
-   {%block main%}
-   {%endblock%}
-</body>
+    {% block main %}
+
+    {% endblock %}
+  </body>
 </html>

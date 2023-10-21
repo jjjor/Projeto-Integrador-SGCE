@@ -65,9 +65,6 @@
     border-bottom: none;
 }
 
-.option-container:nth-child(3) {
-    border-bottom: none;
-}
 
 .option-container:nth-child(4) {
     border-left: none;

@@ -13,3 +13,9 @@ def login(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+def profile_prof(request):
+    return render(request, 'profile-prof.html')
+
+def informacoes(request):
+    return render(request, 'informacoes.html')
