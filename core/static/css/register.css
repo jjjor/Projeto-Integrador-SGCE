@@ -1,0 +1,90 @@
+#register-image {
+	width: 24rem;
+	height: 24rem;
+    margin-right: 6rem;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#register-content-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8rem;
+	margin-top: 60px;
+	margin-right: 0px;
+}
+
+/* form register ----------------------------------*/
+
+.container {
+	max-width: 400px;
+	justify-content: center;
+	margin: 0;
+	background-color: #fff;
+	padding: 30px 85px;
+	border-radius: 5px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.612);
+}
+
+h2 {
+	text-align: center;
+	color: #333;
+}
+
+label {
+	display: block;
+	margin-bottom: 10px;
+	color: #333;
+	font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+input[type="email"],
+input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.244);
+}
+
+select {
+	height: 45px;
+}
+
+#form-button {
+	font-weight: bold;
+	color: #fff;
+	padding: 20px 40px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+
+}
+
+#form-button-register {
+	font-weight: bold;
+	color: #fff;
+	padding: 20px 40px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+    background-color: #52AC6C;
+	gap: 2rem;
+}
+
+#form-button button {
+	background-color: #52AC6C;
+	padding: 20px 200px;
+}
+
+#form-button button:hover {
+	cursor: pointer;
+	transition: 0.6s;
+	transform: translate(0, -2px);
+}
