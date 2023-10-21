@@ -162,7 +162,7 @@ header {
 	align-items: center;
 	justify-content: center;
 	gap: 10rem;
-	margin-top: 60px;
+	margin-top: 30px;
 	margin-right: 0px;
 }
 
@@ -218,22 +218,23 @@ select {
 }
 
 #form-button-register {
-	font-weight: bold;
-	color: #fff;
-	padding: 20px 40px;
-	border: none;
-	border-radius: 5px;
+	background-color: #52AC6C;
+	color: white;
 	cursor: pointer;
-	gap: 2rem;
+	border-radius: 8px;
+	padding: 20px 40px;
+}
+
+#form-button-register:hover {
+	background-color: #079728da;
+	cursor: pointer;
+	transform: translate(0px, -2px);
+	transition: 0.6s;
 }
 
 #form-button button {
 	background-color: #52AC6C;
 	padding: 20px 200px;
-}
-
-#form-button-register button {
-	background-color: #52AC6C;
 }
 
 #form-button button:hover {

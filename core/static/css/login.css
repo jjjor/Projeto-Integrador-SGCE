@@ -19,7 +19,7 @@
   padding: 35px 70px;
   border-radius: 20px;
   display: inline-grid;
-  margin-top: 120px;
+  margin-top: 40px;
 }
 
 #email_login,
@@ -31,7 +31,7 @@
   width: 100%;
 }
 
-p#fazer_login{
+#fazer_login{
   text-align: center;
   font-size: 20px;
   font-weight: bold;
