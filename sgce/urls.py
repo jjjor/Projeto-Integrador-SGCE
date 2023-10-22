@@ -20,18 +20,14 @@ from core import views
 
 
 urlpatterns = [
-   path('', views.index, name='index'),
-   path('index', views.index, name='index'),
-   path('register', views.register, name='register'),
-   path('login', views.login, name='login'),
-<<<<<<< HEAD
-   path('profile', views.profile, name='profile'),
-   path('profile-prof', views.profile_prof, name='profile-prof'),
-   path('informacoes', views.informacoes, name='informacoes')
-=======
-   path('perfil', views.profile, name='perfil'),
-   path('perfil-prof', views.profile_prof, name='perfil-prof'),
-   path('info', views.informacoes, name='informacoes')
->>>>>>> da13d46b610219d3633a868e7cc1f6f4a532e0b5
+    path('', views.index, name='index'),
+    path('index', views.index, name='index'),
+    path('register', views.register, name='register'),
+    path('login', views.login, name='login'),
+    path('perfil', views.profile, name='perfil'),
+    path('perfil-prof', views.profile_prof, name='perfil-prof'),
+    path('profile', views.profile, name='profile'),
+    path('profile-prof', views.profile_prof, name='profile-prof'),
+    path('info-security', views.infos_security, name='info_security')
 ]
 

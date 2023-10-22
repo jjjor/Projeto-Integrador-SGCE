@@ -19,3 +19,6 @@ def profile_prof(request):
 
 def informacoes(request):
     return render(request, 'informacoes.html')
+
+def infos_security(request):
+    return render(request, 'infos-security.html')
