@@ -35,10 +35,14 @@
     font-weight: bold;
 }	
 
-.infos input[type=text]{
+.infos input[type=text] {
     outline: none;
     border-radius: 6px;
-    padding: 6px;
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 0 8px;
     border: 1px solid #F3F3F3;
     background-color: #F3F3F3;
     box-shadow: 2px 2px 4px 0px black;
