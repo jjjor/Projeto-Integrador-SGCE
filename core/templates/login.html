@@ -3,7 +3,7 @@
 {%block main%}
 <link rel="stylesheet" href="{%static 'css/login.css' %}">
 <div id="content-box-login">
-    <img id="img-basquete" src="{% static 'images/basketball.png'%}" alt="basquete">
+    <img id="img-basquete" src="{% static 'images/basketball.png'%}" alt="basketball">
 
 
 <div id="form-button">
@@ -11,9 +11,9 @@
         <label for="email">E-mail:</label>
         <input id="email_login" type="email" name="email" placeholder="exemplo@gmail.com">
 
-        <label for="senha">Senha:</label>
-        <input id="senha_login" type="senha" name="senha" placeholder="palmeirasderrotado">
-        <p id="fazer_login">Fazer login com:</p>
+        <label for="password">Senha:</label>
+        <input id="password_login" type="password" name="password" placeholder="palmeirasderrotado">
+        <p id="login">Fazer login com:</p>
         <div class="img_container">
             <a href="#"><img id='login_com' src="{% static 'images/instagram_1.png'%}" alt="insta"></a>
             <a href="#"><img id='login_com' src="{% static 'images/pesquisa_1.png'%}" alt="google"></a>
@@ -21,7 +21,7 @@
             <a href="#"><img id='login_com' src="{% static 'images/facebook_1.png'%}" alt="face"></a>
         </div>
     </form>
-    <button id="enviar">Continuar</button>
+    <button id="submit">Continuar</button>
 </div>
 
 

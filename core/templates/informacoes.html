@@ -4,25 +4,25 @@
   <link rel="stylesheet" href="{% static 'css/infos.css' %}" />
 
   <div class="infos-container">
-    <div class="infos-titulo">
+    <div class="infos-title">
       <h1>Alterar Informações de Pessoais</h1>
     </div>
     <div class="infos">
-      <label for="Alterar">Alterar Nome:</label>
+      <label for="change-name">Alterar Nome:</label>
       <input type="text" />
     </div>
     <div class="infos">
-      <label for="data_nascimento">Data de Nascimento:</label>
-      <input type="date" id="data_nascimento" name="data_nascimento" required />
+      <label for="birth-day">Data de Nascimento:</label>
+      <input type="date" id="birth-day" name="birth-day" required />
     </div>
     <div class="infos">
-      <label for="genero">Gênero:</label>
-      <select id="genero" name="genero">
-        <option value="masculino">Masculino</option>
-        <option value="feminino">Feminino</option>
-        <option value="outro">Outro</option>
+      <label for="gender">Gênero:</label>
+      <select id="gender" name="gender">
+        <option value="male">Masculino</option>
+        <option value="female">Feminino</option>
+        <option value="other">Outro</option>
       </select>
     </div>
-    <a href="#"><button class="botao-salvar">Salvar</button></a>
+    <a href="#"><button class="save-button">Salvar</button></a>
   </div>
 {% endblock %}

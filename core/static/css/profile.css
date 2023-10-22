@@ -12,26 +12,27 @@
     background-color: white;
     border-radius: 20px;
     padding: 3rem;
+    margin-top: 40px;
     width: 90%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 
-#profile-foto{
+#profile-photo{
     display: flex;
     align-items: center;
     gap: 3rem;
 }
 
-#profile-foto img{
+#profile-photo img{
     border-radius: 2rem;
     width: 150px;
     height: 150px;
     margin-left: 1rem;
 }
 
-#profile-foto h1{
+#profile-photo h1{
     font-size: 1.5rem;
     font-weight: bold;
 }
