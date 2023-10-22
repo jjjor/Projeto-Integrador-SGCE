@@ -27,7 +27,7 @@
 }
 
 #email_login,
-#senha_login {
+#password_login {
   display: flex;
   justify-content: flex-start;
   border-radius: 10px;
@@ -35,7 +35,7 @@
   width: 30rem;
 }
 
-#fazer_login{
+#login{
   text-align: center;
   font-size: 20px;
   font-weight: bold;
@@ -50,7 +50,7 @@ input {
 }
 
 input[type="email"],
-input[type="senha"] {
+input[type="password"] {
   justify-items: center;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -77,14 +77,7 @@ input[type="senha"] {
   gap: 10rem;
 }
 
-#enviar:hover{
-  cursor: pointer;
-  transition: 0.6s;
-  background-color: #2abc4cbb;
-  transform: translate(0px, -2px);
-}
-
-#enviar{
+#submit{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,6 +89,13 @@ input[type="senha"] {
   color: white;
   font-size: 1.4rem;
   cursor: pointer;
+}
+
+#submit:hover{
+  cursor: pointer;
+  transition: 0.6s;
+  background-color: #2abc4cbb;
+  transform: translate(0px, -2px);
 }
 
 #form-button {
