@@ -74,9 +74,11 @@
     margin-top: 1rem;
     cursor: pointer;
     font-size: 1.5rem;
+    outline: none;
 }
 
 #button-save {
     display: flex;
     justify-content: center;
+    outline: none;
 }

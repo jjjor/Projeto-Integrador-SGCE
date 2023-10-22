@@ -2,7 +2,6 @@
 {% load static %}
 {% block main %}
   <link rel="stylesheet" href="{% static 'css/infos.css' %}" />
-
   <div class="infos-container">
     <div class="infos-title">
       <h1>Alterar Informações de Pessoais</h1>
@@ -23,6 +22,8 @@
         <option value="other">Outro</option>
       </select>
     </div>
-    <a href="#"><button class="save-button">Salvar</button></a>
+    <a href="#" class="button-save">
+      <button class="save-button">Salvar</button>
+    </a>
   </div>
 {% endblock %}

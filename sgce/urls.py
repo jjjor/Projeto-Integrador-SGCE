@@ -28,6 +28,7 @@ urlpatterns = [
     path('perfil-prof', views.profile_prof, name='perfil-prof'),
     path('profile', views.profile, name='profile'),
     path('profile-prof', views.profile_prof, name='profile-prof'),
+    path('info', views.info, name='info'),
     path('info-security', views.infos_security, name='info_security')
 ]
 
