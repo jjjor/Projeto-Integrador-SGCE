@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+  <link rel="stylesheet" href="{% static 'css/info-pessoal.css' %}" />
+  <div class="infos-container">
+    <div class="infos-title">
+      <h1>Alterar Informações de Pessoais</h1>
+    </div>
+    <div class="infos">
+      <label for="change-name">Alterar Nome:</label>
+      <input type="text" />
+    </div>
+    <div class="infos">
+      <label for="birth-day">Data de Nascimento:</label>
+      <input type="date" id="birth-day" name="birth-day" required />
+    </div>
+    <div class="infos">
+      <label for="gender">Gênero:</label>
+      <select id="gender" name="gender">
+        <option value="male">Masculino</option>
+        <option value="female">Feminino</option>
+        <option value="other">Outro</option>
+      </select>
+    </div>
+    <a href="#" class="button-save">
+      <button class="save-button">Salvar</button>
+    </a>
+  </div>
+{% endblock %}
+
