@@ -17,11 +17,17 @@ def profile(request):
 def profile_prof(request):
     return render(request, 'profile-prof.html')
 
-def infos_security(request):
-    return render(request, 'infos-security.html')
+def info_security(request):
+    return render(request, 'info-security.html')
 
 def info_pessoal(request):
-    return render(request, "info-pessoal.html")
+    return render(request, 'info-pessoal.html')
+
+def report_bug(request):
+    return render(request, 'report-bug.html')
+
+def matches(request):
+    return render(request, 'matches.html')
 
 def report_bug(request):
     return render(request, "report-bug.html")
