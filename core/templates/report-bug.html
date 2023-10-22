@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+    <link rel="stylesheet" href="{% static 'css/report-bug.css' %}">
+
+    <div class="container-report">
+        <div id="title-report">
+            <h1>Reportar Bug</h1>
+        </div>
+        <hr>
+        <div class="form-bug">
+            <label for="">Descreva o Bug:</label>
+            <input type="text">
+            <button id="button-save">Enviar</button>
+        </div>
+    </div>
+
+{% endblock main %}
+    

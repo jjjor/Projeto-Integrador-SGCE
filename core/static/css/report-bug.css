@@ -1,0 +1,31 @@
+.container-report {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    /* padding: 2rem; */
+    border-radius: 20px;
+    margin-top: 40px;
+    gap: 1.5rem;
+    background-color: white;
+    max-width: 80%;
+}
+
+#title-report {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    /* padding: 6px; */
+    /* border: 1px solid black; */
+    border-radius: 6px;
+}
+
+hr {
+    width: 100%;
+    margin: 0 1rem;
+}

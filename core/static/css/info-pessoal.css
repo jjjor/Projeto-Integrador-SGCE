@@ -38,7 +38,7 @@
 .infos input[type=text] {
     outline: none;
     border-radius: 6px;
-    width: 200px;
+    width: 35%;
     height: 30px;
     font-size: 16px;
     line-height: 24px;
@@ -49,13 +49,15 @@
     opacity: 0.5;
 }
 
-#birth-day{
+#birth-day {
     border-radius: 6px;
     padding: 6px;
     background-color: #F3F3F3;
     box-shadow: 2px 2px 4px 0px black;
     opacity: 0.5;
     outline: none;
+    width: 20%;
+    text-align: center;
 }
 
 #gender{
@@ -69,11 +71,12 @@
     background-color: #52AC6C;
     color: white;
     border-radius: 10px;
-    padding: 0.7rem 15.2rem;
     border: none;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     float: right;
+    width: 85%;
+    height: 2.8rem;
 }
 
 .save-button:hover {
