@@ -22,3 +22,6 @@ def infos_security(request):
 
 def info_pessoal(request):
     return render(request, "info-pessoal.html")
+
+def report_bug(request):
+    return render(request, "report-bug.html")

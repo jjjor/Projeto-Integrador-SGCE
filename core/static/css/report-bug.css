@@ -1,0 +1,56 @@
+#report-bug-content-box{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+
+    padding: 100px;
+    border-radius: 20px;
+    margin-top: 40px;
+    gap: 1.5rem;
+    background-color: white;
+    max-width: 1000px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.612);
+}
+
+#report-bug-content-box h3 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+textarea {
+
+    resize: none;
+    width: 100%;
+    height: 9rem;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.244);
+}
+
+label {
+	display: block;
+	margin-bottom: 10px;
+	color: #333;
+    font-size: 20px;
+}
+
+#submit-bug {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+
+    padding: 15px 30px;
+    border-radius: 8px;
+    background-color: #52AC6C;
+}
+
+#submit-bug:hover {
+    background-color: #009a24e2;
+    transform: translate(0, -2px);
+    transition: 0.6s;
+}
