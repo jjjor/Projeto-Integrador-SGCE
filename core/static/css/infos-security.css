@@ -1,15 +1,16 @@
 .infos-container {
-    background-color: white;
-    padding: 3.5rem;
-    margin: 2.5rem;
-    border-radius: 1rem;
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
+
     display: flex;
     justify-content: center;
-    max-width: 1000px;
+    flex-direction: column;
     margin: 0 auto;
+
+    padding: 50px;
+    border-radius: 20px;
+    margin-top: 40px;
+    gap: 1.5rem;
+    background-color: white;
+    max-width: 1000px;
 }
 
 .infos{
@@ -21,7 +22,7 @@
     border: 1px solid #00000063
 }
 
-.infos-titulo {
+.infos-title {
     font-size: 1.4rem;
     font-weight: bold;
     display: flex;
@@ -65,9 +66,10 @@
     box-shadow: 2px 1px 4px 0px black;
 }
 
-.botao-salvar {
+.save-button {
     background-color: #52AC6C;
     color: white;
+    text-decoration: none;
     border-radius: 14px;
     padding: 0.7rem 15.2rem;
     border: none;
@@ -76,7 +78,14 @@
     font-size: 1.5rem;
 }
 
-#button-save {
+.save-button:hover {
+    background-color: #009a24e2;
+    transition: 0.6s;
+    transform: translate(0px, -2px);
+}
+
+#save-button {
     display: flex;
     justify-content: center;
+    text-decoration: none;
 }

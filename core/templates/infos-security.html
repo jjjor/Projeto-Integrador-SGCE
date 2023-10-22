@@ -4,23 +4,23 @@
     <link rel="stylesheet" href="{% static 'css/infos-security.css' %}">
     <form action="">
         <div class="infos-container">
-            <div class="infos-titulo">
+            <div class="infos-title">
                 <h1>Alterar Informações de Segurança</h1>
             </div>
             <div class="infos">
-                <label for="Alterar">Alterar Email:</label>
+                <label for="change">Alterar Email:</label>
                 <input type="email" name="email" required>
             </div>
             <div class="infos">
-                <label for="Alterar">Alterar Senha:</label>
-                <input type="password" name="senha" required>
+                <label for="change">Alterar Senha:</label>
+                <input type="password" name="password" required>
             </div>
             <div class="infos">
-                <label for="Alterar">Confirmar Senha:</label>
-                <input type="password" name="senha" required>
+                <label for="change">Confirmar Senha:</label>
+                <input type="password" name="password" required>
             </div>
-            <a href="#" id="button-save">
-                <button class="botao-salvar">Salvar</button>
+            <a href="#" id="save-button">
+                <button class="save-button">Salvar</button>
             </a>
         </form>
 {% endblock main %}
