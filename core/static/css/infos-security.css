@@ -69,13 +69,13 @@
 .save-button {
     background-color: #52AC6C;
     color: white;
-    text-decoration: none;
     border-radius: 14px;
     padding: 0.7rem 15.2rem;
     border: none;
     margin-top: 1rem;
     cursor: pointer;
     font-size: 1.5rem;
+
 }
 
 .save-button:hover {

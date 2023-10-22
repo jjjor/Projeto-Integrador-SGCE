@@ -17,8 +17,5 @@ def profile(request):
 def profile_prof(request):
     return render(request, 'profile-prof.html')
 
-def informacoes(request):
-    return render(request, 'informacoes.html')
-
 def infos_security(request):
     return render(request, 'infos-security.html')
