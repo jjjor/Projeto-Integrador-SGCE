@@ -1,7 +1,7 @@
 #register-image {
 	width: 29%;
 	height: 29%;
-    margin-right: 2rem;
+    margin-right: 4rem;
 	display: flex;
     align-items: center;
     justify-content: center;
@@ -11,8 +11,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 8rem;
-	margin-top: 30px;
+	gap: 5rem;
+	margin-top: 20px;
 	margin-right: 0px;
 }
 
@@ -59,12 +59,14 @@ select {
 #form-button-register {
 	font-weight: bold;
 	color: #fff;
-	padding: 20px 40px;
+	padding: 20px 100px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
     background-color: #52AC6C;
-	gap: 2rem;
+	margin-top: 2rem;
+	align-items: center;
+	justify-content: center;
 }
 
 #form-button-register:hover {
@@ -73,4 +75,9 @@ select {
 	transition: 0.6s;
 	transform: translate(0, -2px);
 
+}
+
+form button {
+	justify-content: center;
+	align-items: center;
 }
