@@ -26,6 +26,6 @@ urlpatterns = [
    path('login', views.login, name='login'),
    path('perfil', views.profile, name='perfil'),
    path('perfil-prof', views.profile_prof, name='perfil-prof'),
-   path('informacoes', views.informacoes, name='informacoes')
+   path('info', views.informacoes, name='informacoes')
 ]
 
