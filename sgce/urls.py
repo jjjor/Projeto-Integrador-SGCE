@@ -30,6 +30,8 @@ urlpatterns = [
     path('info-pessoal', views.info_pessoal, name='info_pessoal'),
     path('report-bug', views.report_bug, name='report-bug'),
     path('report-bug', views.report_bug, name='report_bug'),
-    path('matches', views.matches, name='matches'),
+    path('rating', views.rating, name='rating'),
+    path('ask-team-change', views.ask_team_change, name='ask-team-change'),
+    path('matches', views.matches, name='matches')
 ]
 

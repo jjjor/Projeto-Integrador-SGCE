@@ -1,21 +1,56 @@
-{% extends 'base.html' %}
+{% extends 'base.html'%}
 {% load static %}
-{% block main %}
+{%block main%}
 
-<link rel="stylesheet" href="{% static 'css/matches.css' %}">
+<link rel="stylesheet" href="{% static 'css/matches.css'%} ">
 
-    <div class="container-matches">
-        <div class="title-matches">
-            <h1>Partidas</h1>
-        </div>
-        <div class="box-matches">
-            <div id="scoreboard">
-                
-            </div>
-            <div id="scoreboard">
+<div id="container-matches">
+    <h1>Partidas | Intercurso 2023</h1>
+    <h1>Dia 29/09/2029</h1>
+    <table>
+        <tr>
+            <th class="chave">Chave 1</th>
+            <th class="chave">Chave 2</th>
+            <th class="chave">Chave 3</th>
+            <th class="chave">Chave 4</th>
+        </tr>
+        <tr>
+            <td>Saint Bytes</td>
+            <td>Vasco</td>
+            <td>Palmeiras</td>
+            <td>Flamengo</td>
+        </tr>
+        <tr>
+            <td>SóUMel</td>
+            <td>Apivolei</td>
+            <td>Univolei</td>
+            <td>Itaú</td>
+        </tr>
+    </table>
 
-            </div>
-        </div>
-    </div>
+    <h1>Dia 18/08/2028</h1>
+    <table>
+        <tr>
+            <th class="chave">Chave 1</th>
+            <th class="chave">Chave 2</th>
+            <th class="chave">Chave 3</th>
+            <th class="chave">Chave 4</th>
+        </tr>
+        <tr>
+            <td>Saint Bytes</td>
+            <td>Vasco</td>
+            <td>Palmeiras</td>
+            <td>Flamengo</td>
+        </tr>
+        <tr>
+            <td>SóUMel</td>
+            <td>Apivolei</td>
+            <td>Univolei</td>
+            <td>Itaú</td>
+        </tr>
+    </table>
 
-{% endblock main %}
+</div>
+
+
+{%endblock%}

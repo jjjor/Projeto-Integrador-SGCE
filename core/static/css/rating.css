@@ -1,0 +1,73 @@
+#container-points {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+
+    padding: 70px;
+    border-radius: 20px;
+    margin-top: 2rem;
+    gap: 1.5rem;
+    background-color: white;
+    max-width: 60%;
+    max-height: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.612);
+}
+
+#container-points h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    font-size: 25px;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.scoreboard {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.scoreboard th, .scoreboard td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.scoreboard th {
+    background-color: #333;
+    color: #fff;
+}
+
+.team-score {
+    font-weight: normal;
+    background-color: #555;
+}
+
+/* Styling para cada equipe */
+#team-a-score {
+    background-color: white; /* Altere esta cor conforme sua preferência */
+}
+
+#team-b-score {
+    background-color: white; /* Altere esta cor conforme sua preferência */
+}
+
+#team-c-score {
+    background-color: white; /* Altere esta cor conforme sua preferência */
+}
+
+#team-d-score {
+    background-color: white; /* Altere esta cor conforme sua preferência */
+}
+
+#team-e-score {
+    background-color: white; /* Altere esta cor conforme sua preferência */
+}
+
+table td {
+    background-color: white;
+}

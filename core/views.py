@@ -26,8 +26,13 @@ def info_pessoal(request):
 def report_bug(request):
     return render(request, 'report-bug.html')
 
+def rating(request):
+    return render(request, 'rating.html')
+
+def ask_team_change(request):
+    return render(request, 'ask-team-change.html')
+
 def matches(request):
     return render(request, 'matches.html')
 
-def report_bug(request):
-    return render(request, "report-bug.html")
+

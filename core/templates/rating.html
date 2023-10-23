@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+<link rel="stylesheet" href="{% static 'css/rating.css' %}">
+
+<div id="container-points">
+    <h1>Scoreboard:</h1>
+    <table class="scoreboard">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Pontuação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alcatéia Bikes</td>
+                <td class="team-score" id="team-a-score">0</td>
+            </tr>
+            <tr>
+                <td>SóUmel</td>
+                <td class="team-score" id="team-b-score">0</td>
+            </tr>
+            <tr>
+                <td>APV</td>
+                <td class="team-score" id="team-c-score">0</td>
+            </tr>
+            <tr>
+                <td>TPV</td>
+                <td class="team-score" id="team-d-score">0</td>
+            </tr>
+            <tr>
+                <td>Palmeiras</td>
+                <td class="team-score" id="team-e-score">0</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock main %}
