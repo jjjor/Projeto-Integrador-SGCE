@@ -47,7 +47,7 @@ input[type="password"] {
 	padding: 0.6rem;
 	margin-bottom: 15px;
 	border: 1px solid #ccc;
-	border-radius: 5px;
+	border-radius: 6px;
 	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.244);
 }
 
@@ -56,16 +56,14 @@ select {
 }
 
 #form-button-register {
-	font-weight: bold;
-	color: white;
-	padding: 15px 150px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
+    font-weight: bold;
+    color: white;
+    padding: 15px 150px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     background-color: #52AC6C;
-	grid-row: 5;
-	margin-left: 1.7rem;
-	margin-top: 2rem;
+    grid-row: 5;
 }
 
 #form-button-register:hover {
@@ -77,10 +75,9 @@ select {
 }
 
 .container form {
-	display: unset;
-	grid-template-columns: repeat(2, 1fr);
-	justify-items: start;
-	gap: 1rem;
+    display: flex;
+    gap: 0.6rem;
+    flex-direction: column;
 }
 
 .date-gender-form {
@@ -90,24 +87,25 @@ select {
 
 .name-form {
 	grid-column: 1 / 3;
-	width: 100%;
+	width: 94%;
 }
 
 .date-form{
 	display: flex;
 	gap: 4rem;
+	align-items: center;
 }
 
 .email-form {
 	grid-row: 3;
 	grid-column: 1 / 3;
-	width: 100%;
+	width: 94%;
 }
 
 .password-form {
 	grid-row: 4;
 	grid-column: 1 / 3;
-	width: 100%;
+	width: 94%;
 }
 
 .container form select {
