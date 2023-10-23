@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+ 
+<link rel="stylesheet" href="{% static 'css/register-match.css' %}">
+
+<div class="register-match">
+    <div class="register-match-container">
+        <h1>Cadastrar partida</h1>
+        <input type="submit" value="Salvar" class="btn-create-match">
+        <form action="?">
+            <div class="sport-choice">
+                <label for="sport">Escolha o Esporte:</label>
+            </div>
+            <div class="select-teams">
+                <label for="team">Escolha os times:</label>
+                <div class="teams">
+                    <select name="team-one" id="team1">
+                        <option value="vasco">Vasco</option>
+                        <option value="paysandu">Sóumel</option>
+                    </select>
+                    <p>x</p>
+                    <select name="team-one" id="team1">
+                        <option value="vasco">Vasco</option>
+                        <option value="paysandu">Sóumel</option>
+                    </select>
+                </div>
+            </div>
+            <div class="date-match">
+                <label for="date-match">Data da partida:</label>
+                <input type="date" name="date-match" id="date-match">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock main %}
+    

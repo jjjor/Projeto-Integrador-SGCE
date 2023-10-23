@@ -35,4 +35,6 @@ def ask_team_change(request):
 def matches(request):
     return render(request, 'matches.html')
 
+def register_match(request):
+    return render(request, 'register-match.html')
 
