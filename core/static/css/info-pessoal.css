@@ -18,7 +18,7 @@
     gap: 1rem;
     border-radius: 1.2rem;
     padding: 1rem;
-    border: 1px solid #00000063
+    border: 1px solid rgba(40, 40, 40, 0.228);
 }
 
 .infos-title {
@@ -27,7 +27,7 @@
     display: flex;
     justify-content: center;
     padding-bottom: 8px;
-    border-bottom: 1px solid #00000063;
+    border: 1px solid rgba(0.228);
 }
 
 .infos label{
@@ -43,7 +43,7 @@
     font-size: 16px;
     line-height: 24px;
     padding: 0 8px;
-    border: 1px solid #F3F3F3;
+    border: 1px solid rgba(40, 40, 40, 0.228);
     background-color: #F3F3F3;
     box-shadow: 2px 2px 4px 0px black;
     opacity: 0.5;
