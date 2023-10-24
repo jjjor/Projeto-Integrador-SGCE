@@ -1,0 +1,30 @@
+.register-match {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.register-match-container {
+    background-color: #fff;
+    padding: 2rem 2rem 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 0.5rem;
+    max-width: 90%;
+    width: 90%;
+}
+
+.register-match-container h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.register-match-container .btn-create-match {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
