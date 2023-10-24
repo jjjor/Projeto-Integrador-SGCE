@@ -45,6 +45,7 @@ header {
 }
 
 #header-content {
+	font-weight: bold;
 	display: flex;
 	gap: 20px;
 	align-items: center;
