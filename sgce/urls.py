@@ -33,6 +33,6 @@ urlpatterns = [
     path('rating', views.rating, name='rating'),
     path('ask-team-change', views.ask_team_change, name='ask-team-change'),
     path('matches', views.matches, name='matches'),
-    path('register-match', views.register_match, name='register-match'),
+    path('register-tournament', views.register_tournament, name='register-tournament'),
 ]
 
