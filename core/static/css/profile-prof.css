@@ -44,31 +44,24 @@
 
 .options-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);  
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
 }
 
 .option-container {
     margin-bottom: 2px;
     padding: 1rem 1rem 1.1rem 4rem;
     position: relative;
-    border: 1px solid rgb(40, 40, 40);
+    border: 1px solid rgb(40, 40, 40, 0.228);
     display: flex;
     align-items: center;
     border-radius: 0.5rem;
 }
 
-.option-container:nth-child(1) {
-    border-bottom: none;
-}
-
-.option-container:nth-child(2) {
-    border-left: none;
-    border-bottom: none;
-}
-
-
-.option-container:nth-child(4) {
-    border-left: none;
+.option-container a:hover {
+    color: #009a24e2;
+    transform: translate(0px, -1px);
+    transition: 0.6s;
 }
 
 .option-container a{

@@ -20,19 +20,19 @@
 }
 
 .container-matches {
-    background-color: #fff;
-    padding: 2rem 2rem 5rem 2rem;
+    background-color: rgb(30, 29, 29);
+    padding: 2rem 4rem 5rem 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2rem;
     border-radius: 0.5rem;
-    max-width: 90%;
-    width: 90%;
+    max-width: 60%;
 }
 
 .header-matches h1{
+    color: white;
     font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
@@ -46,6 +46,7 @@
 
 .date-match {
     font-size: 1.2rem;
+    color: white;
 }
 
 .card-match {
@@ -53,10 +54,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    outline: 1px solid #00000045;
+    outline: 1px solid #00000045;   
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: #ffffff21;
 }
 
 .match {
@@ -66,7 +68,7 @@
 }
 
 .match p {
-    font-weight: bold;
+    color: white;
 }
 
 .match img {
