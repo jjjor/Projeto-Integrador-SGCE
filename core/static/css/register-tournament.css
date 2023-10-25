@@ -8,6 +8,7 @@
   background-color: rgb(30, 29, 29);
   padding: 2rem;
   display: flex;
+  margin-top: 4rem;
   gap: 2rem;
   border-radius: 0.5rem;
   /* margin-top: 1.5rem; */
@@ -41,6 +42,11 @@
   justify-content: center;
   text-decoration: none;
   color: white;
+}
+
+.container-title a:hover {
+  color: #009a24e2;
+  transition: 0.6s;
 }
 
 .container-title {
@@ -111,9 +117,20 @@
   gap: 1rem;
   color: white;
 }
+
+#team1 {
+  background-color: #ffffff21;
+  color: grey;
+}
+
 .container-teams {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+}
+
+#modalities {
+  background-color: #ffffff21;
+  color: grey;
 }
 
 .date-match {
@@ -127,6 +144,11 @@
   color: white;
 }
 
+#date-match {
+  background-color: #ffffff21;
+  color: white;
+}
+
 .grid-container {
   display: grid;
   gap: 0.2rem;
@@ -136,7 +158,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: #ffffff21;
+  color: white;
   border: 1px solid rgba(102, 100, 100, 0.228);
   border-radius: 0.5rem;
   padding: 0.5rem;
@@ -175,6 +198,7 @@
 }
 
 #name-tournament {
+  background-color: #ffffff21;
   border: 1px solid rgba(102, 100, 100, 0.228);
   border-radius: 0.4rem;
   padding: 0.3rem;

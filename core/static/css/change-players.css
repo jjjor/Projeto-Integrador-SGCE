@@ -28,13 +28,13 @@
 .menu {
   display: flex;
   flex-direction: column;
-  border: 1px solid white;
+  border: 1px solid rgb(48, 46, 46);
   border-radius: 0.5rem;
 }
 
 .menu div {
   padding: 1.8rem;
-  border: 1px solid white;
+  border: 1px solid rgb(48, 46, 46);
 }
 
 .menu div:nth-child(n + 1) {
@@ -115,11 +115,11 @@
 
 .add-player {
   border-right: none;
-  border: 1px solid white;
+  border: 1px solid rgb(48, 46, 46);
 }
 .options {
   border-left: none;
-  border: 1px solid white;
+  border: 1px solid rgb(48, 46, 46);
 }
 
 .add-player,
@@ -219,7 +219,7 @@
 
 .holders,
 .reserve {
-  border: 1px solid white;
+  border: 1px solid rgb(48, 46, 46);
   border-radius: 0.5rem;
   padding: 1.8rem;
 }

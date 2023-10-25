@@ -1,0 +1,141 @@
+#matches {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container-matches {
+    background-color: rgb(30, 29, 29);
+    padding: 2rem 4rem 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 2rem;
+    border-radius: 0.5rem;
+    width: 70%;
+}
+
+.header-matches h1{
+    color: white;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.matches-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+}
+
+.date-match {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.card-match {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    outline: 1px solid #00000045;   
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: #ffffff21;
+}
+
+.card-match label {
+    gap: 1rem;
+    color: white;
+}
+
+.card-match select {
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background-color: #ffffff21;
+    color: grey;
+}
+
+.current-team-selection {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    gap: 1rem;
+    color: white;
+}
+
+.match {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.match p {
+    color: white;
+}
+
+.match img {
+    width: 48px;
+    height: 48px;
+}
+
+.team-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .team-item img {
+    width: 40px;
+    height: 40px;
+  }
+
+
+.change-sport {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    gap: 1rem;
+    color: white;
+}
+
+.change-sport select {
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background-color: #ffffff21;
+    color: grey;
+}
+
+.save-btn {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #52AC6C;
+    color: white;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    padding: 1rem 5rem 1rem 5rem;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.save-btn:hover {
+    background-color: #009a24e2;
+    transition: 0.6s;
+    transform: translate(0, -2px);
+}

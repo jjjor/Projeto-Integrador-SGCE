@@ -43,3 +43,6 @@ def change_players(request):
 
 def change_informations(request):
     return render(request, 'change-informations.html')
+
+def register_match(request):
+    return render(request, 'register-match.html')

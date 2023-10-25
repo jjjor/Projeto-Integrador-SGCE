@@ -36,5 +36,6 @@ urlpatterns = [
     path('register-tournament', views.register_tournament, name='register-tournament'),
     path('change-players', views.change_players, name='change-players'),
     path('change-informations', views.change_informations, name='change-informations'),
+    path('register-match', views.register_match, name='register-match'),
 ]
 
