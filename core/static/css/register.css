@@ -20,10 +20,9 @@
 	max-width: 400px;
 	justify-content: center;
 	margin: 0;
-	background-color: #fff;
+	background-color: rgb(30, 29, 29);
 	padding: 3rem;
 	border-radius: 20px;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.612);
 }
 
 
@@ -43,12 +42,22 @@ input[type="date"],
 select,
 input[type="email"],
 input[type="password"] {
+	color: white;
+	background-color: #ffffff21;
 	width: 100%;
 	padding: 0.6rem;
 	margin-bottom: 15px;
-	border: 1px solid #ccc;
+	border: 1px solid rgba(102, 100, 100, 0.228);
 	border-radius: 6px;
 	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.244);
+}
+
+#birth-day {
+	color: white;
+}
+
+#gender {
+	color: grey;
 }
 
 select {
@@ -67,7 +76,7 @@ select {
 }
 
 #form-button-register:hover {
-	background-color: #009a24e2;
+	background-color: #2abc4cbb;	
 	cursor: pointer;
 	transition: 0.6s;
 	transform: translate(0, -2px);
@@ -110,6 +119,10 @@ select {
 
 .container form select {
 	width: 150px;
+}
+
+.container label {
+	color: white;
 }
 
 form button {
