@@ -1,19 +1,19 @@
 .register-match {
   width: 100%;
   display: flex;
-  justify-content: center;  
+  justify-content: center;
 }
 
 .register-match-container {
-  background-color: #fff;
+  background-color: rgb(30, 29, 29);
   padding: 2rem;
   display: flex;
   gap: 2rem;
   border-radius: 0.5rem;
-  margin-top: 5rem;
-  max-width: 60%;
-  width: 60%;
+  /* margin-top: 1.5rem; */
+  width: 85%;
   flex-direction: column;
+  height: 80%;
 }
 
 .register-match-container form {
@@ -28,27 +28,30 @@
   flex-direction: column;
 }
 
-.container-title h1 {
+.container-title a {
   font-size: 1.2rem;
-  font-weight: bold;
   text-align: center;
   display: flex;
   align-items: center;
-  width: 20%;
-  height: 100%;
-  float: left;
-  border: 1px solid rgba(40, 40, 40, 0.228);
-  /* margin-left: 4px; */
+  width: 25%;
+  border: 1px solid rgba(102, 100, 100, 0.228);
   padding-left: 0.5rem;
   border-radius: 6px;
-  padding: 6px 6px;
+  padding: 0.8rem 0.6rem;
   justify-content: center;
+  text-decoration: none;
+  color: white;
 }
 
 .container-title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
+}
+
+.container-title input {
+  height: 3rem;
+  font-size: 1.3rem;
 }
 
 .btn-create-match {
@@ -58,12 +61,11 @@
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
-  font-size: 1.4rem;
-  float: right;
+  font-size: 1.1rem;
   width: 20%;
-  height: 2.8rem;
+  height: 2.5rem;
+  margin-left: auto;
 }
-
 
 .btn-create-match:hover {
   background-color: #009a24e2;
@@ -72,17 +74,13 @@
 }
 
 .sport-choice {
-  border: 1px solid rgba(40, 40, 40, 0.228);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  font-size: 1.1rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
 }
 
 .sport-choice select {
-  width: 20%;
+  width: 40%;
   height: 2rem;
   border-radius: 0.5rem;
   border: 1px solid rgba(40, 40, 40, 0.228);
@@ -106,11 +104,12 @@
 .select-teams {
   display: flex;
   align-items: center;
-  border: 1px solid rgba(40, 40, 40, 0.228);
+  border: 1px solid rgba(102, 100, 100, 0.228);
   padding: 1rem;
   border-radius: 0.5rem;
   font-size: 1.1rem;
   gap: 1rem;
+  color: white;
 }
 .container-teams {
   display: grid;
@@ -120,11 +119,12 @@
 .date-match {
   display: flex;
   align-items: center;
-  border: 1px solid rgba(40, 40, 40, 0.228);
+  border: 1px solid rgba(102, 100, 100, 0.228);
   padding: 1rem;
   border-radius: 0.5rem;
   font-size: 1.1rem;
   gap: 1rem;
+  color: white;
 }
 
 .grid-container {
@@ -136,8 +136,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(40, 40, 40, 0.228);
+  background-color: white;
+  border: 1px solid rgba(102, 100, 100, 0.228);
   border-radius: 0.5rem;
   padding: 0.5rem;
   font-size: 1rem;
@@ -161,4 +161,37 @@
 .grid-item:nth-child(7),
 .grid-item:nth-child(8) {
   border-right: none;
+}
+
+.container-grid-team{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#date-match {
+  border: 1px solid rgba(102, 100, 100, 0.228);
+  border-radius: 0.4rem;
+  padding: 0.4rem;
+}
+
+#name-tournament {
+  border: 1px solid rgba(102, 100, 100, 0.228);
+  border-radius: 0.4rem;
+  padding: 0.3rem;
+  color: white;
+}
+
+.input-tournament,
+.select-sport {
+  width: 100%;
+  color: white;
+  height: 2.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(102, 100, 100, 0.228);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  font-size: 1.1rem;
 }

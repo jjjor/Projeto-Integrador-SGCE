@@ -6,19 +6,26 @@
   <div class="register-match">
     <div class="register-match-container">
       <div class="container-title">
-        <h1>Cadastrar torneio</h1>
+        <a href=""><h1>Cadastrar torneio</h1></a>
+        <a href="#"><h1>Cadastrar Partida</h1></a>
         <input type="submit" value="Salvar" class="btn-create-match" />
       </div>
       <form action="?">
         <div class="sport-choice">
-          <label for="sport">Escolha o Esporte:</label>
-          <select name="modalities" id="modalities">
-            <option value="basquete">Basquete</option>
-            <option value="volei-indoor">Vôlei Indoor</option>
-            <option value="volei-outdoor">Vôlei Outdoor</option>
-            <option value="futsal">Futsal</option>
-            <option value="handebol">Handebol</option>
-          </select>
+          <div class="input-tournament">
+            <label for="name-tournament">Nome do torneio:</label>
+            <input type="text" name="name-tournament" id="name-tournament" />
+          </div>
+          <div class="select-sport">
+            <label for="sport">Escolha o Esporte:</label>
+            <select name="modalities" id="modalities">
+              <option value="basquete">Basquete</option>
+              <option value="volei-indoor">Vôlei Indoor</option>
+              <option value="volei-outdoor">Vôlei Outdoor</option>
+              <option value="futsal">Futsal</option>
+              <option value="handebol">Handebol</option>
+            </select>
+          </div>
         </div>
         <div class="container-teams">
           <div class="select-teams-date-container">
@@ -30,7 +37,7 @@
                   <option value="paysandu">Sóumel</option>
                 </select>
               </div>
-              <input type="submt" value="Enviar" class="btn-create-match" />
+              <input type="submit" value="Enviar" class="btn-create-match" />
             </div>
             <div class="date-match">
               <label for="date-match">Data da partida:</label>

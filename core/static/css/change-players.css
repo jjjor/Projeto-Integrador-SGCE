@@ -1,211 +1,229 @@
 .change-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 10rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10rem;
 }
 
 .container-players-change {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 0 auto;
-
-    padding: 70px;
-    border-radius: 20px;
-    gap: 1.5rem;
-    background-color: rgb(30, 29, 29);
-    max-width: 60%;
-    max-height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 70px;
+  border-radius: 20px;
+  gap: 1.5rem;
+  background-color: rgb(30, 29, 29);
+  max-height: 100%;
 }
 
 .container-players-change h1 {
-    color: white;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu {
-    display: flex;
-    flex-direction: column;
-    
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  border-radius: 0.5rem;
 }
 
 .menu div {
-    padding: 1rem;
-    
+  padding: 1.8rem;
+  border: 1px solid white;
 }
 
-.menu p{
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
+.menu div:nth-child(n + 1) {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.menu p {
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .menu p:hover {
-    color: #2abc4cbb;
-    transition: 0.6s;
+  color: #2abc4cbb;
+  transition: 0.6s;
 }
 
 .current-team-selection {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-
 .current-team {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .current-team img {
-    width: 2.5rem;
+  width: 2.5rem;
 }
 
 .change-players {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
-.change-informations a{
-
-    color: white;
-    text-decoration: none;
+.change-informations a {
+  color: white;
+  text-decoration: none;
 }
 
 .change-informations a:hover {
-    color: #2abc4cbb;
-    transition: 0.6s;;
+  color: #2abc4cbb;
+  transition: 0.6s;
 }
 
 #change-team {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: grey;
-    border-radius: 6px;
-    padding: 0.2rem;
-    background-color: #ffffff21;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.244);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: grey;
+  border-radius: 6px;
+  padding: 0.2rem;
+  background-color: #ffffff21;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.244);
 }
 
 .menu-container {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1rem;
 }
 
 .search {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 6px;
 }
 
 .search h2 {
-    font-size: 1.2rem;
-    color: #fff;
+  font-size: 1.1rem;
+  color: #fff;
 }
 
-.search form {
+.add-player{
+    border-right: none;
+    border: 1px solid white;
+}
+.options{
+    border-left: none;
+    border: 1px solid white;
+}
+
+.add-player, .options{
     display: flex;
-    align-items: flex-start;
     gap: 1rem;
+    align-items: center;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    width: 100%;
 }
 
 .search label {
-    color: white;
+  color: white;
 }
 
 .search form input {
-    color: white;
-    background-color: #ffffff21;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    border: none;
+  color: white;
+  background-color: #ffffff21;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
 }
 
 .checkbox-player {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .holders-form {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* row-gap: 1.5rem; */
+  gap: 2rem;
 }
 
 .players {
-
-    display: flex;
-    gap: 1.5rem;
-    flex-direction: column;
-    margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .players h2 {
-    display: flex;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-
-
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .card-holder {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .card-holder img {
-    width: 96px;
-    width: 96px;
+  width: 96px;
+  width: 96px;
 }
 
 .card-holder p {
-    color: white;
+  color: white;
 }
 
 .card-holder button {
-    background-color: rgba(255, 0, 0, 0.495);
-    color: white;
-    cursor: pointer;
-    padding: 0.3rem;
-    border-radius: 0.5rem;
+  background-color: rgba(255, 0, 0, 0.495);
+  color: white;
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
 }
 
 .card-holder button:hover {
-    background-color: rgba(118, 2, 2, 0.687);
-    transition: 0.6s;
-    
+  background-color: rgba(118, 2, 2, 0.687);
+  transition: 0.6s;
 }
 
 .btn-save {
-    background-color: #52AC6C;
-    color: white;
-    cursor: pointer;
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.5rem;
+  background-color: #52ac6c;
+  color: white;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  margin-left: auto;
 }
 
 .btn-save:hover {
-    transform: translate(0, -2px);
-    transition: 0.6s;
-    background-color: #2abc4cbb;
+  transform: translate(0, -2px);
+  transition: 0.6s;
+  background-color: #2abc4cbb;
+}
+
+.holders, .reserve {
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    padding: 1.8rem;
 }
 
 .check-players {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
