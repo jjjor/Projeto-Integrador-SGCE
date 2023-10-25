@@ -1,71 +1,64 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
-{%block main%}
+{% block main %}
+  <link rel="stylesheet" href="{% static 'css/change-informations.css' %}" />
 
-<link rel="stylesheet" href="{% static 'css/change-informations.css'%}">
-
-<div class="change-container">
+  <div class="change-container">
     <div class="container-players-change">
-        <h1>Alterar informações</h1>
-        <div class="menu-container">
-            <div class="menu">
-                <div class="current-team-selection">
-                    <p>Time atual:</p>
-                    <select name="" id="change-team">
-                        <option value="vasco">Vasco</option>
-                        <option value="paysandu">Sóumel</option>
-                        <option value="palmeiras">Palmeiras</option>
-                    </select>
-                </div>
-                <div class="current-team">
-                    <img src="{% static 'images/pysandu.png'%}">
-                    <p>SóUMel</p>
-                </div>
-                <div class="change-players">
-                    <p><a href="change-players">Alterar jogadores</a></p>
-                </div>
-                <div class="change-informations">
-                    <p><a href="change-informations">Alterar informações</a></p>
-                </div>
-                
-            </div>
-            <div class="search-player">
-                <div class="search">
-                    <h2>Alterações:</h2>
-                    <form action="?">
-                        
-                        <div class="checkbox-player">
-                            
-                        </div>
-                        <button class="btn-save">Salvar</button>
-                    </form>
-                </div>
-                <div class="players">
-                    <label for="logo">Alterar logo:</label>
-                    <input id="logo-file" type="file" name="logo">
-                </div>
-                <div class="change-name">
-                    <label for="text">Alterar nome:</label>
-                    <input type="text" name="change-name">
-                </div>
-                <div class="change-sport">
-                    <label for="select">Alterar esporte:</label>
-                    <select name="change-sport">
-                        <option value="basquete">Basquete</option>
-                        <option value="volei-indoor">Vôlei Indoor</option>
-                        <option value="volei-outdoor">Vôlei Outdoor</option>
-                        <option value="futsal">Futsal</option>
-                        <option value="handebol">Handebol</option>
-                      </select>
-                </div>
-
-            </div>
+      <h1>Alterar informações</h1>
+      <div class="menu-container">
+        <div class="menu">
+          <div class="current-team-selection">
+            <p>Time atual:</p>
+            <select name="" id="change-team">
+              <option value="vasco">Vasco</option>
+              <option value="paysandu">Sóumel</option>
+              <option value="palmeiras">Palmeiras</option>
+            </select>
+          </div>
+          <div class="current-team">
+            <img src="{% static 'images/pysandu.png' %}" />
+            <p>SóUMel</p>
+          </div>
+          <div class="change-players">
+            <p>
+              <a href="change-players">Alterar jogadores</a>
+            </p>
+          </div>
+          <div class="change-informations">
+            <p>
+              <a href="change-informations">Alterar informações</a>
+            </p>
+          </div>
         </div>
+        <div class="search-player">
+          <div class="search">
+            <h2>Alterações:</h2>
+            <form action="?">
+              <div class="checkbox-player"></div>
+              <button class="btn-save">Salvar</button>
+            </form>
+          </div>
+          <div class="players">
+            <label for="logo">Alterar logo:</label>
+            <input id="logo-file" type="file" name="logo" />
+          </div>
+          <div class="change-name">
+            <label for="text">Alterar nome:</label>
+            <input type="text" name="change-name" />
+          </div>
+          <div class="change-sport">
+            <label for="select">Alterar esporte:</label>
+            <select name="change-sport">
+              <option value="basquete">Basquete</option>
+              <option value="volei-indoor">Vôlei Indoor</option>
+              <option value="volei-outdoor">Vôlei Outdoor</option>
+              <option value="futsal">Futsal</option>
+              <option value="handebol">Handebol</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-
-
-
-
-
-{%endblock%}
+  </div>
+{% endblock %}

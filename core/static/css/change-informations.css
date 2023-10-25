@@ -1,213 +1,243 @@
 .change-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 10rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10rem;
 }
 
 .container-players-change {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 0 auto;
-
-    padding: 70px;
-    border-radius: 20px;
-    gap: 3rem;
-    background-color: rgb(30, 29, 29);
-    max-width: 60%;
-    max-height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 70px;
+  border-radius: 20px;
+  gap: 3rem;
+  background-color: rgb(30, 29, 29);
+  width: 80%;
 }
 
 .container-players-change h1 {
-    color: white;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  color: white;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu {
-    display: flex;
-    flex-direction: column;
-    
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  border-radius: 0.5rem;
 }
 
 .menu div {
-    padding: 0rem 0rem 2.8rem 0rem;
-    
+  padding: 15%;
+  border: 1px solid white;
 }
 
-.menu p{
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
+.menu div:nth-child(n + 1) {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.menu p {
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .menu p:hover {
-    color: #2abc4cbb;
-    transition: 0.6s;
+  color: #2abc4cbb;
+  transition: 0.6s;
 }
 
-
 .current-team {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .current-team img {
-    width: 2.5rem;
+  width: 2.5rem;
 }
 
 .menu-container {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1.4rem;
 }
 
 .search {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+  padding: 1rem;
 }
 
 .search h2 {
-    font-size: 1.2rem;
-    color: #fff;
+  font-size: 1.4rem;
+  color: #fff;
 }
 
 .search form {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
 }
 
 .search label {
-    color: white;
+  color: white;
 }
 
 .search-player label {
-    color: white;
-    font-size: 1.2rem;
+  color: white;
+  font-size: 1.2rem;
 }
 
 .search-player {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
 }
 
 .search form input {
-    color: white;
-    background-color: #ffffff21;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    border: none;
+  color: white;
+  background-color: #ffffff21;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
 }
 
 .btn-save {
-    background-color: #52AC6C;
-    color: white;
-    cursor: pointer;
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.5rem;
+  background-color: #52ac6c;
+  color: white;
+  cursor: pointer;
+  padding: 0.8rem 2.2rem;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
 }
 
 .btn-save:hover {
-    transform: translate(0, -2px);
-    transition: 0.6s;
-    background-color: #2abc4cbb;
+  transform: translate(0, -2px);
+  transition: 0.6s;
+  background-color: #2abc4cbb;
 }
 
 .players {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.2rem;
-    color: white;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2rem;
+  color: white;
+  align-content: center;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid white;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
-.change-informations a{
+input[type="file"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
 
-    color: white;
-    text-decoration: none;
+#logo-file{
+  background-color: white;
+  border: 1px solid #000;
+  border-radius: 5px;
+  color: #000;
+  font-size: 1rem;
+  height: 2rem;
+  padding: 0.5rem;
+}
+
+.change-informations a {
+  color: white;
+  text-decoration: none;
 }
 
 .change-name {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid white;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 .change-name input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: grey;
-    border-radius: 6px;
-    padding: 0.5rem 0.5rem 0.5rem 2rem;
-    background-color: #ffffff21;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: grey;
+  border-radius: 6px;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  background-color: #ffffff21;
 }
 
 .change-sport {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid white;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 .change-sport select {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: grey;
-    border-radius: 6px;
-    padding: 0.5rem 0.5rem 0.5rem 2rem;
-    background-color: #ffffff21;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: grey;
+  border-radius: 6px;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  background-color: #ffffff21;
 }
 
 #change-team {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: grey;
-    border-radius: 6px;
-    padding: 0.2rem;
-    background-color: #ffffff21;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.244);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: grey;
+  border-radius: 6px;
+  padding: 0.2rem;
+  background-color: #ffffff21;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.244);
 }
 
-#logo-file   {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: grey;
-    border-radius: 6px;
-    padding: 0.2rem;
-    background-color: #ffffff21;
-    
+.change-players a {
+  text-decoration: none;
+  color: white;
 }
 
-.change-players a{
-    text-decoration: none;
-    color: white;
-}
-
-.change-players a:hover{
-    color: #2abc4cbb;
-    transition: 0.6s;
+.change-players a:hover {
+  color: #2abc4cbb;
+  transition: 0.6s;
 }
 
 .change-informations a:hover {
-    color: #2abc4cbb;
-    transition: 0.6s;
+  color: #2abc4cbb;
+  transition: 0.6s;
 }
 
 .current-team-selection {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
-
-   

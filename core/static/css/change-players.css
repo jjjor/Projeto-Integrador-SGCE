@@ -113,22 +113,23 @@
   color: #fff;
 }
 
-.add-player{
-    border-right: none;
-    border: 1px solid white;
+.add-player {
+  border-right: none;
+  border: 1px solid white;
 }
-.options{
-    border-left: none;
-    border: 1px solid white;
+.options {
+  border-left: none;
+  border: 1px solid white;
 }
 
-.add-player, .options{
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    width: 100%;
+.add-player,
+.options {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 100%;
 }
 
 .search label {
@@ -216,10 +217,11 @@
   background-color: #2abc4cbb;
 }
 
-.holders, .reserve {
-    border: 1px solid white;
-    border-radius: 0.5rem;
-    padding: 1.8rem;
+.holders,
+.reserve {
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  padding: 1.8rem;
 }
 
 .check-players {
