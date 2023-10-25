@@ -1,0 +1,103 @@
+{% extends 'base.html'%}
+{% load static %}
+{%block main%}
+
+<link rel="stylesheet" href="{% static 'css/change-players.css'%}">
+
+<div class="change-container">
+    <div class="container-players-change">
+        <h1>Alterar jogadores</h1>
+        <div class="menu-container">
+            <div class="menu">
+                <div class="current-team-selection">
+                    <p>Time atual:</p>
+                    <select name="" id="change-team">
+                        <option value="vasco">Vasco</option>
+                        <option value="paysandu">Sóumel</option>
+                        <option value="palmeiras">Palmeiras</option>
+                    </select>
+                </div>
+                <div class="current-team">
+                    <img src="{% static 'images/pysandu.png'%}">
+                    <p>SóUMel</p>
+                </div>
+                <div class="change-players">
+                    <p>Alterar jogadores</p>
+                </div>
+                <div class="change-informations">
+                    <p>Alterar informações</p>
+                </div>
+                <div class="history-pontuation">
+                    <p>Pontuação/Histórico</p>
+                </div>
+            </div>
+            <div class="search-player">
+                <div class="search">
+                    <h2>Adicionar jogador:</h2>
+                    <form action="?">
+                        <input type="text" placeholder="Insira o nome do jogador...">
+                        <div class="checkbox-player">
+                            <div class="check-players">
+                                <label for="holder">Titular</label>
+                                <input type="checkbox" name="holder" id="holder">
+                            </div>
+                            <div class="check-players">
+                                <label for="reserve">Reserva</label>
+                                <input type="checkbox" name="reserve" id="reserve">
+                            </div>
+                        </div>
+                        <button class="btn-save">Salvar</button>
+                    </form>
+                </div>
+                <div class="players">
+                    <div class="holders">
+                        <h2>Titulares</h2>
+                        <form action="?" class="holders-form">
+                            <div class="card-holder">
+                                <img src="{% static 'images/gabigol.png' %}" alt="">
+                                <p>Nome: Gagibas</p>
+                                <button class="remove">Remover</button>
+                            </div>
+                            <div class="card-holder">
+                                <img src="{% static 'images/gabigol.png' %}" alt="">
+                                <p>Nome: Gabigas</p>
+                                <button class="remove">Remover</button>
+                            </div>
+                            <div class="card-holder">
+                                <img src="{% static 'images/gabigol.png' %}" alt="">
+                                <p>Nome: Gabigas</p>
+                                <button class="remove">Remover</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="reserve">
+                        <h2>Reserva</h2>
+                        <form action="?" class="holders-form">
+                            <div class="card-holder">
+                                <img src="{% static 'images/gabigol.png' %}" alt="">
+                                <p>Nome: Gabigas</p>
+                                <button class="remove">Remover</button>
+                            </div>
+                            <div class="card-holder">
+                                <img src="{% static 'images/gabigol.png' %}" alt="">
+                                <p>Nome: Gabigas</p>
+                                <button class="remove">Remover</button>
+                            </div>
+                            <div class="card-holder">
+                                <img src="{% static 'images/gabigol.png' %}" alt="">
+                                <p>Nome: Gabigas</p>
+                                <button class="remove">Remover</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{%endblock%}

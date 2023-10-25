@@ -38,3 +38,8 @@ def matches(request):
 def register_tournament(request):
     return render(request, 'register-tournament.html')
 
+def change_players(request):
+    return render(request, 'change-players.html')
+
+def change_informations(request):
+    return render(request, 'change-informations.html')

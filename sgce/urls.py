@@ -34,5 +34,7 @@ urlpatterns = [
     path('ask-team-change', views.ask_team_change, name='ask-team-change'),
     path('matches', views.matches, name='matches'),
     path('register-tournament', views.register_tournament, name='register-tournament'),
+    path('change-players', views.change_players, name='change-players'),
+    path('change-informations', views.change_informations, name='change-informations'),
 ]
 
