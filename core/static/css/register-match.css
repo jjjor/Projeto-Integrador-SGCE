@@ -6,7 +6,7 @@
 
 .container-matches {
     background-color: rgb(30, 29, 29);
-    padding: 2rem 4rem 5rem 4rem;
+    padding: 2rem 3rem 2rem 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,12 +14,12 @@
     margin-top: 1.5rem;
     gap: 2rem;
     border-radius: 0.5rem;
-    width: 70%;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .header-matches h1{
     color: white;
-    margin-bottom: 2rem;
     font-size: 1.5rem;
     text-align: center;
 }
@@ -124,10 +124,9 @@
 .save-btn {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
     background-color: #52AC6C;
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     margin-top: 1rem;
     padding: 1rem 5rem 1rem 5rem;
     cursor: pointer;

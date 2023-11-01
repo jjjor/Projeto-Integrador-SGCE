@@ -23,7 +23,11 @@
   padding: 35px 70px;
   border-radius: 20px;
   display: inline-grid;
-  margin-top: 4.5rem;
+}
+
+#forgot-password{
+  color: white;
+  font-size: 1.1rem;
 }
 
 .form-login label {

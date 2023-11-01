@@ -46,3 +46,6 @@ def change_informations(request):
 
 def register_match(request):
     return render(request, 'register-match.html')
+
+def admin_base(request):
+    return render(request, 'admin_base.html')

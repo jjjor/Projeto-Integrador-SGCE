@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
-{%block main%}
+{% block main %}
 
 <div id="content-box">
     <img  id="image" src="{% static 'images/Skipping_rope-bro_1.png' %}" /> 
@@ -10,10 +10,10 @@
         <h2>Sistema de Gerenciamento de <br>Competições de Esportes</h2>
         
         <div id="body-buttons">
-            <a href="matches"><button>Jogos</button></a>
-            <a href="rating"><button>tabela de pontos</button></a>
+            <a href="matches"><button>Partidas</button></a>
+            <a href="rating"><button>Tabela de pontos</button></a>
         </div>
     </div>
 </div>
 
-{%endblock%}
+{% endblock main %}
