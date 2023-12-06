@@ -48,7 +48,39 @@ class Campeonato(models.Model):
     modalidade_campeonato = models.ForeignKey(Modalidade, on_delete=models.CASCADE)
     equipes_campeonato = models.ManyToManyField(Equipe)
 
+class Resultado(models.Model):
+    jogo = models.ForeignKey(Partida, on_delete=models.CASCADE)
+    pontos_equipe = models.IntegerField()
+
 class Jogos(models.Model):
-    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+    campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
+    equipe = models.ManyToManyField(Equipe)
     data_jogo = models.DateField()
+    campeonato = models.ForeignKey(Campeonato, on_delete=models.CASCADE)
+    resultado = models.OneToOneField(Resultado, on_delete=models.CASCADE, null=True, blank=True)
+    
+    def jogadores_do_campus(self):
+        return self.equipe.filter(campus=self.campus)
+    
+class Usuario(models.Model):
+    nome = models.CharField(max_length=100)
+    senha = models.CharField(max_length=100)
+    campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nome
+
+    def troca_de_time(self):
+        
+        return "Troca de time realizada com sucesso."
+
+    def alterar_informacoes_pessoais(self):
+        
+        return "Informações pessoais alteradas com sucesso."
+
+    def alterar_informacoes_seguranca(self):
+        
+        return "Informações de segurança alteradas com sucesso."
+    
+    
     

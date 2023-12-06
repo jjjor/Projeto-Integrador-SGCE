@@ -16,30 +16,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core import views
-from django.contrib.auth import views as auth_views
+from core.views import *
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('index', views.index, name='index'),
+    path('', IndexView.as_view(), name='index'),
+    path('index/', IndexView.as_view(), name='index'),
     path('admin/', admin.site.urls, name='admin'),
-    # path('login/', include('django.contrib.auth.urls')),
-    path('login', views.login, name='login'),
-    path('register', views.register, name='register'),
-    path('profile', views.profile, name='profile'),
-    path('profile-prof', views.profile_prof, name='profile-prof'),
-    path('info-security', views.info_security, name='info_security'),
-    path('info-pessoal', views.info_pessoal, name='info_pessoal'),
-    path('report-bug', views.report_bug, name='report-bug'),
-    path('report-bug', views.report_bug, name='report_bug'),
-    path('rating', views.rating, name='rating'),
-    path('ask-team-change', views.ask_team_change, name='ask-team-change'),
-    path('matches', views.matches, name='matches'),
-    path('register-tournament', views.register_tournament, name='register-tournament'),
-    path('change-players', views.change_players, name='change-players'),
-    path('change-informations', views.change_informations, name='change-informations'),
-    path('register-match', views.register_match, name='register-match'),
-    path('admin_base', views.admin_base, name='admin_base')
+    path('login/', LoginView.as_view(), name='login'),
+    path('register/', CadastrarUsuarioView.as_view(), name='register'),
+    path('profile/', ProfileView.as_view(), name='profile'),
+    path('profile-prof/', ProfileProfView.as_view(), name='profile-prof'),
+    path('info-security/', InfoSecurityView.as_view(), name='info_security'),
+    path('info-pessoal/', InfoPessoalView.as_view(), name='info_pessoal'),
+    path('report-bug/', ReportBugView.as_view(), name='report-bug'),
+    path('rating/', RatingView.as_view(), name='rating'),
+    path('ask-team-change/', AskTeamChangeView.as_view(), name='ask-team-change'),
+    path('matches/', MatchesView.as_view(), name='matches'),
+    path('register-tournament/', RegisterTournamentView.as_view(), name='register-tournament'),
+    path('change-players/', ChangePlayersView.as_view(), name='change-players'),
+    path('change-informations/', ChangeInformationsView.as_view(), name='change-informations'),
+    path('register-match/', RegisterMatchView.as_view(), name='register-match'),
+    path('admin_base/', AdminBaseView.as_view(), name='admin_base'),
+    path('logout/', LogoutView.as_view(next_page='index'), name='logout'),
 ]
 

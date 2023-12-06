@@ -11,11 +11,11 @@
         </div>
         <div class="options-container">
             <div class="option-container">
-                <a href="info-pessoal" class="options">Alterar Informações Pessoais</a>
+                <a href="{% url 'info-pessoal' %}" class="options">Alterar Informações Pessoais</a>
                 <img src="{% static 'images/person_.svg' %}" alt="">
             </div>
             <div class="option-container">
-                <a href="info-security" class="options">Alterar Informações de Segurança</a>
+                <a href="{% url 'info-security' %}" class="options">Alterar Informações de Segurança</a>
                 <img src="{% static 'images/security.svg' %}" alt="">
             </div>
             <div class="option-container">
@@ -27,7 +27,7 @@
                 <img src="{% static 'images/Group_3.svg' %}" alt="">
             </div>
             <div class="option-container">
-                <a href="index" class="options">Sair da conta</a>
+                <a href="{% url 'logout' %}" class="options">Sair da conta</a>
                 <img src="{% static 'images/logout_.svg'%}" alt="">
             </div>
         </div>

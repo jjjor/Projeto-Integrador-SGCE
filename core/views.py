@@ -1,51 +1,59 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views import View
+from django.views.generic import TemplateView, FormView
+from .forms import UsuarioForm
+from django.contrib.auth.views import LogoutView
 
-# Create your views here.
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
-def index(request):
-    return render(request, 'index.html')
+class CadastrarUsuarioView(FormView):
+    template_name = 'register.html'
+    form_class = UsuarioForm
+    success_url = 'pagina_sucesso'  # Redireciona para uma página de sucesso
 
-def register(request):
-    return render(request, 'register.html')
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 
-def login(request):
-    return render(request, 'login.html')
+class LoginView(TemplateView):
+    template_name = 'login.html'
 
-def profile(request):
-    return render(request, 'profile.html')
+class ProfileView(TemplateView):
+    template_name = 'profile.html'
 
-def profile_prof(request):
-    return render(request, 'profile-prof.html')
+class ProfileProfView(TemplateView):
+    template_name = 'profile-prof.html'
 
-def info_security(request):
-    return render(request, 'info-security.html')
+class InfoSecurityView(TemplateView):
+    template_name = 'info-security.html'
 
-def info_pessoal(request):
-    return render(request, 'info-pessoal.html')
+class InfoPessoalView(TemplateView):
+    template_name = 'info-pessoal.html'
 
-def report_bug(request):
-    return render(request, 'report-bug.html')
+class ReportBugView(TemplateView):
+    template_name = 'report-bug.html'
 
-def rating(request):
-    return render(request, 'rating.html')
+class RatingView(TemplateView):
+    template_name = 'rating.html'
 
-def ask_team_change(request):
-    return render(request, 'ask-team-change.html')
+class AskTeamChangeView(TemplateView):
+    template_name = 'ask-team-change.html'
 
-def matches(request):
-    return render(request, 'matches.html')
+class MatchesView(TemplateView):
+    template_name = 'matches.html'
 
-def register_tournament(request):
-    return render(request, 'register-tournament.html')
+class RegisterTournamentView(TemplateView):
+    template_name = 'register-tournament.html'
 
-def change_players(request):
-    return render(request, 'change-players.html')
+class ChangePlayersView(TemplateView):
+    template_name = 'change-players.html'
 
-def change_informations(request):
-    return render(request, 'change-informations.html')
+class ChangeInformationsView(TemplateView):
+    template_name = 'change-informations.html'
 
-def register_match(request):
-    return render(request, 'register-match.html')
+class RegisterMatchView(TemplateView):
+    template_name = 'register-match.html'
 
-def admin_base(request):
-    return render(request, 'admin_base.html')
+class AdminBaseView(TemplateView):
+    template_name = 'admin_base.html'
