@@ -6,23 +6,22 @@
     <img id="img-basquete" src="{% static 'images/basketball.png'%}" alt="basketball">
 
 <div id="form-button">
-<form class="form-login" action="{% url 'login' %}" method="post">
+    <form class="form-login" action="{% url 'login' %}" method="post">
     {% csrf_token %}
-        <label for="email">E-mail:</label>
-        <input id="email_login" type="email" name="email" placeholder="exemplo@gmail.com">
+        <label for="matricula">Matricula:</label>
+        <input id="email_login" type="matricula" name="matricula" required>
 
         <label for="password">Senha:</label>
-        <input id="password_login" type="password" name="password" placeholder="palmeirasderrotado">
+        <input id="password_login" type="password" name="password" required>
         <p><a href="#" id="forgot-password">Esqueceu a senha?</a></p>
+        <div id="center-button">
+            <button type="submit" id="submit">Continuar</button>
+        </div>
         <p id="login">Fazer login com:</p>
         <div class="img_container">
-            <a href="#"><img id='login_com' src="{% static 'images/instagram_1.png'%}" alt="insta"></a>
-            <a href="#"><img id='login_com' src="{% static 'images/pesquisa_1.png'%}" alt="google"></a>
-            <a href="#"><img id='login_com' src="{% static 'images/twitter.png'%}" alt="twitter"></a>
-            <a href="#"><img id='login_com' src="{% static 'images/facebook_1.png'%}" alt="face"></a>
+            <a href="#"><img id='login_com' src="{% static 'images/logo-suap.svg'%}" alt="suap"></a>
         </div>
     </form>
-    <button type="submit" id="submit">Continuar</button>
 </div>
 
 {%endblock main%}

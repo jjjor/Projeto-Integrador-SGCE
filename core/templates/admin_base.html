@@ -14,23 +14,23 @@
   </head>
   <body>
     <header>
-      <a href="index"><img id="logo_site" src="{% static 'images/IFRN_Arena__Where_Dreams_Are_Made.svg' %}" /></a>
+      <a href="{% url 'index' %}"><img id="logo_site" src="{% static 'images/IFRN_Arena__Where_Dreams_Are_Made.svg' %}" /></a>
       <div id="header-content">
         <nav>
           <ul>
             <li>
-              <a href="change-players">Informações de times</a>
+              <a href="{% url 'change-players' %}">Informações de times</a>
             </li>
             <li>
-              <a href="matches">Partidas</a>
+              <a href="{% url 'matches' %} ">Partidas</a>
             </li>
             <li>
-              <a href="register-tournament">Cadastrar partida/torneio</a>
+              <a href="{% url 'register-tournament' %}">Cadastrar partida/torneio</a>
             </li>
           </ul>
         </nav>
         <div id="buttons">
-          <a href="profile-prof"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
+          <a href="{% url 'profile-prof' %}"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
         </div>
       </div>
     </header>

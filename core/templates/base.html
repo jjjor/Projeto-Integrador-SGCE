@@ -87,27 +87,27 @@
           <ul>
             {% if user.is_superuser %}
               <li>
-                <a href="matches">Partidas</a>
+                <a href="{% url 'matches' %}">Partidas</a>
               </li>
               <li>
-                <a href="rating">Tabela de pontos</a>
+                <a href="{% url 'rating' %}">Tabela de pontos</a>
               </li>
               <li>
-                <a href="change-players">Informações de times</a>
+                <a href="{% url 'change-players' %}">Informações de times</a>
               </li>
               <li>
-                <a href="register-tournament">Cadastrar partida/torneio</a>
+                <a href="{% url 'register-tournament' %}">Cadastrar partida/torneio</a>
               </li>
             {% else %}
               <li>
-                <a href="matches">Partidas</a>
+                <a href="{% url 'matches' %}">Partidas</a>
               </li>
               <li>
-                <a href="rating">Tabela de Pontos</a>
+                <a href="{% url 'rating' %}">Tabela de Pontos</a>
               </li>
               {% if user.is_authenticated %}
               <li>
-                <a href="ask-team-change">Troca de time</a>
+                <a href="{% url 'change-players' %}">Troca de time</a>
               </li>
               {% endif %}
             {% endif %}
@@ -115,7 +115,7 @@
         </nav>
         <div id="buttons">
           {% if user.is_authenticated %}
-            <a href="profile-prof"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
+            <a href="{% url 'profile-prof' %}"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
           {% else %}
             <a href="login"><button type="button">Entrar</button></a>
             <a href="register"><button type="button">Cadastrar</button></a>

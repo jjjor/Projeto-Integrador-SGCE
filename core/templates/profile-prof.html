@@ -11,27 +11,27 @@
         </div>
         <div class="options-container">
             <div class="option-container">
-                <a href="change-players" class="options">Alterar informações de um time</a>
+                <a href="{% url 'change-players' %}" class="options">Alterar informações de um time</a>
                 <img src="{% static 'images/celebration_.svg' %}" alt="">
             </div>
             <div class="option-container">
-                <a href="register-tournament" class="options">Cadastrar partida/torneio</a>
+                <a href="{% url 'register-tournament' %}" class="options">Cadastrar partida/torneio</a>
                 <img src="{% static 'images/celebration_.svg' %}" alt="">
             </div>
             <div class="option-container">
-                <a href="info-pessoal" class="options">Alterar Informações Pessoais</a>
+                <a href="{% url 'info-pessoal' %}" class="options">Alterar Informações Pessoais</a>
                 <img src="{% static 'images/person_.svg' %}" alt="">
             </div>
             <div class="option-container">
-                <a href="info-security" class="options">Alterar Informações de Segurança</a>
+                <a href="{% url 'info-security' %}" class="options">Alterar Informações de Segurança</a>
                 <img src="{% static 'images/security.svg' %}" alt="">
             </div>
             <div class="option-container">
-                <a href="report-bug" class="options">Reportar Bug</a>
+                <a href="{% url 'report-bug' %}" class="options">Reportar Bug</a>
                 <img src="{% static 'images/Group_3.svg' %}" alt="">
             </div>
             <div class="option-container">
-                <a href="index" class="options">Sair da conta</a>
+                <a href="{% url 'logout' %}" class="options">Sair da conta</a>
                 <img src="{% static 'images/logout_.svg'%}" alt="">
             </div>
         </div>
