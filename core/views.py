@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.views import View
-from django.views.generic import TemplateView, FormView
-from .forms import UsuarioForm
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LogoutView
+from django.views.generic import TemplateView, FormView
+from django.views import View
+from .forms import UsuarioForm
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -18,6 +19,20 @@ class CadastrarUsuarioView(FormView):
 
 class LoginView(TemplateView):
     template_name = 'login.html'
+
+    def post(self, request, *args, **kwargs):
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, email=email, password=password)
+
+        if user is not None:
+            login(request, user)
+            # Redirecione para a página desejada após o login
+            return redirect('página_de_sucesso')
+        else:
+            # Lógica para lidar com credenciais inválidas
+            # Pode adicionar uma mensagem de erro, etc.
+            return render(request, self.template_name, {'erro': 'Credenciais inválidas'})
 
 class ProfileView(TemplateView):
     template_name = 'profile.html'
