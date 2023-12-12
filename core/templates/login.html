@@ -19,7 +19,7 @@
         </div>
         <p id="login">Fazer login com:</p>
         <div class="img_container">
-            <a href="#"><img id='login_com' src="{% static 'images/logo-suap.svg'%}" alt="suap"></a>
+            <a href="{% url 'social:begin' 'suap' %}"><img id='login_com' src="{% static 'images/logo-suap.svg'%}" alt="suap"></a>
         </div>
     </form>
 </div>

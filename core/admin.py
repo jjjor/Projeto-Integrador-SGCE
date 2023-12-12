@@ -1,7 +1,66 @@
 from django.contrib import admin
+from .models import Campus, Jogador, Equipe, Classificacao, Modalidade, Partida, Campeonato, Resultado, Jogos
 
 # Register your models here.
-class MyAdminSite(admin.AdminSite):
-    login_template = "login.html"
+@admin.register(Campus)
+class CampusAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'cidade')
+    list_filter = ('cidade',)
+    search_fields = ('nome',)
+    ordering = ('nome',)
 
-admin_site = MyAdminSite()
+@admin.register(Jogador)
+class JogadorAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'idade', 'esporte', 'atuacao', 'sexo', 'campus')
+    list_filter = ('campus', 'esporte', 'sexo', 'atuacao')
+    search_fields = ('nome',)
+    ordering = ('nome',)
+    
+@admin.register(Equipe)
+class EquipeAdmin(admin.ModelAdmin):
+    list_display = ('nome_equipe', 'campus')
+    list_filter = ('campus',)
+    search_fields = ('nome_equipe',)
+    ordering = ('nome_equipe',)
+    
+@admin.register(Classificacao)
+class ClassificacaoAdmin(admin.ModelAdmin):
+    list_display = ('pontos_conquistados', 'posicao_Equipe', 'vitoria', 'empate', 'derrota')
+    list_filter = ('posicao_Equipe',)
+    search_fields = ('posicao_Equipe',)
+    ordering = ('posicao_Equipe',)
+    
+@admin.register(Modalidade)
+class ModalidadeAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'sexo')
+    list_filter = ('sexo',)
+    search_fields = ('nome',)
+    ordering = ('nome',)
+    
+@admin.register(Partida)
+class PartidaAdmin(admin.ModelAdmin):
+    list_display = ('nome_partida','campus_partida')
+    search_fields = ('nome_partida',)
+    ordering = ('nome_partida',)
+    
+@admin.register(Campeonato)
+class CampeonatoAdmin(admin.ModelAdmin):
+    list_display = ('data_campeonato', 'campus_campeonato', 'modalidade_campeonato')
+    list_filter = ('campus_campeonato', 'modalidade_campeonato')
+    search_fields = ('campus_campeonato',)
+    ordering = ('campus_campeonato',)
+
+@admin.register(Resultado)
+class ResultadoAdmin(admin.ModelAdmin):
+    list_display = ('jogo', 'pontos_equipe')
+    list_filter = ('jogo',)
+    search_fields = ('jogo',)
+    ordering = ('jogo',)
+    
+@admin.register(Jogos)
+class JogosAdmin(admin.ModelAdmin):
+    list_display = ('campus', 'data_jogo', 'campeonato')
+    list_filter = ('campus', 'campeonato')
+    search_fields = ('campus',)
+    ordering = ('campus',)
+    
