@@ -67,37 +67,24 @@ class Resultado(models.Model):
     
 class UserManager(BaseUserManager):
 
-    def create_user(self, nome_registro, email, password=None, campus='', tipo_usuario='', nome=''):
-        if nome_registro is None:
+    def create_user(self, nome, email, password=None, campus=None, **extra_fields):
+        if nome is None:
             raise TypeError('Usuário deve informar o nome')
-        else:
-            nome_registro = nome_registro
         if email is None:
-            raise TypeError('Users deve informar o Email')
-        else:
-            email = email
-            
-        if tipo_usuario == 'Aluno':
-            aluno = tipo_usuario
-    
-    
-        user = self.model(username=nome_registro, email=self.normalize_email(email), campus=campus, tipo_usuario=aluno, nome=nome)
+            raise TypeError('Usuário deve informar o email')
+
+        user = self.model(nome=nome, email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
-        user.save()
+        user.save(using=self._db)
         return user
 
-    def create_superuser(self, nome_registro, email, password=None, tipo_usuario=''):
-        if password is None:
-            raise TypeError('Password should not be none')
-        if tipo_usuario == 'Professor':
-            professor = tipo_usuario
+    def create_superuser(self, nome, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
 
-        user = self.create_user(nome_registro, email, password, tipo_usuario=professor)
-        user.is_superuser = True
-        user.is_staff = True
-        user.save()
+        # Certifique-se de que o campo campus está preenchido, mesmo que seja com uma instância fictícia de Campus
+        return self.create_user(nome, email, password=password, **extra_fields)
 
-        return user
 
 class Jogos(models.Model):
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
@@ -111,21 +98,18 @@ class Jogos(models.Model):
     
 class Usuario(AbstractBaseUser, PermissionsMixin):
     nome = models.CharField(max_length=42, unique=True)
+    email = models.EmailField(unique=True, blank=True, null=True)
     senha = models.CharField(max_length=255)
-    campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
-    email = models.EmailField(unique=True)
+    # tipo_usuario = models.CharField(max_length=40)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    tipo_usuario = models.CharField(max_length=40)
     
 
     objects = UserManager()
 
     USERNAME_FIELD = "nome"
-    REQUIRED_FIELDS = ["email"]
-    class Meta:
-        verbose_name = "Usuário"
-
+    REQUIRED_FIELDS = ['email']
+    
     def troca_de_time(self):
         
         return "Troca de time realizada com sucesso."

@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -10,97 +9,90 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Sofia+Sans&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>SGCE</title>
   </head>
   <body>
-
-
+    
+    
     <aside class="sidebar">
       <header class="sidebar-header">
         <img class="logo-img" src="{% static 'images/IFRN_Arena__Where_Dreams_Are_Made.svg' %}" />
-      </header>
-
-      <nav>
-        <a href="{% url 'index' %}">
-          <button>
-            <span>
-              <i class="material-symbols-outlined"> home </i>
-              <span>Home</span>
-            </span>
-          </button>
-        </a>
-        
-      </nav>
-      
-      <nav>
-        <a href="{% url 'matches' %}">
-          <button>
-            <span>
-              <i class="material-symbols-outlined"> tag </i>
-              <span>Partidas</span>
-            </span>
-          </button>
-        </a>
-        
-      </nav>
-
-      <nav>
-        <a href="{% url 'profile' %}">
-          <button>
-            <span>
-              <i class="material-symbols-outlined"> person </i>
-              <span>Perfil</span>
-            </span>
-          </button>
-        </a>
-        
-      </nav>
-
-      <nav>
+    </header>
+    
+    <nav>
+      <a href="{% url 'index' %}">
         <button>
           <span>
-            <i class="material-symbols-outlined"> email </i>
-            <span>Mensagens</span>
+            <i class="material-symbols-outlined">home</i>
+            <span>Home</span>
           </span>
         </button>
-      </nav>
-
-      <nav>
-        <a href="{% url 'rating' %}">
-          <button>
-            <span>
-              <i class="material-symbols-outlined"> table </i>
-              <span>Classificações</span>
-            </span>
-          </button>
-        </a>
-        
-      </nav>
-    <a href="{% url 'social:begin' 'suap' %}">Entrar</a>
-
-
-    </aside>
+      </a>
+    </nav>
     
+    <nav>
+      <a href="{% url 'matches' %}">
+        <button>
+          <span>
+            <i class="material-symbols-outlined">tag</i>
+            <span>Partidas</span>
+          </span>
+        </button>
+      </a>
+    </nav>
+    
+    <nav>
+      <a href="{% url 'profile' %}">
+        <button>
+          <span>
+            <i class="material-symbols-outlined">person</i>
+            <span>Perfil</span>
+          </span>
+        </button>
+      </a>
+    </nav>
+    
+    <nav>
+      <button>
+        <span>
+          <i class="material-symbols-outlined">email</i>
+          <span>Mensagens</span>
+        </span>
+      </button>
+    </nav>
+    
+    <nav>
+      <a href="{% url 'rating' %}">
+        <button>
+          <span>
+            <i class="material-symbols-outlined">table</i>
+            <span>Classificações</span>
+          </span>
+        </button>
+      </a>
+    </nav>
+    <a href="{% url 'social:begin' 'suap' %}">Entrar</a>
+    </aside>
     <header class="top-header">
-      <a href="index"><img id="logo_site" src="{% static 'images/IFRN_Arena__Where_Dreams_Are_Made.svg' %}" /></a>
+      <a href="{% url 'index' %}"><img id="logo_site" src="{% static 'images/IFRN_Arena__Where_Dreams_Are_Made.svg' %}" /></a>
       <div id="header-content">
         <nav>
           <ul>
             {% if user.is_superuser %}
-              <li>
-                <a href="{% url 'matches' %}">Partidas</a>
-              </li>
-              <li>
-                <a href="{% url 'rating' %}">Tabela de pontos</a>
-              </li>
-              <li>
-                <a href="{% url 'change-players' %}">Informações de times</a>
+            <li>
+              <a href="{% url 'matches' %}">Partidas</a>
+            </li>
+            <li>
+              <a href="{% url 'rating' %}">Tabela de pontos</a>
+            </li>
+            <li>
+              <a href="{% url 'change-players' %}">Informações de times</a>
               </li>
               <li>
                 <a href="{% url 'register-tournament' %}">Cadastrar partida/torneio</a>
               </li>
-            {% else %}
+              {% else %}
               <li>
                 <a href="{% url 'matches' %}">Partidas</a>
               </li>
@@ -112,21 +104,26 @@
                 <a href="{% url 'change-players' %}">Troca de time</a>
               </li>
               {% endif %}
-            {% endif %}
-          </ul>
-        </nav>
-        <div id="buttons">
-          {% if user.is_authenticated %}
-            <a href="{% url 'profile-prof' %}"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
+              {% endif %}
+              </ul>
+            </nav>
+            <div id="buttons">
+              {% if user.is_authenticated %}
+              {% if user.is_superuser %}
+              <a href="{% url 'profile-prof' %}"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
+              {% else %}
+          <a href="{% url 'profile' %}"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
+          {% endif %}
           {% else %}
-            <a href="{% url 'social:begin' 'suap' %}">Entrar</a>
-            <a href="register">Cadastrar</a>
+          <a href="{% url 'social:begin' 'suap' %}">Entrar</a>
+          <a href="register">Cadastrar</a>
           {% endif %}
         </div>
       </div>
     </header>
     <main>
       {% block main %}
+      
       {% endblock %}
     </main>
   </body>
