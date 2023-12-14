@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+<link rel="stylesheet" href="{% static 'list-teams.css' %}">
+
+<div class="container-team">
+    <div class="row">
+        <div class="">
+            <h1>Lista de Produtos</h1>
+            <a href="#" class="">Criar Time</a>
+            <hr>
+            <table class="table-team">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Modalidade</th>
+                        <th>Jogadores</th>
+                        <th>Campus</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% comment %} {% for team in teams %}
+                    <tr>
+                        <td>{{ team.nome }}</td>
+                        <td>{{ team.modalidade }}</td>
+                        <td>{{ team.jogadores }}</td>
+                        <td>{{ team.campus }}</td> {% endcomment %}
+                        <td>
+                            <a href="#" class="btn btn-warning">Editar</a>
+                            <a href="#" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                    {% comment %} {% endfor %} {% endcomment %}
+                </tbody>
+            </table>
+            <hr>
+        </div>
+    </div>
+
+{% endblock main%}

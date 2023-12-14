@@ -72,3 +72,6 @@ class RegisterMatchView(TemplateView):
 
 class AdminBaseView(TemplateView):
     template_name = 'admin_base.html'
+    
+class List_teamView(TemplateView):
+    template_name = 'list-teams.html'

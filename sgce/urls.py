@@ -40,7 +40,7 @@ urlpatterns = [
     path('register-match/', RegisterMatchView.as_view(), name='register-match'),
     path('admin_base/', AdminBaseView.as_view(), name='admin_base'),
     path('logout/', LogoutView.as_view(next_page='index'), name='logout'),
-    
+    path('list-team/', List_teamView.as_view(), name='list-team'),
     path("", include("social_django.urls"), name="social"),
 ]
 
