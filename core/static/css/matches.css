@@ -1,3 +1,10 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 #container-matches {
     display: flex;
     justify-content: center;
@@ -14,7 +21,7 @@
 }
 
 #matches {
-    width: 100%;
+    width: 70%;
     display: flex;
     justify-content: center;
 }

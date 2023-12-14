@@ -101,7 +101,7 @@
               </li>
               {% if user.is_authenticated %}
               <li>
-                <a href="{% url 'change-players' %}">Troca de time</a>
+                <a href="{% url 'ask-team-change' %}">Troca de time</a>
               </li>
               {% endif %}
               {% endif %}
@@ -116,7 +116,7 @@
           {% endif %}
           {% else %}
           <a href="{% url 'social:begin' 'suap' %}">Entrar</a>
-          <a href="register">Cadastrar</a>
+          <a href="{% url 'register' %}">Cadastrar</a>
           {% endif %}
         </div>
       </div>
