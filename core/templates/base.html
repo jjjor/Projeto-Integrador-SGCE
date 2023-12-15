@@ -20,60 +20,20 @@
         <img class="logo-img" src="{% static 'images/IFRN_Arena__Where_Dreams_Are_Made.svg' %}" />
     </header>
     
-    <nav>
-      <a href="{% url 'index' %}">
-        <button>
-          <span>
-            <i class="material-symbols-outlined">home</i>
-            <span>Home</span>
-          </span>
-        </button>
-      </a>
-    </nav>
-    
-    <nav>
-      <a href="{% url 'matches' %}">
-        <button>
-          <span>
-            <i class="material-symbols-outlined">tag</i>
-            <span>Partidas</span>
-          </span>
-        </button>
-      </a>
-    </nav>
-    
-    <nav>
-      <a href="{% url 'profile' %}">
-        <button>
-          <span>
-            <i class="material-symbols-outlined">person</i>
-            <span>Perfil</span>
-          </span>
-        </button>
-      </a>
-    </nav>
-    
-    <nav>
-      <button>
-        <span>
-          <i class="material-symbols-outlined">email</i>
-          <span>Mensagens</span>
-        </span>
-      </button>
-    </nav>
-    
-    <nav>
-      <a href="{% url 'rating' %}">
-        <button>
-          <span>
-            <i class="material-symbols-outlined">table</i>
-            <span>Classificações</span>
-          </span>
-        </button>
-      </a>
-    </nav>
+
+
     <a href="{% url 'social:begin' 'suap' %}">Entrar</a>
     </aside>
+
+    <ul id="navbar">
+      <li><a href="{% url 'index' %}" class="active">Home</a></li>
+      <li><a href="{%  url 'matches' %}">Partidas</a></li>
+      <li><a href="{%  url 'rating' %}">Tabela de pontos</a></li>
+      <li><a href="{%  url 'profile' %}">Perfil</a></li>
+      <li style="float:right"><a href="{%  url 'report-bug' %}">Report</a></li>
+    </ul>
+
+
     <header class="top-header">
       <a href="{% url 'index' %}"><img id="logo_site" src="{% static 'images/IFRN_Arena__Where_Dreams_Are_Made.svg' %}" /></a>
       <div id="header-content">
