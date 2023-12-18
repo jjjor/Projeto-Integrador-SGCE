@@ -36,5 +36,7 @@ class SuapOAuth2(BaseOAuth2):
             'email': response['email'],
             'tipo_usuario': response['tipo_usuario'],
             'campus': response['campus'],
+            'identificacao': response['identificacao'],
+            'foto': response['foto'],
         }
         

@@ -1,42 +1,69 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block main %}
+  <link rel="stylesheet" href="{% static 'css/list-teams.css' %}" />
 
-<link rel="stylesheet" href="{% static 'list-teams.css' %}">
+  <div class="change-container">
+    <div class="container-players-change">
+      <h1>Alterar jogadores</h1>
+      <div class="menu-container">
 
-<div class="container-team">
-    <div class="row">
-        <div class="">
-            <h1>Lista de Produtos</h1>
-            <a href="#" class="">Criar Time</a>
-            <hr>
-            <table class="table-team">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Modalidade</th>
-                        <th>Jogadores</th>
-                        <th>Campus</th>
-                        <th>Opções</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% comment %} {% for team in teams %}
-                    <tr>
-                        <td>{{ team.nome }}</td>
-                        <td>{{ team.modalidade }}</td>
-                        <td>{{ team.jogadores }}</td>
-                        <td>{{ team.campus }}</td> {% endcomment %}
-                        <td>
-                            <a href="#" class="btn btn-warning">Editar</a>
-                            <a href="#" class="btn btn-danger">Excluir</a>
-                        </td>
-                    </tr>
-                    {% comment %} {% endfor %} {% endcomment %}
-                </tbody>
-            </table>
-            <hr>
+        <!-- Aqui é o menu -->
+        <div class="menu">
+            <div class="current-team-selection">
+                <p>Time atual:</p>
+                <select name="" id="change-team">
+                    <option value="vasco">Vasco</option>
+                    <option value="paysandu">Sóumel</option>
+                    <option value="palmeiras">Palmeiras</option>
+                </select>
+            </div>
+          <div class="current-team">
+            <img src="{% static 'images/pysandu.png' %}" />
+            <p>SóUMel</p>
+          </div>
+          <div class="change-players">
+            <p>Alterar jogadores</p>
+          </div>
+          <div class="change-informations">
+            <p>
+              <a href="{% url 'change-informations' %}">Alterar informações</a>
+            </p>
+          </div>
         </div>
-    </div>
 
-{% endblock main%}
+        <!-- Aqui é o conteúdo -->
+    
+        <form method="post">
+            <table class="table">
+              <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Campus</th>
+                    <th>Jogadores</th>
+                    <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for team in teams %}
+                  <tr>
+                    <td>{{ team.imagem }} </td>
+                    <td><a id='name-team' href="edit-team/{{ team.id }}/">{{ team.nome }}</a></td>
+                    <td>{{ team.campus }}</td>
+                    <td>{{ team.jogadores }}</td>
+                    <td>
+                        <div class="buttons-edit">
+                            <a href="{% url 'edit-team/{{ team.id }}/' %}" class="Edit-button">Editar</a>
+                            <a href="{% url 'delete-team/{{ team.id }}' %}" class="delete-button">Remover</a></td>
+                        </div>
+                    </tr>
+                {% endfor %}
+                    
+        <!-- Aqui é o filtro -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

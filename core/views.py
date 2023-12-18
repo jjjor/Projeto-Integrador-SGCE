@@ -4,6 +4,7 @@ from django.contrib.auth.views import LogoutView
 from django.views.generic import TemplateView, FormView
 from django.views import View
 from .forms import UsuarioForm
+from .models import *
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -75,3 +76,10 @@ class AdminBaseView(TemplateView):
     
 class List_teamView(TemplateView):
     template_name = 'list-teams.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['teams'] = Equipe.objects.all()
+        return context
+

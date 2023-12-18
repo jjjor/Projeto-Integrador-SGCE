@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 class Campus(models.Model):
@@ -13,6 +15,9 @@ class Modalidade(models.Model):
     
     nome = models.CharField(max_length=100)
     sexo = models.CharField(max_length=1, choices=sexo_opcao, default='M')
+    
+    def __str__(self):
+        return self.nome
 class Jogador(models.Model):
     
     sexo_opcao = ('M', 'Masculino'), ('F', 'Feminino'), ('O', 'Outro')
@@ -33,8 +38,7 @@ class Equipe(models.Model):
     nome_equipe = models.CharField(max_length=100)
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
     jogadores = models.ManyToManyField(Jogador)
-    tec_time = models.ManyToManyField(Jogador, related_name='tecnico', limit_choices_to={'atuacao': 'T'})
-    campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
+    tec_time = models.ManyToManyField(Jogador, related_name='Tecnico', limit_choices_to={'atuacao': 'T'})
     
     def jogadores_do_campus(self): 
         return self.jogadores.filter(campus=self.campus)
@@ -42,28 +46,46 @@ class Equipe(models.Model):
     def __str__(self):
         return self.nome_equipe + " - " + self.campus.nome
     
-class Classificacao(models.Model):
-    pontos_conquistados = models.IntegerField()
-    posicao_Equipe = models.IntegerField()
-    vitoria = models.IntegerField()
-    empate = models.IntegerField()
-    derrota = models.IntegerField()
-    
-    
 class Partida(models.Model):
     nome_partida = models.CharField(max_length=100)
     campus_partida = models.ForeignKey(Campus, on_delete=models.CASCADE)
     times_partida = models.ManyToManyField(Equipe)
+class Classificacao(models.Model):
+    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+    vitoria = models.IntegerField(default=0)
+    empate = models.IntegerField(default=0)
+    derrota = models.IntegerField(default=0)
+    posicao_Equipe = models.IntegerField(default=0)
+    pontos_conquistados = models.IntegerField(default=0)
+
+    def calcular_pontos(self):
+        # Lógica para calcular os pontos
+        self.pontos_conquistados = self.vitoria * 3 + self.empate
+        self.save()
+
+    def __str__(self):
+        return f"{self.equipe} - Posição: {self.posicao_Equipe} - Pontos: {self.pontos_conquistados}"
+class Resultado(models.Model):
+    jogo = models.ForeignKey(Partida, on_delete=models.CASCADE)
+    pontos_equipe = models.IntegerField()
+
+@receiver(post_save, sender=Resultado)
+def atualizar_classificacao(sender, instance, **kwargs):
+    # Lógica para atualizar a classificação quando um resultado for salvo
+    classificacoes = Classificacao.objects.all().order_by('-pontos_conquistados')
+    posicao = 1
+    for classificacao in classificacoes:
+        classificacao.posicao_Equipe = posicao
+        classificacao.save()
+        posicao += 1
     
 class Campeonato(models.Model):
-    data_campeonato = models.DateField()
+    data_inicio = models.DateField()
+    data_final = models.DateField()
     campus_campeonato = models.ForeignKey(Campus, on_delete=models.CASCADE)
     modalidade_campeonato = models.ForeignKey(Modalidade, on_delete=models.CASCADE)
     equipes_campeonato = models.ManyToManyField(Equipe)
 
-class Resultado(models.Model):
-    jogo = models.ForeignKey(Partida, on_delete=models.CASCADE)
-    pontos_equipe = models.IntegerField()
     
 class UserManager(BaseUserManager):
 
@@ -98,8 +120,10 @@ class Jogos(models.Model):
     
 class Usuario(AbstractBaseUser, PermissionsMixin):
     nome = models.CharField(max_length=42, unique=True)
+    identificacao = models.CharField(max_length=64, unique=True, blank=True, null=True)
     email = models.EmailField(unique=True, blank=True, null=True)
     senha = models.CharField(max_length=255)
+    url_img = models.CharField(max_length=999, blank=True, null=True)
     # tipo_usuario = models.CharField(max_length=40)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -107,20 +131,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = "nome"
+    USERNAME_FIELD = "identificacao"
     REQUIRED_FIELDS = ['email']
-    
-    def troca_de_time(self):
-        
-        return "Troca de time realizada com sucesso."
 
-    def alterar_informacoes_pessoais(self):
-        
-        return "Informações pessoais alteradas com sucesso."
-
-    def alterar_informacoes_seguranca(self):
-        
-        return "Informações de segurança alteradas com sucesso."
-    
-    
     
