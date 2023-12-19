@@ -44,8 +44,7 @@ class Equipe(models.Model):
     nome_equipe = models.CharField(max_length=100)
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
     jogadores = models.ManyToManyField(Jogador)
-    tec_time = models.ManyToManyField(
-        Jogador, related_name='Tecnico', limit_choices_to={'atuacao': 'T'})
+    tec_time = models.CharField(Jogador, related_name='Tecnico', limit_choices_to={'atuacao': 'T'})
 
     def jogadores_do_campus(self):
         return self.jogadores.filter(campus=self.campus)
@@ -53,29 +52,69 @@ class Equipe(models.Model):
     def __str__(self):
         return self.nome_equipe + " - " + self.campus.nome
 
-
-class Partida(models.Model):
-    nome_partida = models.CharField(max_length=100)
-    campus_partida = models.ForeignKey(Campus, on_delete=models.CASCADE)
-    times_partida = models.ManyToManyField(Equipe)
-
-
-class Classificacao(models.Model):
+class HistoricoEquipe(models.Model):
     equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
     vitoria = models.IntegerField(default=0)
-    empate = models.IntegerField(default=0)
     derrota = models.IntegerField(default=0)
-    posicao_Equipe = models.IntegerField(default=0)
+    empate = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return f"Histórico de {self.equipe} - Vitórias: {self.vitorias} / Derrotas: {self.derrotas}"
+
+    def registrar_vitoria(self):
+        self.vitoria += 1
+        self.save()
+
+    def registrar_derrota(self):
+        self.derrota += 1
+        self.save()
+
+class Campeonato(models.Model):
+    data_inicio = models.DateField()
+    data_final = models.DateField()
+    campus_campeonato = models.ForeignKey(Campus, on_delete=models.CASCADE)
+    modalidade_campeonato = models.ForeignKey(Modalidade, on_delete=models.CASCADE)
+    equipes_campeonato = models.ManyToManyField(Equipe)
+    
+class ClassificacaoEquipe(models.Model):
+    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+    campeonato = models.ForeignKey(Campeonato, on_delete=models.CASCADE)
+    posicao = models.IntegerField(default=0)
     pontos_conquistados = models.IntegerField(default=0)
 
     def calcular_pontos(self):
         # Lógica para calcular os pontos
-        self.pontos_conquistados = self.vitoria * 3 + self.empate
+        vitorias_equipe = Resultado.objects.filter(jogo__campeonato=self.campeonato, jogo__equipe=self.equipe, pontos_equipe__gt=0).count()
+        self.pontos_conquistados = vitorias_equipe * 3
         self.save()
 
-    def __str__(self):
-        return f"{self.equipe} - Posição: {self.posicao_Equipe} - Pontos: {self.pontos_conquistados}"
+    def atualizar_posicao(self):
+        # Atualiza a posição da equipe com base nos pontos conquistados
+        classificacoes = ClassificacaoEquipe.objects.filter(campeonato=self.campeonato).order_by('-pontos_conquistados')
+        posicao = 1
+        for classificacao in classificacoes:
+            classificacao.posicao = posicao
+            classificacao.save()
+            posicao += 1
 
+        # Atualiza a posição da equipe atual
+        self.posicao = posicao
+        self.save()
+        
+    def __str__(self):
+        return f"Classificação de {self.equipe} no {self.campeonato} - Posição: {self.posicao} - Pontos: {self.pontos_conquistados}"
+    
+    
+class Partida(models.Model):
+    campus_partida = models.ForeignKey(Campus, on_delete=models.CASCADE)
+    times_partida = models.ManyToManyField(Equipe, limit=2)
+    
+    def __str__(self):
+        return f"Partida entre {self.times_partida.all()[0]} e {self.times_partida.all()[1]}"
+    
+class Resultado(models.Model):
+    jogo = models.ForeignKey(Partida, on_delete=models.CASCADE)
+    pontos_equipe = models.IntegerField()
 
 class Resultado(models.Model):
     jogo = models.ForeignKey(Partida, on_delete=models.CASCADE)
@@ -85,7 +124,7 @@ class Resultado(models.Model):
 @receiver(post_save, sender=Resultado)
 def atualizar_classificacao(sender, instance, **kwargs):
     # Lógica para atualizar a classificação quando um resultado for salvo
-    classificacoes = Classificacao.objects.all().order_by('-pontos_conquistados')
+    classificacoes = Equipe.objects.all().order_by('-pontos_conquistados')
     posicao = 1
     for classificacao in classificacoes:
         classificacao.posicao_Equipe = posicao
@@ -93,13 +132,6 @@ def atualizar_classificacao(sender, instance, **kwargs):
         posicao += 1
 
 
-class Campeonato(models.Model):
-    data_inicio = models.DateField()
-    data_final = models.DateField()
-    campus_campeonato = models.ForeignKey(Campus, on_delete=models.CASCADE)
-    modalidade_campeonato = models.ForeignKey(
-        Modalidade, on_delete=models.CASCADE)
-    equipes_campeonato = models.ManyToManyField(Equipe)
 
 
 class UserManager(BaseUserManager):
