@@ -82,4 +82,8 @@ class List_teamView(TemplateView):
         
         context['teams'] = Equipe.objects.all()
         return context
+    
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        return self.render_to_response(context)
 

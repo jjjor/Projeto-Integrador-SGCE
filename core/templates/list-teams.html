@@ -46,7 +46,7 @@
                 </tr>
               </thead>
               <tbody>
-                {% for team in teams %}
+                {% for team in teams.all %}
                   <tr>
                     <td>{{ team.imagem }} </td>
                     <td><a id='name-team' href="edit-team/{{ team.id }}/">{{ team.nome }}</a></td>
