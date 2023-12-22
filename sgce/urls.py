@@ -42,5 +42,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='index'), name='logout'),
     path('list-team/', List_teamView.as_view(), name='list-team'),
     path("", include("social_django.urls"), name="social"),
+    
+    path('edit-team/<int:pk>/', EditTeamView.as_view(), name='edit-team'),
+    
 ]
 

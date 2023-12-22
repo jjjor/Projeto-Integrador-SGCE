@@ -10,6 +10,7 @@
     justify-content: center;
     flex-direction: column;
     margin: 0 auto;
+    width: 80%;
     padding: 70px;
     border-radius: 20px;
     gap: 1.5rem;
@@ -104,13 +105,15 @@
   th,
   td {
     text-align: left;
-    padding: 8px;
+    padding: 0.7rem;
     border: 1px solid;
+    background: #c3e9c3;
   }
-  
-  tr{
+
+  form{
     display: flex;
-    gap: 4px;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   tr:nth-child(even) {

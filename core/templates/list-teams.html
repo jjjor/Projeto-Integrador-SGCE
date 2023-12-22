@@ -49,14 +49,14 @@
                 {% for team in teams.all %}
                   <tr>
                     <td>{{ team.imagem }} </td>
-                    <td><a id='name-team' href="edit-team/{{ team.id }}/">{{ team.nome }}</a></td>
+                    <td>{{ team.nome_equipe }}</td>
                     <td>{{ team.campus }}</td>
-                    <td>{{ team.jogadores }}</td>
+                    <td>{{ team.jogadores.count }}</td>
                     <td>
-                        <div class="buttons-edit">
+                        {% comment %} <div class="buttons-edit">
                             <a href="{% url 'edit-team/{{ team.id }}/' %}" class="Edit-button">Editar</a>
                             <a href="{% url 'delete-team/{{ team.id }}' %}" class="delete-button">Remover</a></td>
-                        </div>
+                        </div> {% endcomment %}
                     </tr>
                 {% endfor %}
                     

@@ -73,7 +73,18 @@ class RegisterMatchView(TemplateView):
 
 class AdminBaseView(TemplateView):
     template_name = 'admin_base.html'
-    
+
+class EditTeamView(TemplateView):
+    model = Equipe
+    template_name = 'edit_team.html'
+    context_object_name = 'objeto_modelo'  # Nome do objeto que será passado para o template
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Você pode acessar o 'id' assim:
+        context['id'] = self.object.pk
+        return context
+
 class List_teamView(TemplateView):
     template_name = 'list-teams.html'
     

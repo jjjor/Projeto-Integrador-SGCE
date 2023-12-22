@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .forms import PartidaAdminForm
-from .models import Campus, Jogador, Equipe, Classificacao, Modalidade, Partida, Resultado, Jogos, Campeonato, Usuario
+from .models import Campus, Jogador, Equipe, ClassificacaoEquipe, Modalidade, Partida, Resultado, Jogos, Campeonato, Usuario
 
 # Register your models here.
 
@@ -18,7 +18,7 @@ class EquipeAdmin(admin.ModelAdmin):
     list_filter = ('nome_equipe', 'campus', 'tec_time')
     search_fields = ('nome_equipe',)
     ordering = ('nome_equipe',)
-    
+
 @admin.register(Jogador)
 class JogadorAdmin(admin.ModelAdmin):
     list_display = ('nome', 'idade', 'esporte', 'atuacao', 'sexo', 'campus')
@@ -26,12 +26,12 @@ class JogadorAdmin(admin.ModelAdmin):
     search_fields = ('nome',)
     ordering = ('nome',)
     
-@admin.register(Classificacao)
+@admin.register(ClassificacaoEquipe)
 class ClassificacaoAdmin(admin.ModelAdmin):
-    list_display = ('pontos_conquistados', 'posicao_Equipe', 'vitoria', 'empate', 'derrota')
-    list_filter = ('posicao_Equipe',)
-    search_fields = ('posicao_Equipe',)
-    ordering = ('posicao_Equipe',)
+    list_display = ('posicao', 'equipe', 'pontos_conquistados')
+    list_filter = ('posicao',)
+    search_fields = ('posicao',)
+    ordering = ('posicao',)
     
 @admin.register(Modalidade)
 class ModalidadeAdmin(admin.ModelAdmin):
@@ -43,7 +43,7 @@ class ModalidadeAdmin(admin.ModelAdmin):
 
 class PartidaAdmin(admin.ModelAdmin):
     form = PartidaAdminForm
-    list_display = ('nome_partida', 'campus_partida', 'display_times_partida')
+    list_display = ('campus_partida', 'display_times_partida')
 
     def display_times_partida(self, obj):
         return ', '.join([equipe.nome_equipe for equipe in obj.times_partida.all()])

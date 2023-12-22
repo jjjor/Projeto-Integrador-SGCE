@@ -22,6 +22,8 @@ class Modalidade(models.Model):
         return self.nome
 
 
+
+
 class Jogador(models.Model):
 
     sexo_opcao = ('M', 'Masculino'), ('F', 'Feminino'), ('O', 'Outro')
@@ -38,13 +40,12 @@ class Jogador(models.Model):
 
     def __str__(self):
         return self.nome
-
-
+    
 class Equipe(models.Model):
     nome_equipe = models.CharField(max_length=100)
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
-    jogadores = models.ManyToManyField(Jogador)
-    tec_time = models.CharField(Jogador, related_name='Tecnico', limit_choices_to={'atuacao': 'T'})
+    jogadores = models.ManyToManyField('Jogador')
+    tec_time = models.ForeignKey(Jogador, on_delete=models.CASCADE, related_name='tecnico', limit_choices_to={'atuacao': 'T'})
 
     def jogadores_do_campus(self):
         return self.jogadores.filter(campus=self.campus)
@@ -107,7 +108,7 @@ class ClassificacaoEquipe(models.Model):
     
 class Partida(models.Model):
     campus_partida = models.ForeignKey(Campus, on_delete=models.CASCADE)
-    times_partida = models.ManyToManyField(Equipe, limit=2)
+    times_partida = models.ManyToManyField(Equipe)
     
     def __str__(self):
         return f"Partida entre {self.times_partida.all()[0]} e {self.times_partida.all()[1]}"
@@ -115,11 +116,6 @@ class Partida(models.Model):
 class Resultado(models.Model):
     jogo = models.ForeignKey(Partida, on_delete=models.CASCADE)
     pontos_equipe = models.IntegerField()
-
-class Resultado(models.Model):
-    jogo = models.ForeignKey(Partida, on_delete=models.CASCADE)
-    pontos_equipe = models.IntegerField()
-
 
 @receiver(post_save, sender=Resultado)
 def atualizar_classificacao(sender, instance, **kwargs):
@@ -130,9 +126,6 @@ def atualizar_classificacao(sender, instance, **kwargs):
         classificacao.posicao_Equipe = posicao
         classificacao.save()
         posicao += 1
-
-
-
 
 class UserManager(BaseUserManager):
 
