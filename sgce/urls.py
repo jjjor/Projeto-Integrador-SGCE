@@ -42,7 +42,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='index'), name='logout'),
     path('list-team/', List_teamView.as_view(), name='list-team'),
     path("", include("social_django.urls"), name="social"),
-    
     path('edit-team/<int:id>/', TeamEditar.as_view(), name='edit-team'),
     path('delete-team/<int:id>/', TeamRemover.as_view(), name='delete-team'),
     path('create-team/', TeamCriar.as_view(), name='create-team'),

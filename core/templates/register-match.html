@@ -2,59 +2,99 @@
 {% load static %}
 {% block main %}
 
+<link rel="stylesheet" href="{% static 'css/register-match.css' %}" />
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-  <link rel="stylesheet" href="{% static 'css/register-match.css' %}" />
 
-  <div id="matches">
-    <div class="container-matches">
-        <div class="header-matches">
-            <h1>Cadastrar partida</h1>
-        </div>
-        <div class="matches-container">
-            <div class="card-match">
-                <div class="change-sport">
-                    <label for="select">Esporte da partida:</label>
-                    <select name="change-sport">
-                      <option value="basquete">Basquete</option>
-                      <option value="volei-indoor">Vôlei Indoor</option>
-                      <option value="volei-outdoor">Vôlei Outdoor</option>
-                      <option value="futsal">Futsal</option>
-                      <option value="handebol">Handebol</option>
-                    </select>
-                  </div>
-            </div>
-            <div class="card-match">
-                <div class="current-team-selection">
-                    <label for="">Times que irão participar:</label>
-                    <select name="" id="change-team">
-                      <option value="vasco">Vasco</option>
-                      <option value="paysandu">Sóumel</option>
-                      <option value="palmeiras">Palmeiras</option>
-                    </select>
-                    <p>X</p>
-                    <select name="" id="change-team">
-                      <option value="vasco">Vasco</option>
-                      <option value="paysandu">Sóumel</option>
-                      <option value="palmeiras">Palmeiras</option>
-                    </select>
-                  </div>
-            </div>
-            <div class="card-match">
-                <div class="team-item">
-                    <img src="{% static 'images/pysandu.png'%}" alt="">
-                    <p>SóUMel</p>
-                  </div>
-            </div>
-            <div class="card-match">
-                <div class="team-item">
-                    <img src="{% static 'images/vasco.png'%}" alt="">
-                    <p>Vasco</p>
-                  </div>
-            </div>  
-        </div>
-        <button class="save-btn">Salvar</button>
+<div id="matches">
+  <div class="container-matches">
+    <div class="header-matches">
+      <h1>Cadastrar partida</h1>
     </div>
+    <div class="matches-container">
+      <div class="card-match">
+        <div class="change-sport">
+          <label for="select">Esporte da partida:</label>
+          <select name="change-sport">
+            <option value="basquete">Basquete</option>
+            <option value="volei-indoor">Vôlei Indoor</option>
+            <option value="volei-outdoor">Vôlei Outdoor</option>
+            <option value="futsal">Futsal</option>
+            <option value="handebol">Handebol</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-match">
+        <div class="current-team-selection">
+          <label for="">Times que irão participar:</label>
+          <select name="team1" class="team-selection" id="change-team-1">
+            <option value="vasco">Vasco</option>
+            <option value="paysandu">Sóumel</option>
+            <option value="palmeiras">Palmeiras</option>
+          </select>
+          <p>X</p>
+          <select name="team2" class="team-selection" id="change-team-2">
+            <option value="vasco">Vasco</option>
+            <option value="paysandu">Sóumel</option>
+            <option value="palmeiras">Palmeiras</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-match">
+        <div class="team-item">
+          <img src="{% static 'images/pysandu.png'%}" alt="image_team_1">
+          <p id="team1-name">Time 1</p>
+        </div>
+      </div>
+      <div class="card-match">
+        <div class="team-item">
+          <img src="{% static 'images/vasco.png'%}" alt="image_team_2">
+          <p id="team2-name">Time 2</p>
+        </div>
+      </div>
+    </div>
+    <button class="save-btn" id="save-btn" type="submit">Salvar</button>
+  </div>
 </div>
 
+<script>
+  $(document).ready(function () {
+    $(".team-selection").change(function () {
+      var team1Name = $("#change-team-1 option:selected").text();
+      var team2Name = $("#change-team-2 option:selected").text();
+      
+      $("#team1-name").text(team1Name);
+      $("#team2-name").text(team2Name);
+    });
 
-{%endblock%}
+    $("#save-btn").click(function () {
+      var esporte = $("select[name='change-sport']").val();
+      var data = "";  // Você pode adicionar lógica para obter a data
+      var time1 = $("select[name='team1']").val();
+      var time2 = $("select[name='team2']").val();
+
+      var formData = {
+        'esporte': esporte,
+        'data': data,
+        'time1': time1,
+        'time2': time2
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '/register-match/',  // Certifique-se de usar a URL correta
+        data: formData,
+        success: function (data) {
+          alert("Partida salva!");
+          // Redirecione ou faça outras ações após salvar com sucesso
+        },
+        error: function (error) {
+          console.log(error);
+          alert("Erro ao salvar a partida.");
+        }
+      });
+    });
+  });
+</script>
+
+{% endblock %}

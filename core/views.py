@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import EquipeForm
 from .forms import UsuarioForm
+from .forms import PartidaAdminForm
 from django.urls import reverse_lazy
 from .models import *
 
@@ -60,6 +61,10 @@ class AskTeamChangeView(TemplateView):
 class MatchesView(TemplateView):
     template_name = 'matches.html'
 
+    def get(self, request, *args, **kwargs):
+        partidas = Partida.objects.all()
+        return render(request, self.template_name, {'partida': partidas})
+
 class RegisterTournamentView(TemplateView):
     template_name = 'register-tournament.html'
 
@@ -72,10 +77,22 @@ class ChangeInformationsView(TemplateView):
 class RegisterMatchView(TemplateView):
     template_name = 'register-match.html'
 
+    def get(self, request, *args, **kwargs):
+        form = PartidaAdminForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = PartidaAdminForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("{% url 'matches.html' %}")  # Redirecionar para a página de exibição de partidas
+        return render(request, self.template_name, {'form': form})
+
 class AdminBaseView(TemplateView):
     template_name = 'admin_base.html'
 
 class TeamCriar(CreateView):
+    
     template_name = 'create-team.html'
     form_class = EquipeForm
     success_url = reverse_lazy('create-team')

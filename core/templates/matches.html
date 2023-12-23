@@ -9,67 +9,21 @@
         <div class="header-matches">
             <h1>Partidas</h1>
         </div>
-        <div class="matches-container">
-            <div class="card-match">
-                <p class="date-match">04/12/2023</p>
-                <div class="match">
-                    <img src="{% static 'images/vasco.png' %}" alt="">
-                    <p>Vasco da Gama</p>
-                    <p>0 x 0</p>
-                    <p>Sóumel</p>
-                    <img src="{% static 'images/pysandu.png' %}" alt="">
-                </div>
+            {% for partida in partidas %}
+
+        <div class="card-match">
+            <p class="date-match">{{ partida.data }}</p>
+            <div class="match">
+                <img src="{{ partida.imagem_time1.url }}" alt="{{ partida.time1 }}">
+                <p>{{ partida.time1 }}</p>
+                <p>VS</p>
+                <p>{{ partida.time2 }}</p>
+                <img src="{{ partida.imagem_time2.url }}" alt="{{ partida.time2 }}">
             </div>
-            <div class="card-match">
-                <p class="date-match">04/12/2023</p>
-                <div class="match">
-                    <img src="{% static 'images/vasco.png' %}" alt="">
-                    <p>Vasco da Gama</p>
-                    <p>0 x 0</p>
-                    <p>Sóumel</p>
-                    <img src="{% static 'images/pysandu.png' %}" alt="">
-                </div>
-            </div>
-            <div class="card-match">
-                <p class="date-match">04/12/2023</p>
-                <div class="match">
-                    <img src="{% static 'images/vasco.png' %}" alt="">
-                    <p>Vasco da Gama</p>
-                    <p>0 x 0</p>
-                    <p>Sóumel</p>
-                    <img src="{% static 'images/pysandu.png' %}" alt="">
-                </div>
-            </div>
-            <div class="card-match">
-                <p class="date-match">04/12/2023</p>
-                <div class="match">
-                    <img src="{% static 'images/vasco.png' %}" alt="">
-                    <p>Vasco da Gama</p>
-                    <p>0 x 0</p>
-                    <p>Sóumel</p>
-                    <img src="{% static 'images/pysandu.png' %}" alt="">
-                </div>
-            </div>
-            <div class="card-match">
-                <p class="date-match">04/12/2023</p>
-                <div class="match">
-                    <img src="{% static 'images/vasco.png' %}" alt="">
-                    <p>Vasco da Gama</p>
-                    <p>0 x 0</p>
-                    <p>Sóumel</p>
-                    <img src="{% static 'images/pysandu.png' %}" alt="">
-                </div>
-            </div>
-            <div class="card-match">
-                <p class="date-match">04/12/2023</p>
-                <div class="match">
-                    <img src="{% static 'images/vasco.png' %}" alt="">
-                    <p>Vasco da Gama</p>
-                    <p>0 x 0</p>
-                    <p>Sóumel</p>
-                    <img src="{% static 'images/pysandu.png' %}" alt="">
-                </div>
-            </div>
+        </div>
+    {% endfor %}
+        
+        
         </div>
     </div>
 </div>

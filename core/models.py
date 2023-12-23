@@ -11,7 +11,6 @@ class Campus(models.Model):
     def __str__(self):
         return self.nome
 
-
 class Modalidade(models.Model):
     sexo_opcao = ('M', 'Masculino'), ('F', 'Feminino'), ('O', 'Outro')
 
@@ -21,15 +20,11 @@ class Modalidade(models.Model):
     def __str__(self):
         return self.nome
 
-
-
-
 class Jogador(models.Model):
 
     sexo_opcao = ('M', 'Masculino'), ('F', 'Feminino'), ('O', 'Outro')
     atuacao_opcao = ('A', 'Atacante'), ('D', 'Defensor'), ('G',
                                                            'Goleiro'), ('T', 'Tecnico')
-
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
     esporte = models.ForeignKey(Modalidade, on_delete=models.CASCADE)
@@ -42,6 +37,7 @@ class Jogador(models.Model):
         return self.nome
     
 class Equipe(models.Model):
+    
     nome_equipe = models.CharField(max_length=100)
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
     jogadores = models.ManyToManyField('Jogador')
@@ -107,11 +103,29 @@ class ClassificacaoEquipe(models.Model):
     
     
 class Partida(models.Model):
+
+    data =  models.DateField(default='2023-01-01')
     campus_partida = models.ForeignKey(Campus, on_delete=models.CASCADE)
     times_partida = models.ManyToManyField(Equipe)
     
     def __str__(self):
         return f"Partida entre {self.times_partida.all()[0]} e {self.times_partida.all()[1]}"
+    
+class Esporte(models.Model):
+    nome = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nome
+    
+class PartidaAdd(models.Model):
+
+    esporte = models.ForeignKey(Esporte, on_delete=models.CASCADE)
+    data = models.DateField(default='2023-01-01')
+    time1 = models.CharField(max_length=100)
+    time2 = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.time1} vs {self.time2} ({self.esporte.nome})"
     
 class Resultado(models.Model):
     jogo = models.ForeignKey(Partida, on_delete=models.CASCADE)
@@ -120,7 +134,7 @@ class Resultado(models.Model):
 @receiver(post_save, sender=Resultado)
 def atualizar_classificacao(sender, instance, **kwargs):
     # Lógica para atualizar a classificação quando um resultado for salvo
-    classificacoes = Equipe.objects.all().order_by('-pontos_conquistados')
+    classificacoes = Equipe.objects.all().order_by('- pontos_conquistados')
     posicao = 1
     for classificacao in classificacoes:
         classificacao.posicao_Equipe = posicao
