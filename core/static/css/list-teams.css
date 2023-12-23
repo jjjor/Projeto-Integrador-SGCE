@@ -93,9 +93,22 @@
     gap: 1rem;
   }
   
-  
+  .Edit-button,
+  .delete-button {
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
   .Edit-button {
     background-color: #0329fe;
+    border-radius: 4px;
+  
   }
   
   .delete-button {
@@ -105,7 +118,7 @@
   th,
   td {
     text-align: left;
-    padding: 0.7rem;
+    padding: 1rem;
     border: 1px solid;
     background: #c3e9c3;
   }

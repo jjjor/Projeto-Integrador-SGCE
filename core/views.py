@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.views import LogoutView
 from django.views.generic import TemplateView, FormView
-from django.views import View
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .forms import EquipeForm
 from .forms import UsuarioForm
+from django.urls import reverse_lazy
 from .models import *
 
 class IndexView(TemplateView):
@@ -74,16 +75,27 @@ class RegisterMatchView(TemplateView):
 class AdminBaseView(TemplateView):
     template_name = 'admin_base.html'
 
-class EditTeamView(TemplateView):
-    model = Equipe
-    template_name = 'edit_team.html'
-    context_object_name = 'objeto_modelo'  # Nome do objeto que será passado para o template
+class TeamCriar(CreateView):
+    template_name = 'create-team.html'
+    form_class = EquipeForm
+    success_url = reverse_lazy('create-team')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # Você pode acessar o 'id' assim:
-        context['id'] = self.object.pk
-        return context
+class TeamEditar(UpdateView):
+    model = Equipe
+    form_class = EquipeForm
+    template_name = 'change-players.html'
+    pk_url_kwarg = 'id' # Nome da variável na URL
+    
+    def get_success_url(self):
+        return reverse_lazy('list-team')
+
+class TeamRemover(DeleteView):
+    model = Equipe
+    success_url = reverse_lazy('list-team')
+    pk_url_kwarg = 'id'
+
+    def get(self, *args, **kwargs):
+        return self.delete(*args, **kwargs)
 
 class List_teamView(TemplateView):
     template_name = 'list-teams.html'

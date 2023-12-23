@@ -53,10 +53,10 @@
                     <td>{{ team.campus }}</td>
                     <td>{{ team.jogadores.count }}</td>
                     <td>
-                        {% comment %} <div class="buttons-edit">
-                            <a href="{% url 'edit-team/{{ team.id }}/' %}" class="Edit-button">Editar</a>
-                            <a href="{% url 'delete-team/{{ team.id }}' %}" class="delete-button">Remover</a></td>
-                        </div> {% endcomment %}
+                        <div class="buttons-edit">
+                            <a href="{% url 'edit-team' id=team.id %}" class="Edit-button">Editar</a>
+                            <a href="{% url 'delete-team' id=team.id %}" class="delete-button">Remover</a></td>
+                        </div>
                     </tr>
                 {% endfor %}
                     

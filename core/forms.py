@@ -10,6 +10,9 @@ class EquipeForm(forms.ModelForm):
     class Meta:
         model = Equipe
         fields = '__all__'
+        widgets = {
+            
+        }
         
 class PartidaAdminForm(forms.ModelForm):
     class Meta:

@@ -58,43 +58,50 @@
         <!-- Aqui é o filtro -->
 
             <!-- Aqui é a lista de jogadores -->
-          <div class="players">
-            <div class="holders">
-              <h2>Titulares</h2>
-              <form action="?" class="holders-form">
-                <div class="card-holder">
-                  <img src="{% static 'images/gabigol.png' %}" alt="" />
-                  <p>Nome: Gagibas</p>
-                  <button class="remove">Remover</button>
-                </div>
-                <div class="card-holder">
-                  <img src="{% static 'images/gabigol.png' %}" alt="" />
-                  <p>Nome: Gabigas</p>
-                  <button class="remove">Remover</button>
-                </div>
-                <div class="card-holder">
-                  <img src="{% static 'images/gabigol.png' %}" alt="" />
-                  <p>Nome: Gabigas</p>
-                  <button class="remove">Remover</button>
-                </div>
-                <div class="card-holder">
-                    <img src="{% static 'images/gabigol.png' %}" alt="" />
-                    <p>Nome: Gabigas</p>
-                    <button class="remove">Remover</button>
-                  </div>
-                  <div class="card-holder">
-                    <img src="{% static 'images/gabigol.png' %}" alt="" />
-                    <p>Nome: Gabigas</p>
-                    <button class="remove">Remover</button>
-                  </div>
-                  <div class="card-holder">
-                    <img src="{% static 'images/gabigol.png' %}" alt="" />
-                    <p>Nome: Gabigas</p>
-                    <button class="remove">Remover</button>
-                  </div>
-              </form>
+          
+            <div class="players">
+              <div class="holders">
+                <h2>Titulares</h2>
+                {% for team in teams.all %}
+                  <form action="?" class="holders-form">
+                    {% for jogador in team.jogadores.all  %}
+                      {% for i in 1|default:6 %}
+                        <div class="card-holder">
+                          <img src="{% static 'images/gabigol.png' %}" alt="" />
+                          <p>Nome: {{jogador.nome}}</p>
+                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
+                        </div>
+                        <div class="card-holder">
+                          <img src="{% static 'images/gabigol.png' %}" alt="" />
+                          <p>Nome: {{jogador.nome}}</p>
+                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
+                        </div>
+                        <div class="card-holder">
+                          <img src="{% static 'images/gabigol.png' %}" alt="" />
+                          <p>Nome: {{jogador.nome}}</p>
+                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
+                        </div>
+                        <div class="card-holder">
+                          <img src="{% static 'images/gabigol.png' %}" alt="" />
+                          <p>Nome: {{jogador.nome}}</p>
+                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
+                        </div>
+                        <div class="card-holder">
+                          <img src="{% static 'images/gabigol.png' %}" alt="" />
+                          <p>Nome: {{jogador.nome}}</p>
+                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
+                        </div>
+                        <div class="card-holder">
+                          <img src="{% static 'images/gabigol.png' %}" alt="" />
+                          <p>Nome: {{jogador.nome}}</p>
+                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
+                        </div>
+                      {% endfor %}
+                    {% endfor %}
+                  </form>
+                {% endfor %}
             </div>
-
+            
             <!-- Aqui é a lista de reservas -->
             <div class="reserve">
               <h2>Reserva</h2>
@@ -115,20 +122,20 @@
                   <button class="remove">Remover</button>
                 </div>
                 <div class="card-holder">
-                    <img src="{% static 'images/gabigol.png' %}" alt="" />
-                    <p>Nome: Gabigas</p>
-                    <button class="remove">Remover</button>
-                  </div>
-                  <div class="card-holder">
-                    <img src="{% static 'images/gabigol.png' %}" alt="" />
-                    <p>Nome: Gabigas</p>
-                    <button class="remove">Remover</button>
-                  </div>
-                  <div class="card-holder">
-                    <img src="{% static 'images/gabigol.png' %}" alt="" />
-                    <p>Nome: Gabigas</p>
-                    <button class="remove">Remover</button>
-                  </div>
+                  <img src="{% static 'images/gabigol.png' %}" alt="" />
+                  <p>Nome: Gabigas</p>
+                  <button class="remove">Remover</button>
+                </div>
+                <div class="card-holder">
+                  <img src="{% static 'images/gabigol.png' %}" alt="" />
+                  <p>Nome: Gabigas</p>
+                  <button class="remove">Remover</button>
+                </div>
+                <div class="card-holder">
+                  <img src="{% static 'images/gabigol.png' %}" alt="" />
+                  <p>Nome: Gabigas</p>
+                  <button class="remove">Remover</button>
+                </div>
               </form>
             </div>
           </div>
