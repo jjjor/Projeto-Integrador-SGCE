@@ -17,7 +17,7 @@ class Jogador(models.Model):
     sexo_opcao = ('M', 'Masculino'), ('F', 'Feminino'), ('O', 'Outro')
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
-    esporte = models.CharField((""), max_length=50)
+    esporte = models.ForeignKey('Esporte', on_delete=models.CASCADE, null=True, blank=True)
     sexo = models.CharField(max_length=1, choices=sexo_opcao, default='M')
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE, null=True, blank=True)
 
@@ -34,8 +34,8 @@ class Equipe(models.Model):
         return self.jogadores.filter(campus=self.campus)
 
     def __str__(self):
-        return self.nome_equipe + " - " + self.campus.nome
-
+        return self.nome_equipe
+    
 class HistoricoEquipe(models.Model):
 
     equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
@@ -107,14 +107,13 @@ class Esporte(models.Model):
 class Partida(models.Model):
 
     esporte = models.ForeignKey(Esporte, on_delete=models.CASCADE, null=True, blank=True)
-    data = models.DateField(default='2023-01-01')
-    time1 = models.CharField(max_length=50, null=True, blank=True)
-    time2 = models.CharField(max_length=50, null=True, blank=True)
-    placar_casa = models.IntegerField(default=0)
-    placar_visitante = models.IntegerField(default=0)
+    data = models.DateField("Data", auto_now=True)
+    time1 = models.ForeignKey(Equipe, on_delete=models.CASCADE, null=True, blank=True, related_name='partidas_time1')
+    time2 = models.ForeignKey(Equipe, on_delete=models.CASCADE, null=True, blank=True, related_name='partidas_time2')
+    placar = models.CharField("Placar", default="0x0", max_length=50, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.time1} vs {self.time2} ({self.esporte.nome})"
+        return f"{self.time1} {self.placar} {self.time2} - ({self.esporte.nome})"
     
 class Resultado(models.Model):
     jogo = models.ForeignKey(Partida, on_delete=models.CASCADE, null=True, blank=True)
@@ -168,9 +167,9 @@ class UserManager(BaseUserManager):
         return self.create_user(identification, email, password=password, **extra_fields)
     
 class Usuario(AbstractBaseUser, PermissionsMixin):
-    identification = models.CharField(max_length=255, unique=True)
-    usual_name = models.CharField(max_length=255)
-    role = models.CharField(max_length=255)
+    identification = models.CharField(max_length=255, unique=True, default="20222094040001")
+    usual_name = models.CharField(max_length=255, default="Usuário")
+    role = models.CharField(max_length=255, default='Professor')
     full_name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, blank=False, null=True)
     url_foto = models.CharField(max_length=255, blank=True, null=True)

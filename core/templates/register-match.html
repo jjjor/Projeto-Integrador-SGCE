@@ -7,7 +7,8 @@
 
 
 <div id="matches">
-  <div class="container-matches">
+  <form class="container-matches" method="post">
+    {% csrf_token %}
     <div class="header-matches">
       <h1>Cadastrar partida</h1>
     </div>
@@ -16,45 +17,41 @@
         <div class="change-sport">
           <label for="select">Esporte da partida:</label>
           <select name="change-sport">
-            <option value="basquete">Basquete</option>
-            <option value="volei-indoor">Vôlei Indoor</option>
-            <option value="volei-outdoor">Vôlei Outdoor</option>
-            <option value="futsal">Futsal</option>
-            <option value="handebol">Handebol</option>
+            {% for esporte in esportes %}
+              <option name="esporte" value="{{esporte.nome}}">{{esporte.nome}}</option>
+            {% endfor %}
           </select>
         </div>
       </div>
       <div class="card-match">
         <div class="current-team-selection">
           <label for="">Times que irão participar:</label>
-          <select name="team1" class="team-selection" id="change-team-1">
-            <option value="vasco">Vasco</option>
-            <option value="paysandu">Sóumel</option>
-            <option value="palmeiras">Palmeiras</option>
+          <select name="time1" class="team-selection" id="change-team-1">
+            {% for equipe in equipes %}
+              <option value="{{equipe.nome_equipe}}">{{equipe.nome_equipe}}</option>
+            {% endfor %}
           </select>
           <p>X</p>
-          <select name="team2" class="team-selection" id="change-team-2">
-            <option value="vasco">Vasco</option>
-            <option value="paysandu">Sóumel</option>
-            <option value="palmeiras">Palmeiras</option>
+          <select name="time2" class="team-selection" id="change-team-2">
+            {% for equipe in equipes %}
+              <option value="{{equipe.nome_equipe}}">{{equipe.nome_equipe}}</option>
+            {% endfor %}
           </select>
         </div>
       </div>
       <div class="card-match">
         <div class="team-item">
-          <img src="{% static 'images/pysandu.png'%}" alt="image_team_1">
           <p id="team1-name">Time 1</p>
         </div>
       </div>
       <div class="card-match">
         <div class="team-item">
-          <img src="{% static 'images/vasco.png'%}" alt="image_team_2">
           <p id="team2-name">Time 2</p>
         </div>
       </div>
     </div>
     <button class="save-btn" id="save-btn" type="submit">Salvar</button>
-  </div>
+  </form>
 </div>
 
 <script>
@@ -95,6 +92,24 @@
       });
     });
   });
+
+  $(document).ready(function() {
+    // Quando o valor do team1 muda
+    $('#change-team-1').change(function() {
+      // Obtenha o valor selecionado em team1
+      var selectedTeam1 = $(this).val();
+
+      // Desbloqueie todas as opções em team2
+      $('#change-team-2 option').prop('disabled', false);
+
+      // Se team1 tiver uma seleção, desabilite a mesma opção em team2
+      if (selectedTeam1) {
+        $('#change-team-2 option[value="' + selectedTeam1 + '"]').prop('disabled', true);
+      }
+    });
+  });
+ 
+
 </script>
 
 {% endblock %}

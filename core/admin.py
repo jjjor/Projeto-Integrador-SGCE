@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .forms import PartidaAdminForm
-from .models import Campus, Jogador, Equipe, ClassificacaoEquipe, Partida, Resultado, Jogos, Torneio, Usuario
+from .models import Campus, Jogador, Equipe, ClassificacaoEquipe, Partida, Resultado, Jogos, Torneio, Usuario, Esporte
 
 # Register your models here.
 
@@ -66,3 +66,7 @@ class JogosAdmin(admin.ModelAdmin):
     search_fields = ('campus',)
     ordering = ('campus',)
     
+@admin.register(Esporte)
+class EsporteAdmin(admin.ModelAdmin):
+    list_display = ('nome',)
+    list_filter = ('nome', )

@@ -63,7 +63,7 @@ class MatchesView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         partidas = Partida.objects.all()
-        return render(request, self.template_name, {'partida': partidas})
+        return render(request, self.template_name, {'partidas': partidas})
 
 class RegisterTournamentView(TemplateView):
     template_name = 'register-tournament.html'
@@ -75,17 +75,22 @@ class ChangeInformationsView(TemplateView):
     template_name = 'change-informations.html'
 
 class RegisterMatchView(TemplateView):
+
     template_name = 'register-match.html'
 
     def get(self, request, *args, **kwargs):
         form = PartidaAdminForm()
-        return render(request, self.template_name, {'form': form})
+        equipes = Equipe.objects.all()
+        esportes = Esporte.objects.all()
+        return render(request, self.template_name, {'form': form, 'equipes': equipes, 'esportes': esportes})
 
     def post(self, request, *args, **kwargs):
         form = PartidaAdminForm(request.POST, request.FILES)
+
         if form.is_valid():
+            print("-------------------aquiiiiiii")
             form.save()
-            return redirect("{% url 'matches.html' %}")  # Redirecionar para a página de exibição de partidas
+            return redirect("matches")
         return render(request, self.template_name, {'form': form})
 
 class AdminBaseView(TemplateView):
