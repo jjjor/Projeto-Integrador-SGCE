@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .forms import PartidaAdminForm
-from .models import Campus, Jogador, Equipe, ClassificacaoEquipe, Modalidade, Partida, Resultado, Jogos, Campeonato, Usuario
+from .models import Campus, Jogador, Equipe, ClassificacaoEquipe, Partida, Resultado, Jogos, Torneio, Usuario
 
 # Register your models here.
 
@@ -15,14 +15,14 @@ class CampusAdmin(admin.ModelAdmin):
 @admin.register(Equipe)
 class EquipeAdmin(admin.ModelAdmin):
     list_display = ('nome_equipe', 'campus')
-    list_filter = ('nome_equipe', 'campus', 'tec_time')
+    list_filter = ('nome_equipe', 'campus')
     search_fields = ('nome_equipe',)
     ordering = ('nome_equipe',)
 
 @admin.register(Jogador)
 class JogadorAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'idade', 'esporte', 'atuacao', 'sexo', 'campus')
-    list_filter = ('campus', 'esporte', 'sexo', 'atuacao')
+    list_display = ('nome', 'idade', 'esporte', 'sexo', 'campus')
+    list_filter = ('campus', 'esporte', 'sexo')
     search_fields = ('nome',)
     ordering = ('nome',)
     
@@ -32,18 +32,10 @@ class ClassificacaoAdmin(admin.ModelAdmin):
     list_filter = ('posicao',)
     search_fields = ('posicao',)
     ordering = ('posicao',)
-    
-@admin.register(Modalidade)
-class ModalidadeAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'sexo')
-    list_filter = ('sexo',)
-    search_fields = ('nome',)
-    ordering = ('nome',)
-
 
 class PartidaAdmin(admin.ModelAdmin):
     form = PartidaAdminForm
-    list_display = ('campus_partida', 'display_times_partida')
+    display = ('display_times_partida')
 
     def display_times_partida(self, obj):
         return ', '.join([equipe.nome_equipe for equipe in obj.times_partida.all()])
@@ -52,12 +44,13 @@ class PartidaAdmin(admin.ModelAdmin):
 
 admin.site.register(Partida, PartidaAdmin)
     
-@admin.register(Campeonato)
-class CampeonatoAdmin(admin.ModelAdmin):
-    list_display = ('data_inicio', 'data_final', 'campus_campeonato', 'modalidade_campeonato')
-    list_filter = ('campus_campeonato', 'modalidade_campeonato')
-    search_fields = ('campus_campeonato',)
-    ordering = ('campus_campeonato',)
+
+@admin.register(Torneio)
+class TorneioAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'data')
+    list_filter = ('nome',)
+    search_fields = ('nome',)
+    ordering = ('nome',)
 
 @admin.register(Resultado)
 class ResultadoAdmin(admin.ModelAdmin):
@@ -68,8 +61,8 @@ class ResultadoAdmin(admin.ModelAdmin):
     
 @admin.register(Jogos)
 class JogosAdmin(admin.ModelAdmin):
-    list_display = ('campus', 'campeonato', 'data_jogo',)
-    list_filter = ('campus','campeonato',)
+    list_display = ('campus', 'torneio', 'data_jogo',)
+    list_filter = ('campus','torneio',)
     search_fields = ('campus',)
     ordering = ('campus',)
     

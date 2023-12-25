@@ -5,17 +5,9 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 
 
 class Campus(models.Model):
+
     nome = models.CharField(max_length=200)
     cidade = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nome
-
-class Modalidade(models.Model):
-    sexo_opcao = ('M', 'Masculino'), ('F', 'Feminino'), ('O', 'Outro')
-
-    nome = models.CharField(max_length=100)
-    sexo = models.CharField(max_length=1, choices=sexo_opcao, default='M')
 
     def __str__(self):
         return self.nome
@@ -23,15 +15,11 @@ class Modalidade(models.Model):
 class Jogador(models.Model):
 
     sexo_opcao = ('M', 'Masculino'), ('F', 'Feminino'), ('O', 'Outro')
-    atuacao_opcao = ('A', 'Atacante'), ('D', 'Defensor'), ('G',
-                                                           'Goleiro'), ('T', 'Tecnico')
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
-    esporte = models.ForeignKey(Modalidade, on_delete=models.CASCADE)
-    atuacao = models.CharField(
-        max_length=1, choices=atuacao_opcao, default='A')
+    esporte = models.CharField((""), max_length=50)
     sexo = models.CharField(max_length=1, choices=sexo_opcao, default='M')
-    campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
+    campus = models.ForeignKey(Campus, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.nome
@@ -39,9 +27,8 @@ class Jogador(models.Model):
 class Equipe(models.Model):
     
     nome_equipe = models.CharField(max_length=100)
-    campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
+    campus = models.ForeignKey(Campus, on_delete=models.CASCADE, null=True, blank=True)
     jogadores = models.ManyToManyField('Jogador')
-    tec_time = models.ForeignKey(Jogador, on_delete=models.CASCADE, related_name='tecnico', limit_choices_to={'atuacao': 'T'})
 
     def jogadores_do_campus(self):
         return self.jogadores.filter(campus=self.campus)
@@ -50,6 +37,7 @@ class Equipe(models.Model):
         return self.nome_equipe + " - " + self.campus.nome
 
 class HistoricoEquipe(models.Model):
+
     equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
     vitoria = models.IntegerField(default=0)
     derrota = models.IntegerField(default=0)
@@ -66,28 +54,27 @@ class HistoricoEquipe(models.Model):
         self.derrota += 1
         self.save()
 
-class Campeonato(models.Model):
-    data_inicio = models.DateField()
-    data_final = models.DateField()
-    campus_campeonato = models.ForeignKey(Campus, on_delete=models.CASCADE)
-    modalidade_campeonato = models.ForeignKey(Modalidade, on_delete=models.CASCADE)
-    equipes_campeonato = models.ManyToManyField(Equipe)
+class Torneio(models.Model):
+
+    nome = models.CharField(max_length=100)
+    data = models.DateField()
+    equipes_torneio = models.ManyToManyField(Equipe)
     
 class ClassificacaoEquipe(models.Model):
-    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
-    campeonato = models.ForeignKey(Campeonato, on_delete=models.CASCADE)
+    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE,null=True, blank=True)
+    torneio = models.ForeignKey(Torneio, on_delete=models.CASCADE, null=True, blank=True)
     posicao = models.IntegerField(default=0)
     pontos_conquistados = models.IntegerField(default=0)
 
     def calcular_pontos(self):
         # Lógica para calcular os pontos
-        vitorias_equipe = Resultado.objects.filter(jogo__campeonato=self.campeonato, jogo__equipe=self.equipe, pontos_equipe__gt=0).count()
+        vitorias_equipe = Resultado.objects.filter(jogo__torneio=self.torneio, jogo__equipe=self.equipe, pontos_equipe__gt=0).count()
         self.pontos_conquistados = vitorias_equipe * 3
         self.save()
 
     def atualizar_posicao(self):
         # Atualiza a posição da equipe com base nos pontos conquistados
-        classificacoes = ClassificacaoEquipe.objects.filter(campeonato=self.campeonato).order_by('-pontos_conquistados')
+        classificacoes = ClassificacaoEquipe.objects.filter(torneio=self.torneio).order_by('-pontos_conquistados')
         posicao = 1
         for classificacao in classificacoes:
             classificacao.posicao = posicao
@@ -99,17 +86,17 @@ class ClassificacaoEquipe(models.Model):
         self.save()
         
     def __str__(self):
-        return f"Classificação de {self.equipe} no {self.campeonato} - Posição: {self.posicao} - Pontos: {self.pontos_conquistados}"
+        return f"Classificação de {self.equipe} no {self.torneio} - Posição: {self.posicao} - Pontos: {self.pontos_conquistados}"
     
     
-class Partida(models.Model):
+# class Partida(models.Model):
 
-    data =  models.DateField(default='2023-01-01')
-    campus_partida = models.ForeignKey(Campus, on_delete=models.CASCADE)
-    times_partida = models.ManyToManyField(Equipe)
+#     data =  models.DateField(default='2023-01-01')
+#     campus_partida = models.ForeignKey(Campus, on_delete=models.CASCADE)
+#     times_partida = models.ManyToManyField(Equipe)
     
-    def __str__(self):
-        return f"Partida entre {self.times_partida.all()[0]} e {self.times_partida.all()[1]}"
+#     def __str__(self):
+#         return f"Partida entre {self.times_partida.all()[0]} e {self.times_partida.all()[1]}"
     
 class Esporte(models.Model):
     nome = models.CharField(max_length=100)
@@ -117,18 +104,20 @@ class Esporte(models.Model):
     def __str__(self):
         return self.nome
     
-class PartidaAdd(models.Model):
+class Partida(models.Model):
 
-    esporte = models.ForeignKey(Esporte, on_delete=models.CASCADE)
+    esporte = models.ForeignKey(Esporte, on_delete=models.CASCADE, null=True, blank=True)
     data = models.DateField(default='2023-01-01')
-    time1 = models.CharField(max_length=100)
-    time2 = models.CharField(max_length=100)
+    time1 = models.CharField(max_length=50, null=True, blank=True)
+    time2 = models.CharField(max_length=50, null=True, blank=True)
+    placar_casa = models.IntegerField(default=0)
+    placar_visitante = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.time1} vs {self.time2} ({self.esporte.nome})"
     
 class Resultado(models.Model):
-    jogo = models.ForeignKey(Partida, on_delete=models.CASCADE)
+    jogo = models.ForeignKey(Partida, on_delete=models.CASCADE, null=True, blank=True)
     pontos_equipe = models.IntegerField()
 
 @receiver(post_save, sender=Resultado)
@@ -194,10 +183,10 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['email', 'full_name', 'role', 'url_foto']
     
 class Jogos(models.Model):
-    campus = models.ForeignKey(Campus, on_delete=models.CASCADE)
+    campus = models.ForeignKey(Campus, on_delete=models.CASCADE, null=True, blank=True)
     equipe = models.ManyToManyField(Equipe)
     data_jogo = models.DateField()
-    campeonato = models.ForeignKey(Campeonato, on_delete=models.CASCADE)
+    torneio = models.ForeignKey(Torneio, on_delete=models.CASCADE, null=True, blank=True)
     resultado = models.OneToOneField(
         Resultado, on_delete=models.CASCADE, null=True, blank=True)
 

@@ -14,12 +14,12 @@
   border-radius: 20px;
   gap: 3rem;
   background-color: rgb(30, 29, 29);
-  width: 80%;
+  width: 60%;
 }
 
 .container-players-change h1 {
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
