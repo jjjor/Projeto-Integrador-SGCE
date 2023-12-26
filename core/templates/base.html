@@ -28,12 +28,15 @@
     <ul id="navbar">
       <li><a href="{% url 'index' %}" class="active">Home</a></li>
       <li><a href="{%  url 'matches' %}">Partidas</a></li>
-
+      <li><a href="{%  url 'tournaments' %}">Torneios</a></li>
+      
+      {% if user.is_authenticated %}
       {% if user.is_superuser %}
       <li><a href="{%  url 'profile-prof' %}">Perfil</a></li>
 
       {% else %}
       <li><a href="{%  url 'profile' %}">Perfil</a></li>
+      {% endif %}
       {% endif %}
       <li style="float:right"><a href="{%  url 'report-bug' %}">Report</a></li>
     </ul>
@@ -64,10 +67,17 @@
               <li>
                 <a href="{% url 'matches' %}">Partidas</a>
               </li>
+              <li>
+                <a href="{% url 'tournaments' %}">Torneios</a>
+              </li>
               {% if user.is_authenticated %}
               <li>
                 <a href="{% url 'ask-team-change' %}">Troca de time</a>
               </li>
+              <li>
+                <a href="{% url 'tournaments' %}">Torneios</a>
+              </li>
+
               {% endif %}
               {% endif %}
               </ul>
