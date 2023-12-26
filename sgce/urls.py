@@ -47,5 +47,6 @@ urlpatterns = [
     path('edit-team/<int:id>/', TeamEditar.as_view(), name='edit-team'),
     path('delete-team/<int:id>/', TeamRemover.as_view(), name='delete-team'),
     path('create-team/', TeamCriar.as_view(), name='create-team'),
+    path('list_transfer/', listtransferView.as_view(), name='list_transfer'),
 ]
 
