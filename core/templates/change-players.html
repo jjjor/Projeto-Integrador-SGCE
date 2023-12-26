@@ -4,114 +4,27 @@
   <link rel="stylesheet" href="{% static 'css/change-players.css' %}" />
 
   <div class="change-container">
-    <div class="container-players-change">
-      <h1>Alterar jogadores</h1>
+    <div class="container-players-change" style="margin-right: 0; margin-left: 0;">
+      <h1>Times registrados</h1>
       <div class="menu-container">
 
         <!-- Aqui é o menu -->
-        <div class="menu">
-            <div class="current-team-selection">
-                <p>Time atual:</p>
-                <select name="" id="change-team">
-                    <option value="vasco">Vasco</option>
-                    <option value="paysandu">Sóumel</option>
-                    <option value="palmeiras">Palmeiras</option>
-                </select>
-            </div>
-          <div class="current-team">
-            <img src="{% static 'images/pysandu.png' %}" />
-            <p>SóUMel</p>
-          </div>
-          <div class="change-players">
-            <p>Alterar jogadores</p>
-          </div>
-          <div class="change-informations">
-            <p>
-              <a href="{% url 'change-informations' %}">Alterar informações</a>
-            </p>
-          </div>
-        </div>
+            {% for time in times %}
 
-        <!-- Aqui é o conteúdo -->
-        <div class="search-player">
-          <div class="search">
-            <form action="?" class="add-player">
-                <h2>Adicionar jogador:</h2>
-                <input type="text" placeholder="Insira o nome do jogador..." />
-                <button type="submit" class="btn-save" btn-save>Enviar</button>
-            </form>
-            <form action="?" class="options">
-              <div class="checkbox-player">
-                <div class="check-players">
-                  <label for="holder">Titular</label>
-                  <input type="checkbox" name="holder" id="holder" />
+              <div class="team-card" style="margin-right: 0; margin-left: 0;">
+                <p class="team-name">{{time.nome_equipe}}</p>
+                <div class="options">
+                  <a href="{% url 'edit-team' id=time.id %}" class="team-edit">Editar</a>
+                  <a href="{% url 'delete-team' id=time.id %}" class="team-remove">Remover</a>
                 </div>
-                <div class="check-players">
-                  <label for="reserve">Reserva</label>
-                  <input type="checkbox" name="reserve" id="reserve" />
-                </div>
-            </div>
-            <button type="submit" class="btn-save">Salvar</button>
-            </form>
-        </div>
+              </div>
+                
 
-        <!-- Aqui é o filtro -->
+            {% endfor %}
 
-            <!-- Aqui é a lista de jogadores -->
-          
-            <div class="players">
-              <div class="holders">
-                <h2>Titulares</h2>
-                {% for team in teams.all %}
-                  <form action="?" class="holders-form">
-                    {% for jogador in team.jogadores.all  %}
-                      {% for i in 1|default:6 %}
-                        <div class="card-holder">
-                          <img src="{% static 'images/gabigol.png' %}" alt="" />
-                          <p>Nome: {{jogador.nome}}</p>
-                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
-                        </div>
-                        <div class="card-holder">
-                          <img src="{% static 'images/gabigol.png' %}" alt="" />
-                          <p>Nome: {{jogador.nome}}</p>
-                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
-                        </div>
-                        <div class="card-holder">
-                          <img src="{% static 'images/gabigol.png' %}" alt="" />
-                          <p>Nome: {{jogador.nome}}</p>
-                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
-                        </div>
-                        <div class="card-holder">
-                          <img src="{% static 'images/gabigol.png' %}" alt="" />
-                          <p>Nome: {{jogador.nome}}</p>
-                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
-                        </div>
-                        <div class="card-holder">
-                          <img src="{% static 'images/gabigol.png' %}" alt="" />
-                          <p>Nome: {{jogador.nome}}</p>
-                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
-                        </div>
-                        <div class="card-holder">
-                          <img src="{% static 'images/gabigol.png' %}" alt="" />
-                          <p>Nome: {{jogador.nome}}</p>
-                          <a href="{% url 'delete-team' id=team.id %}" class="remove">Remover</a>
-                        </div>
-                      {% endfor %}
-                    {% endfor %}
-                  </form>
-                {% endfor %}
-            </div>
             
-            <!-- Aqui é a lista de reservas -->
-            <div class="reserve">
-              <h2>Reserva</h2>
-              <form action="?" class="holders-form">
-                <div class="card-holder">
-                  
-                </div>
-              </form>
-            </div>
           </div>
+          <a href="{% url 'create-team' %}" class="team-create" style="margin: 0 auto;">Criar novo time</a>
         </div>
       </div>
     </div>

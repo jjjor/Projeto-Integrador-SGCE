@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% load static %}
+{%block main%}
+
+<link rel="stylesheet" href="{% static 'css/matches.css'%} ">
+<link rel="stylesheet" href="{% static 'css/tournaments.css'%} ">
+
+<div id="matches">
+    <div class="container-matches">
+        <div class="header-matches">
+            <h1>Torneio {{torneio.nome}}  </h1>
+        </div>
+        <div class="content-matches">
+            <div class="teams-container">
+                {% for equipe in torneio.equipes_torneio.all %}
+                <div class="card-match">
+                    <p class="equipe-name">{{ equipe }}</p> 
+                    {% for jogador in equipe.jogadores.all %}
+                    <p class="jogador-name">{{ jogador }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

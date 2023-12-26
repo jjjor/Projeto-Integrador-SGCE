@@ -12,9 +12,9 @@
   gap: 2rem;
   border-radius: 0.5rem;
   /* margin-top: 1.5rem; */
-  width: 85%;
+  width: 50%;
   flex-direction: column;
-  height: 80%;
+  height: 100%;
 }
 
 .register-match-container form {

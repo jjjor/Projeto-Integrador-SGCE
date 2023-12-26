@@ -9,20 +9,25 @@
         <div class="header-matches">
             <h1>Partidas</h1>
         </div>
+        <div class="content-matches">
             {% for partida in partidas %}
-
-        <div class="card-match">
-            <p class="date-match">{{ partida.data }}</p>
-            <div class="match">
-                
-                <p>{{ partida.time1 }}</p>
-                <p>VS</p>
-                <p>{{ partida.time2 }}</p>
-                
-            </div>
+                <div class="card-match">
+                    <p class="date-match">{{ partida.data }}</p>
+                    <div class="match">
+                        {% if partida.placar != '0x0' %}
+                            <p>{{ partida.time1 }}</p>
+                            <p>{{partida.placar}}</p>
+                            <p>{{ partida.time2 }}</p>
+                        {% else %}
+                            <p>{{ partida.time1 }}</p>
+                            <p>VS</p>
+                            <p>{{ partida.time2 }}</p>
+                        {% endif %}
+                    </div>
+                    <p class="sport-name">{{ partida.esporte.nome }}</p>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
-        
         
         </div>
     </div>

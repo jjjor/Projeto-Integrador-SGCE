@@ -7,7 +7,7 @@
 
 
 <div id="matches">
-  <form class="container-matches" method="post">
+  <form class="container-matches" method="post" action="{% url 'register-match' %}">
     {% csrf_token %}
     <div class="header-matches">
       <h1>Cadastrar partida</h1>
@@ -39,16 +39,23 @@
           </select>
         </div>
       </div>
-      <div class="card-match">
-        <div class="team-item">
-          <p id="team1-name">Time 1</p>
+      <div class="date-match">
+        <label for="date">Data da partida:</label>
+        <input type="date" name="date" id="date" />
+      </div>
+      <div class="card-match-container">
+        <div class="card-match">
+          <div class="team-item">
+            <p id="team1-name">Time 1</p>
+          </div>
+        </div>
+        <div class="card-match">
+          <div class="team-item">
+            <p id="team2-name">Time 2</p>
+          </div>
         </div>
       </div>
-      <div class="card-match">
-        <div class="team-item">
-          <p id="team2-name">Time 2</p>
-        </div>
-      </div>
+      
     </div>
     <button class="save-btn" id="save-btn" type="submit">Salvar</button>
   </form>
@@ -76,20 +83,6 @@
         'time1': time1,
         'time2': time2
       };
-
-      $.ajax({
-        type: 'POST',
-        url: '/register-match/',  // Certifique-se de usar a URL correta
-        data: formData,
-        success: function (data) {
-          alert("Partida salva!");
-          // Redirecione ou faça outras ações após salvar com sucesso
-        },
-        error: function (error) {
-          console.log(error);
-          alert("Erro ao salvar a partida.");
-        }
-      });
     });
   });
 

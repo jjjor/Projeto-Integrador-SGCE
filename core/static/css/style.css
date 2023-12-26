@@ -189,6 +189,12 @@ li a:hover {
   margin: 0;
 }
 
+#content-info h3{
+  font-size: 1.2rem;
+  text-align: center;
+  color: rgb(219, 219, 219);
+}
+
 #body-buttons {
   display: flex;
   align-items: center;

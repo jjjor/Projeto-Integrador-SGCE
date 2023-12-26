@@ -28,7 +28,6 @@
     <ul id="navbar">
       <li><a href="{% url 'index' %}" class="active">Home</a></li>
       <li><a href="{%  url 'matches' %}">Partidas</a></li>
-      <li><a href="{%  url 'rating' %}">Tabela de pontos</a></li>
 
       {% if user.is_superuser %}
       <li><a href="{%  url 'profile-prof' %}">Perfil</a></li>
@@ -50,20 +49,20 @@
               <a href="{% url 'matches' %}">Partidas</a>
             </li>
             <li>
-              <a href="{% url 'rating' %}">Tabela de pontos</a>
+              <a href="{% url 'tournaments' %}">Torneios</a>
             </li>
             <li>
-              <a href="{% url 'change-players' %}">Informações de times</a>
+              <a href="{% url 'change-players' %}">Times</a>
               </li>
               <li>
-                <a href="{% url 'register-tournament' %}">Cadastrar partida/torneio</a>
+                <a href="{% url 'register-match' %}">Cadastrar partida</a>
+              </li>
+              <li>
+                <a href="{% url 'register-tournament' %}">Cadastrar torneio</a>
               </li>
               {% else %}
               <li>
                 <a href="{% url 'matches' %}">Partidas</a>
-              </li>
-              <li>
-                <a href="{% url 'rating' %}">Tabela de Pontos</a>
               </li>
               {% if user.is_authenticated %}
               <li>

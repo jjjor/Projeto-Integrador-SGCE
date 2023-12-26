@@ -13,24 +13,16 @@ class EquipeForm(forms.ModelForm):
         widgets = { 
         }
 
-class TorneioForm(forms.models.ModelForm):
+class TorneioForm(forms.ModelForm):
     class Meta:
         model = Torneio
-        fields = '__all__'
-        widgets = { 
-        }
+        fields = ['nome', 'data', 'equipes_torneio']
          
 class PartidaAdminForm(forms.ModelForm):
     class Meta:
         model = Partida
-        fields = '__all__'
+        fields = ['esporte', 'time1', 'time2', 'data']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # Se já existirem 2 equipes associadas à partida, desabilita as outras opções
-        if 'times_partida' in self.fields and self.fields['times_partida'].queryset.count() >= 2:
-            self.fields['times_partida'].widget.attrs['disabled'] = True
 
 class PartidaForm(forms.ModelForm):
     class Meta:

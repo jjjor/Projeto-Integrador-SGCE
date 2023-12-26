@@ -35,6 +35,8 @@ urlpatterns = [
     path('ask-team-change/', AskTeamChangeView.as_view(), name='ask-team-change'),
     path('matches/', MatchesView.as_view(), name='matches'),
     path('register-tournament/', RegisterTournamentView.as_view(), name='register-tournament'),
+    path('tournaments/', TorneiosView.as_view(), name='tournaments'),
+    path('tournaments/<int:id>', TournamentView.as_view(), name='tournaments-id'),
     path('change-players/', ChangePlayersView.as_view(), name='change-players'),
     path('change-informations/', ChangeInformationsView.as_view(), name='change-informations'),
     path('register-match/', RegisterMatchView.as_view(), name='register-match'),
@@ -45,6 +47,5 @@ urlpatterns = [
     path('edit-team/<int:id>/', TeamEditar.as_view(), name='edit-team'),
     path('delete-team/<int:id>/', TeamRemover.as_view(), name='delete-team'),
     path('create-team/', TeamCriar.as_view(), name='create-team'),
-    
 ]
 

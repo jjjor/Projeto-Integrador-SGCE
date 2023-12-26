@@ -99,8 +99,10 @@
 
 .menu-container {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+  justify-items: center;
+  align-items: center;
 }
 
 .search {
@@ -229,3 +231,118 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+.options {
+  display: flex;
+  border: none;
+}
+
+.team-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  outline: 1px solid #00000045;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: #ffffff21;
+  width: 200px;
+  gap: 1em;
+}
+
+.team-card p {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.team-card a.team-edit {
+  background-color: #4084eb;
+  color: white;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+
+.team-card a.team-remove {
+  background-color: #eb4640;
+  color: white;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+
+.menu-container-edit {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-edit-team {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.form-edit-team label {
+  color: white;
+}
+
+.form-edit-team input {
+  color: white;
+  background-color: #ffffff21;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  width: 100%;
+}
+
+.form-edit-team select {
+  color: grey;
+  background-color: #ffffff21;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.btn-team-edit {
+  padding: 0.5em 1em;
+  border-radius: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  background-color: #52ac6c;
+  color: white;
+}
+
+.btn-team-edit:hover {
+  background-color: #2abc4cbb;
+  transition: 0.6s;
+  transform: translate(0, -1px);
+}
+
+.team-create {
+  padding: 0.5em 1em;
+  border-radius: 0.5rem;
+
+  cursor: pointer;
+  background-color: #52ac6c;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+
+  .options {
+    flex-direction: column;
+  }
+}
+

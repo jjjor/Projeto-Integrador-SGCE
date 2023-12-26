@@ -1,8 +1,10 @@
+from typing import Any
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView, FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import EquipeForm
+from .forms import EquipeForm, TorneioForm
 from .forms import UsuarioForm
 from .forms import PartidaAdminForm
 from django.urls import reverse_lazy
@@ -65,11 +67,48 @@ class MatchesView(TemplateView):
         partidas = Partida.objects.all()
         return render(request, self.template_name, {'partidas': partidas})
 
-class RegisterTournamentView(TemplateView):
+class RegisterTournamentView(CreateView):
+    
     template_name = 'register-tournament.html'
+    form_class = TorneioForm
+    success_url = reverse_lazy('matches')
+
+class TorneiosView(TemplateView):
+    template_name = 'tournaments.html'
+
+    def get(self, request, *args, **kwargs):
+        torneios = Torneio.objects.all()
+        return render(request, self.template_name, {'torneios': torneios})
+    
+class TournamentView(TemplateView):
+    template_name = 'tournament.html'
+
+    def get(self, request, *args, **kwargs):
+        id = kwargs.get('id')
+        if id is None:
+            return redirect('tournaments')
+        torneio = Torneio.objects.get(id=id)
+        return render(request, self.template_name, {'torneio': torneio})
 
 class ChangePlayersView(TemplateView):
     template_name = 'change-players.html'
+
+    def get(self, request, *args, **kwargs):
+
+        times = Equipe.objects.all()
+
+        return render(request, self.template_name, {'times': times})
+
+    def post(self, request, *args, **kwargs):
+       
+        if form.is_valid():
+
+            return redirect("matches")
+        return redirect("matches")
+
+class EditTeam(UpdateView):
+    template_name = 'edit-team.html'
+
 
 class ChangeInformationsView(TemplateView):
     template_name = 'change-informations.html'
@@ -85,13 +124,23 @@ class RegisterMatchView(TemplateView):
         return render(request, self.template_name, {'form': form, 'equipes': equipes, 'esportes': esportes})
 
     def post(self, request, *args, **kwargs):
-        form = PartidaAdminForm(request.POST, request.FILES)
+        form = PartidaAdminForm(request.POST)
+        change_sport = request.POST.get('change-sport')
+        time1 = request.POST.get('time1')
+        time2 = request.POST.get('time2')
+        date = request.POST.get('date')
+
+        esporte = Esporte.objects.get(nome=change_sport)
+
+        equipe1 = Equipe.objects.get(nome_equipe=time1)
+        equipe2 = Equipe.objects.get(nome_equipe=time2)
+
+        partida = Partida.objects.create(esporte=esporte, time1=equipe1, time2=equipe2, data=date)
 
         if form.is_valid():
-            print("-------------------aquiiiiiii")
-            form.save()
+            partida.save()
             return redirect("matches")
-        return render(request, self.template_name, {'form': form})
+        return redirect("matches")
 
 class AdminBaseView(TemplateView):
     template_name = 'admin_base.html'
@@ -105,19 +154,25 @@ class TeamCriar(CreateView):
 class TeamEditar(UpdateView):
     model = Equipe
     form_class = EquipeForm
-    template_name = 'change-players.html'
+    template_name = 'edit-team.html'
     pk_url_kwarg = 'id' # Nome da variável na URL
     
     def get_success_url(self):
-        return reverse_lazy('list-team')
+        return reverse_lazy('change-players')
 
 class TeamRemover(DeleteView):
     model = Equipe
-    success_url = reverse_lazy('list-team')
+    success_url = reverse_lazy('change-players')  
     pk_url_kwarg = 'id'
 
     def get(self, *args, **kwargs):
         return self.delete(*args, **kwargs)
+
+class TeamCreateView(CreateView):
+    template_name = 'create-team.html'
+    form_class = EquipeForm
+    success_url = reverse_lazy('change-players')
+
 
 class List_teamView(TemplateView):
     template_name = 'list-teams.html'

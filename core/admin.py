@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .forms import PartidaAdminForm
 from .models import Campus, Jogador, Equipe, ClassificacaoEquipe, Partida, Resultado, Jogos, Torneio, Usuario, Esporte
 
 # Register your models here.
@@ -33,16 +32,8 @@ class ClassificacaoAdmin(admin.ModelAdmin):
     search_fields = ('posicao',)
     ordering = ('posicao',)
 
-class PartidaAdmin(admin.ModelAdmin):
-    form = PartidaAdminForm
-    display = ('display_times_partida')
 
-    def display_times_partida(self, obj):
-        return ', '.join([equipe.nome_equipe for equipe in obj.times_partida.all()])
-
-    display_times_partida.short_description = 'Times da Partida'
-
-admin.site.register(Partida, PartidaAdmin)
+admin.site.register(Partida)
     
 
 @admin.register(Torneio)
