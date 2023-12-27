@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+  <link rel="stylesheet" href="{% static 'css/transfer-view.css' %}" />
+
+  <div class="change-container">
+    <div class="container-players-change" style="margin-right: 0; margin-left: 0;">
+      <h1>Pedidos de transferência</h1>
+      <div class="menu-container">
+
+        <!-- Aqui é o menu -->
+            {% for time in times %}
+
+              <div class="team-card" style="margin-right: 0; margin-left: 0;">
+                <p class="team-name">{{time.nome_equipe}}</p>
+                <div class="options">
+                  <a href="{% url 'edit-team' id=time.id %}" class="team-edit">Editar</a>
+                  <a href="{% url 'delete-team' id=time.id %}" class="team-remove">Remover</a>
+                </div>
+              </div>
+                
+
+            {% endfor %}
+
+            
+          </div>
+          <a href="{% url 'create-team' %}" class="team-create" style="margin: 0 auto;">Aceitar todas</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

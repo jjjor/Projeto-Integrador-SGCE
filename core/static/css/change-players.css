@@ -263,6 +263,13 @@
   padding: 0.6rem 1.2rem;
   border-radius: 0.5rem;
   text-decoration: none;
+  
+}
+
+.team-card a.team-edit:hover {
+  background-color: #204db5bb;
+  transition: 0.6s;
+  transform: translate(0, -1px);
 }
 
 .team-card a.team-remove {
@@ -272,6 +279,12 @@
   padding: 0.6rem 1.2rem;
   border-radius: 0.5rem;
   text-decoration: none;
+}
+
+.team-card a.team-remove:hover {
+  background-color: #b52f2fbb;
+  transition: 0.6s;
+  transform: translate(0, -1px);
 }
 
 /* .menu-container-edit {

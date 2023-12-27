@@ -149,7 +149,7 @@ class TeamCriar(CreateView):
     
     template_name = 'create-team.html'
     form_class = EquipeForm
-    success_url = reverse_lazy('create-team')
+    success_url = reverse_lazy('change-players')
 
 class TeamEditar(UpdateView):
     model = Equipe
@@ -186,4 +186,18 @@ class List_teamView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
         return self.render_to_response(context)
+    
+
+class listtransferView(TemplateView):
+    template_name = 'view-transfer.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['teams'] = Equipe.objects.all()
+        return context
+    
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        return self.render_to_response(context) 
 
