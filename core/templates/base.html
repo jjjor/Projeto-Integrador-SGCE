@@ -35,7 +35,7 @@
       <li><a href="{%  url 'profile-prof' %}">Perfil</a></li>
       <li><a href="{%  url 'register-match' %}">Cadastrar partida</a></li>
       <li><a href="{%  url 'register-tournament' %}">Cadastrar torneio</a></li>
-      <li><a href="{%  url 'list_transfer' %}">Vizualizar transrerências</a></li>
+      <li><a href="{%  url 'list_transfer' %}">Vizualizar transferências</a></li>
 
       {% else %}
       <li><a href="{%  url 'profile' %}">Perfil</a></li>
@@ -97,7 +97,6 @@
           {% endif %}
           {% else %}
           <a href="{% url 'social:begin' 'suap' %}">Entrar</a>
-          <a href="{% url 'register' %}">Cadastrar</a>
           {% endif %}
         </div>
       </div>

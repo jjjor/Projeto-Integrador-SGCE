@@ -7,18 +7,16 @@
 <div id="container-team-change">
     <h1>Olá, atleta!</h1>
 
-    <form>
+    <form method="post" action="{% url 'ask-team-change' %}">
+        {% csrf_token %}
         <div>
             <label>Decida qual o time deseja ingressar e o motivo. Caso o motivo não for de bom argumento, a troca será anulada.</label>
             <br>
             <label for="team">Time que deseja ingressar:</label>
-            <select id="team" name="team">
-                <option value="saintbytes">Saint Bytes</option>
-                <option value="palmeiras">Palmeiras</option>
-                <option value="soumel">SóUMel</option>
-            </select>
-            <label for="text-team-change" id="reason">Motivo:</label>
-            <textarea type="" id="text-team-change" name="text-team-change" required></textarea>
+            {{ form.equipe.label_tag }}
+            {{ form.equipe }}
+            {{ form.motivo.label_tag }}
+            {{ form.motivo }}
             <button id="submit-team-changes">Enviar</button>
         </div>
 

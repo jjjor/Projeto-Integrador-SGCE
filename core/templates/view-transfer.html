@@ -14,19 +14,53 @@
               <div class="team-card" style="margin-right: 0; margin-left: 0;">
                 <p class="team-name">{{time.nome_equipe}}</p>
                 <div class="options">
-                  <a href="{% url 'edit-team' id=time.id %}" class="team-edit">Editar</a>
-                  <a href="{% url 'delete-team' id=time.id %}" class="team-remove">Remover</a>
+
                 </div>
               </div>
                 
 
             {% endfor %}
-
+            {% for pedido in pedidos %}
+            <div class="request-transfer">
+              <p class="name-student">{{pedido.jogador}} para {{pedido.equipe}}</p>
+              <p class="description">{{pedido.motivo}}</p>
+              <div class="options-change-student">
+                <form action="{% url 'list_transfer' %}" method="post" class="form-change">
+                  {% csrf_token %}
+                  <label for="active">
+                    <input type="hidden" name="nome-jogador" value="">
+                    <input type="hidden" name="time-novo" value="">
+                    <button type="submit" onclick="aceitar('{{pedido.jogador}}', '{{pedido.equipe}}')" class="btn-change-student-accept">Aceitar</button>
+                  </label>
+                  <label for="reject">
+                    <input type="hidden" name="nome-jogador-reject" value="">
+                    <button type="submit" onclick="rejeitar('{{pedido.jogador}}')" class="btn-change-student-reject ">Rejeitar</button>
+                  </label>
+                </form>
+              </div>
+            </div>
+            {% endfor %}
             
           </div>
-          <a href="{% url 'create-team' %}" class="team-create" style="margin: 0 auto;">Aceitar todas</a>
+          
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+    form = document.getElementsByClassName('form-change');
+    function aceitar(jogador, equipe) {
+      document.getElementsByName('nome-jogador')[0].value = jogador;
+      document.getElementsByName('time-novo')[0].value = equipe;
+      form.submit();
+    }
+
+    function rejeitar(jogador) {
+      document.getElementsByName('nome-jogador-reject')[0].value = jogador;
+      form.submit();
+    }
+
+  </script>
+
 {% endblock %}
