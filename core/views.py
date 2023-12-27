@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView, FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import EquipeForm, TorneioForm
+from .forms import EquipeForm, TorneioForm, ChangeTeamForm
 from .forms import UsuarioForm
 from .forms import PartidaAdminForm
 from django.urls import reverse_lazy
@@ -59,6 +59,27 @@ class RatingView(TemplateView):
 
 class AskTeamChangeView(TemplateView):
     template_name = 'ask-team-change.html'
+    form_class = ChangeTeamForm
+    success_url = reverse_lazy('matches')
+    
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = ChangeTeamForm(request.POST)
+        print(form.data)
+        equipe_postada = request.POST.get('equipe')
+        motivo = request.POST.get('motivo')
+        equipe = Equipe.objects.get(id=equipe_postada)
+        jogador = Usuario.objects.get(id=request.user.id)
+        pedido = ChangeStudentTeam.objects.create(equipe=equipe, motivo=motivo, jogador=jogador)
+
+        if form.is_valid():
+            pedido.save()
+            return redirect('ask-team-change')
+
+        return redirect("matches")
 
 class MatchesView(TemplateView):
     template_name = 'matches.html'
@@ -190,14 +211,34 @@ class List_teamView(TemplateView):
 
 class listtransferView(TemplateView):
     template_name = 'view-transfer.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        
-        context['teams'] = Equipe.objects.all()
-        return context
+    success_url = reverse_lazy('matches')
     
     def get(self, request, *args, **kwargs):
-        context = self.get_context_data()
-        return self.render_to_response(context) 
+        pedidos = ChangeStudentTeam.objects.all()
+        return render(request, self.template_name, {'pedidos': pedidos})
+
+    def post(self, request, *args, **kwargs):
+
+        if request.POST.get('nome-jogador-reject'):
+            nome_jogador = request.POST.get('nome-jogador-reject')
+            jogador = Usuario.objects.get(usual_name=nome_jogador)
+            pedido = ChangeStudentTeam.objects.get(jogador=jogador)
+            pedido.delete()
+            return redirect('list_transfer')
+        
+        else:
+            nome_jogador = request.POST.get('nome-jogador')
+            time_novo = request.POST.get('time-novo')
+            jogador = Usuario.objects.get(usual_name=nome_jogador)
+            
+            equipe = Equipe.objects.get(nome_equipe=time_novo)
+            
+            equipe_antiga = Equipe.objects.get(jogadores=jogador)
+            equipe_antiga.jogadores.remove(jogador)
+            pedido = ChangeStudentTeam.objects.get(jogador=jogador)
+            equipe.jogadores.add(jogador)
+            pedido.delete()
+            return redirect('list_transfer')
+
+        
 

@@ -28,4 +28,8 @@ class PartidaForm(forms.ModelForm):
     class Meta:
         model = Partida
         fields = '__all__'
-        
+
+
+class ChangeTeamForm(forms.Form):
+    equipe = forms.ModelChoiceField(queryset=Equipe.objects.all(), empty_label=None)
+    motivo = forms.CharField(max_length=200, widget=forms.Textarea)

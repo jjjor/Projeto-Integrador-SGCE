@@ -28,7 +28,7 @@ class Equipe(models.Model):
     
     nome_equipe = models.CharField(max_length=100)
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE, null=True, blank=True)
-    jogadores = models.ManyToManyField('Jogador')
+    jogadores = models.ManyToManyField('Usuario')
 
     def jogadores_do_campus(self):
         return self.jogadores.filter(campus=self.campus)
@@ -90,14 +90,6 @@ class ClassificacaoEquipe(models.Model):
         return f"Classificação de {self.equipe} no {self.torneio} - Posição: {self.posicao} - Pontos: {self.pontos_conquistados}"
     
     
-# class Partida(models.Model):
-
-#     data =  models.DateField(default='2023-01-01')
-#     campus_partida = models.ForeignKey(Campus, on_delete=models.CASCADE)
-#     times_partida = models.ManyToManyField(Equipe)
-    
-#     def __str__(self):
-#         return f"Partida entre {self.times_partida.all()[0]} e {self.times_partida.all()[1]}"
     
 class Esporte(models.Model):
     nome = models.CharField(max_length=100)
@@ -193,3 +185,16 @@ class Jogos(models.Model):
     def jogadores_do_campus(self):
         return self.equipe.filter(campus=self.campus)
 
+
+class ChangeStudentTeam(models.Model):
+    motivo = models.CharField(max_length=100)
+    jogador = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True, blank=True)
+    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE, null=True, blank=True)
+    data = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.jogador} - {self.equipe} - {self.motivo}"
+    
+    class Meta:
+        verbose_name = "Pedido de Transferência"
+        verbose_name_plural = "Pedidos de Transferência"

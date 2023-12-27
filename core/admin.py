@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Campus, Jogador, Equipe, ClassificacaoEquipe, Partida, Resultado, Jogos, Torneio, Usuario, Esporte
+from .models import Campus, Jogador, Equipe, ClassificacaoEquipe, Partida, Resultado, Jogos, Torneio, Usuario, Esporte, ChangeStudentTeam
 
 # Register your models here.
 
@@ -61,3 +61,8 @@ class JogosAdmin(admin.ModelAdmin):
 class EsporteAdmin(admin.ModelAdmin):
     list_display = ('nome',)
     list_filter = ('nome', )
+
+
+@admin.register(ChangeStudentTeam)
+class ChangeStudentTeamAdmin(admin.ModelAdmin):
+    list_display = ('jogador', 'equipe', 'motivo')
