@@ -10,8 +10,6 @@ class EquipeForm(forms.ModelForm):
     class Meta:
         model = Equipe
         fields = '__all__'
-        widgets = { 
-        }
 
 class TorneioForm(forms.ModelForm):
     class Meta:

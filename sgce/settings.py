@@ -56,11 +56,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mydb',
-        # 'NAME': os.path.join(BASE_DIR, 'mydb'),
         'USER': 'postgres',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': 5433    }
+    }
 }
 
 ROOT_URLCONF = 'sgce.urls'

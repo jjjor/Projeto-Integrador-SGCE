@@ -90,15 +90,6 @@ class ClassificacaoEquipe(models.Model):
         return f"Classificação de {self.equipe} no {self.torneio} - Posição: {self.posicao} - Pontos: {self.pontos_conquistados}"
     
     
-# class Partida(models.Model):
-
-#     data =  models.DateField(default='2023-01-01')
-#     campus_partida = models.ForeignKey(Campus, on_delete=models.CASCADE)
-#     times_partida = models.ManyToManyField(Equipe)
-    
-#     def __str__(self):
-#         return f"Partida entre {self.times_partida.all()[0]} e {self.times_partida.all()[1]}"
-    
 class Esporte(models.Model):
     nome = models.CharField(max_length=100)
 
