@@ -92,7 +92,7 @@ class RegisterTournamentView(CreateView):
     
     template_name = 'register-tournament.html'
     form_class = TorneioForm
-    success_url = reverse_lazy('matches')
+    success_url = reverse_lazy('tournaments')
 
 class TorneiosView(TemplateView):
     template_name = 'tournaments.html'

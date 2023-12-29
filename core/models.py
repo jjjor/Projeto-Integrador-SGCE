@@ -17,6 +17,7 @@ class Jogador(models.Model):
     sexo_opcao = ('M', 'Masculino'), ('F', 'Feminino'), ('O', 'Outro')
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
+    id = models.AutoField(primary_key=True)
     esporte = models.ForeignKey('Esporte', on_delete=models.CASCADE, null=True, blank=True)
     sexo = models.CharField(max_length=1, choices=sexo_opcao, default='M')
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE, null=True, blank=True)
@@ -28,7 +29,7 @@ class Equipe(models.Model):
     
     nome_equipe = models.CharField(max_length=100)
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE, null=True, blank=True)
-    jogadores = models.ManyToManyField('Usuario')
+    jogadores = models.ManyToManyField('Jogador')
 
     def jogadores_do_campus(self):
         return self.jogadores.filter(campus=self.campus)
