@@ -1,8 +1,9 @@
-from typing import Any
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404, get_list_or_404
+from django.shortcuts import get_object_or_404
+from django.http import Http404
 from django.views.generic import TemplateView
+from django.views import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import EquipeForm, TorneioForm, ChangeTeamForm
 from .forms import PartidaAdminForm
@@ -60,36 +61,71 @@ class RegisterTournamentView(CreateView):
     def post(self, request, *args, **kwargs):
         form = TorneioForm(request.POST)
         if form.is_valid():
-            form.save()
+            torneio = form.save()
+
             return redirect("tournaments")
-        else:
-            HttpResponse("Formulário inválido")
         
         return redirect("tournaments", {'form': form})
+
     
+    
+class ChaveamentoView(View):
+    template_name = 'chave.html'
 
-def realizar_chaveamento(request, torneio_id):
-    torneio = Torneio.objects.get(id=torneio_id)
+    def get(self, request, torneio_id):
+        try:
+            torneio = Torneio.objects.get(id=torneio_id)
+        except Torneio.DoesNotExist:
+            raise Http404("Torneio não encontrado")
 
-    equipes = torneio.equipes_torneio.all()
+        # Verifique se o chaveamento já foi realizado
+        if torneio.chaveamento_realizado:
+            jogos = torneio.partida.all()
+            return render(request, self.template_name, {'jogos': jogos})
 
-    # Exemplo simples de chaveamento: dividir as equipes em pares
-    jogos = []
-    esporte_torneio = torneio.esporte  # Acesse a relação entre Torneio e Esporte
+        equipes = torneio.equipes_torneio.all()
+        jogos = []
+        esporte_torneio = torneio.esporte  # Acesse a relação entre Torneio e Esporte
 
-    for i in range(0, len(equipes), 2):
-        jogo = Partida.objects.create(
-            time1=equipes[i],
-            time2=equipes[i + 1],
-            esporte=esporte_torneio,  # Use o esporte do torneio
-            data=torneio.data,
-        )
-        jogos.append(jogo)
+        for i in range(0, len(equipes), 2):
+            jogo = Partida.objects.create(
+                time1=equipes[i],
+                time2=equipes[i + 1],
+                esporte=esporte_torneio,  # Use o esporte do torneio
+                data=torneio.data,
+            )
+            jogos.append(jogo)
 
-    torneio.chaveamento_realizado = True
-    torneio.save()
+        torneio.chaveamento_realizado = True
+        torneio.save()
 
-    return render(request, 'chave.html', {'jogos': jogos})
+        try:
+            return render(request, self.template_name, {'jogos': jogos})
+        except:
+            return HttpResponse("Chaveamento ainda não foi realizado.")
+
+# def realizar_chaveamento(request, torneio_id):
+#     torneio = Torneio.objects.get(id=torneio_id)
+
+#     equipes = torneio.equipes_torneio.all()
+
+#     # Exemplo simples de chaveamento: dividir as equipes em pares
+#     jogos = []
+#     esporte_torneio = torneio.esporte  # Acesse a relação entre Torneio e Esporte
+
+#     for i in range(0, len(equipes), 2):
+#         jogo = Partida.objects.create(
+#             time1=equipes[i],
+#             time2=equipes[i + 1],
+#             esporte=esporte_torneio,  # Use o esporte do torneio
+#             data=torneio.data,
+#         )
+#         jogos.append(jogo)
+
+#     torneio.chaveamento_realizado = True
+#     torneio.save()
+
+#     return render(request, 'chave.html', {'jogos': jogos})
     
 
 class TorneiosView(TemplateView):
@@ -107,6 +143,7 @@ class TournamentView(TemplateView):
         if id is None:
             return redirect('tournaments')
         torneio = Torneio.objects.get(id=id)
+        
         return render(request, self.template_name, {'torneio': torneio})
 
 

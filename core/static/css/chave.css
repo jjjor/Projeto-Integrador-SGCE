@@ -1,0 +1,33 @@
+/* Estilo para o container do chaveamento */
+.chaveamento-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+/* Estilo para cada bloco de partida */
+.partida {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+/* Estilo para equipes na partida */
+.equipe {
+    margin: 10px 0;
+}
+
+/* Estilo para os nomes das equipes */
+.nome-equipe {
+    font-weight: bold;
+}
+
+/* Estilo para o placar */
+.placar {
+    font-size: 1.2em;
+    margin-top: 10px;
+}

@@ -2,15 +2,17 @@
 {% load static %}
 
 {% block main %}
-    
+
+<link rel="stylesheet" href="{% static 'css/chave.css' %}">
+
 <div class="chaveamento-container">
     <div class="partida">
         {% for jogo in jogos %}
         <div class="equipe">
-            <span class="nome-equipe">{{jogo.time1.nome}}</span>
+            <span class="nome-equipe">{{jogo.time1}}</span>
         </div>
         <div class="equipe">
-            <span class="nome-equipe">{{jogo.time2.nome}}</span>
+            <span class="nome-equipe">{{jogo.time2}}</span>
         </div>
         <div id="placar">Data:{{jogo.data}}</div>
         <div class="placar">2 - 1</div>
@@ -18,8 +20,6 @@
     </div>
     <!-- Adicione mais partidas conforme necessário -->
 </div>
-    
-        <p>{{ jogo }}</p>
 
 {% endblock main %}
     

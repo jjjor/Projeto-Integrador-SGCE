@@ -30,8 +30,20 @@ class HistoricoEquipe(models.Model):
     def __str__(self):
         return f"Histórico de {self.equipe} - Vitórias: {self.vitorias} / Derrotas: {self.derrotas}"
 
+class Partida(models.Model):
+
+    esporte = models.ForeignKey('Esporte', on_delete=models.CASCADE, null=True, blank=True)
+    data = models.DateField("Data")
+    time1 = models.ForeignKey(Equipe, on_delete=models.CASCADE, null=True, blank=True, related_name='partidas_time1')
+    time2 = models.ForeignKey(Equipe, on_delete=models.CASCADE, null=True, blank=True, related_name='partidas_time2')
+    placar = models.CharField("Placar", default="0x0", max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.time1} {self.placar} {self.time2} - ({self.esporte})"
+    
 class Torneio(models.Model):
     
+    partida = models.ManyToManyField('Partida', related_name='torneio_partidas')
     nome = models.CharField(max_length=100)
     data = models.DateField()
     esporte = models.ForeignKey('Esporte', on_delete=models.CASCADE, null=True, blank=True)
@@ -52,16 +64,6 @@ class Esporte(models.Model):
     def __str__(self):
         return self.nome
     
-class Partida(models.Model):
-
-    esporte = models.ForeignKey(Esporte, on_delete=models.CASCADE, null=True, blank=True)
-    data = models.DateField("Data")
-    time1 = models.ForeignKey(Equipe, on_delete=models.CASCADE, null=True, blank=True, related_name='partidas_time1')
-    time2 = models.ForeignKey(Equipe, on_delete=models.CASCADE, null=True, blank=True, related_name='partidas_time2')
-    placar = models.CharField("Placar", default="0x0", max_length=50, null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.time1} {self.placar} {self.time2} - ({self.esporte})"
     
 class Resultado(models.Model):
     jogo = models.ForeignKey(Partida, on_delete=models.CASCADE, null=True, blank=True)
