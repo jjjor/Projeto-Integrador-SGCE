@@ -4,6 +4,17 @@ main {
     align-items: center;
 }
 
+#search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    gap: 2rem;
+    border-radius: 5px;
+    padding: 10px;
+    
+}
 
 #container-matches {
     display: flex;
@@ -65,14 +76,14 @@ main {
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    background-color: #ffffff21;
-    gap: 1em;
+    background-color: #00000035;
+    gap: 1.5em;
     width: 200px;
 }
 
 .card-match .sport-name {
-    font-size: 1.2rem;
-    color: white;
+    font-size: 1.3rem;
+    color: #52AC6C;
 }
 
 .content-matches {
