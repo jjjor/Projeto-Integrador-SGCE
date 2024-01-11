@@ -10,13 +10,22 @@ class EquipeForm(forms.ModelForm):
     class Meta:
         model = Equipe
         fields = '__all__'
-        widgets = { 
+        widgets = {
+            'nome_equipe': forms.TextInput(attrs={'id': 'nome_equipe'}),
+            'campus': forms.Select(attrs={'id': 'campus'}),
+            'jogadores': forms.SelectMultiple(attrs={'id': 'jogadores'}),
         }
 
 class TorneioForm(forms.ModelForm):
     class Meta:
         model = Torneio
-        fields = ['nome', 'data', 'equipes_torneio']
+        fields = ['nome', 'data', 'equipes_torneio', 'esporte']
+        widgets = {
+            'nome': forms.TextInput(attrs={'id': 'nome'}),
+            'esporte': forms.Select(attrs={'id': 'esporte'}),
+            'data': forms.DateInput(attrs={'id': 'data', 'type': 'date'}),
+            'equipes_torneio': forms.SelectMultiple(attrs={'id': 'equipes_torneio'}),
+        }
          
 class PartidaAdminForm(forms.ModelForm):
     class Meta:

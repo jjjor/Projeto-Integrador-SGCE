@@ -7,9 +7,16 @@
     <div class="container-players-change" style="margin-right: 0; margin-left: 0;">
       <h1>Criar torneio </h1>
       <div class="menu-container-edit">
-          <form method="post" enctype="multipart/form-data" class="form-edit-team">
+          <form method="post" class="form-edit-team">
             {% csrf_token %}
-            {{ form }}
+            <div class="info-tournament">
+              <label for="id_nome">Nome:</label>
+              {{form.nome}}
+              <label for="id_data">Data:</label>
+              {{form.data}}
+            </div>
+              <label for="id_equipes_torneio">Equipes torneio</label>
+              {{form.equipes_torneio}}
             <button class="btn-team-edit" type="submit">Enviar</button>
           </form> 
           </div>

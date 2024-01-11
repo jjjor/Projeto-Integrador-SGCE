@@ -1,38 +1,21 @@
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+import datetime
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 
 class Campus(models.Model):
 
     nome = models.CharField(max_length=200)
-    cidade = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nome
-
-class Jogador(models.Model):
-
-    sexo_opcao = ('M', 'Masculino'), ('F', 'Feminino'), ('O', 'Outro')
-    nome = models.CharField(max_length=100)
-    idade = models.IntegerField()
-    id = models.AutoField(primary_key=True)
-    esporte = models.ForeignKey('Esporte', on_delete=models.CASCADE, null=True, blank=True)
-    sexo = models.CharField(max_length=1, choices=sexo_opcao, default='M')
-    campus = models.ForeignKey(Campus, on_delete=models.CASCADE, null=True, blank=True)
-
-    def __str__(self):
-        return self.nome
     
+    def __str__(self):
+        return f"{self.nome}"
+    
+
 class Equipe(models.Model):
     
     nome_equipe = models.CharField(max_length=100)
-    campus = models.ForeignKey(Campus, on_delete=models.CASCADE, null=True, blank=True)
-    jogadores = models.ManyToManyField('Jogador')
-
-    def jogadores_do_campus(self):
-        return self.jogadores.filter(campus=self.campus)
+    campus = models.ForeignKey('Campus', on_delete=models.CASCADE, null=True, blank=True)
+    jogadores = models.ManyToManyField('Usuario')
 
     def __str__(self):
         return self.nome_equipe
@@ -47,19 +30,13 @@ class HistoricoEquipe(models.Model):
     def __str__(self):
         return f"Histórico de {self.equipe} - Vitórias: {self.vitorias} / Derrotas: {self.derrotas}"
 
-    def registrar_vitoria(self):
-        self.vitoria += 1
-        self.save()
-
-    def registrar_derrota(self):
-        self.derrota += 1
-        self.save()
-
 class Torneio(models.Model):
-
+    
     nome = models.CharField(max_length=100)
     data = models.DateField()
+    esporte = models.ForeignKey('Esporte', on_delete=models.CASCADE, null=True, blank=True)
     equipes_torneio = models.ManyToManyField(Equipe)
+    chaveamento_realizado = models.BooleanField(default=False)
     
     
 class ClassificacaoEquipe(models.Model):
@@ -67,29 +44,6 @@ class ClassificacaoEquipe(models.Model):
     torneio = models.ForeignKey(Torneio, on_delete=models.CASCADE, null=True, blank=True)
     posicao = models.IntegerField(default=0)
     pontos_conquistados = models.IntegerField(default=0)
-
-    def calcular_pontos(self):
-        # Lógica para calcular os pontos
-        vitorias_equipe = Resultado.objects.filter(jogo__torneio=self.torneio, jogo__equipe=self.equipe, pontos_equipe__gt=0).count()
-        self.pontos_conquistados = vitorias_equipe * 3
-        self.save()
-
-    def atualizar_posicao(self):
-        # Atualiza a posição da equipe com base nos pontos conquistados
-        classificacoes = ClassificacaoEquipe.objects.filter(torneio=self.torneio).order_by('-pontos_conquistados')
-        posicao = 1
-        for classificacao in classificacoes:
-            classificacao.posicao = posicao
-            classificacao.save()
-            posicao += 1
-
-        # Atualiza a posição da equipe atual
-        self.posicao = posicao
-        self.save()
-        
-    def __str__(self):
-        return f"Classificação de {self.equipe} no {self.torneio} - Posição: {self.posicao} - Pontos: {self.pontos_conquistados}"
-    
     
     
 class Esporte(models.Model):
@@ -113,19 +67,10 @@ class Resultado(models.Model):
     jogo = models.ForeignKey(Partida, on_delete=models.CASCADE, null=True, blank=True)
     pontos_equipe = models.IntegerField()
 
-@receiver(post_save, sender=Resultado)
-def atualizar_classificacao(sender, instance, **kwargs):
-    # Lógica para atualizar a classificação quando um resultado for salvo
-    classificacoes = Equipe.objects.all().order_by('- pontos_conquistados')
-    posicao = 1
-    for classificacao in classificacoes:
-        classificacao.posicao_Equipe = posicao
-        classificacao.save()
-        posicao += 1
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, identification,email, full_name="", role="", url_foto="", password=None, **extra_fields):
+    def create_user(self, identification, email, full_name="", role="", url_foto="", password=None, **extra_fields):
 
         if identification is None:
             raise TypeError('Usuário deve informar o identification')
@@ -140,7 +85,7 @@ class UserManager(BaseUserManager):
         user = self.model(
             identification=identification,
             email=self.normalize_email(email),
-            usual_name=full_name,
+            full_name=full_name,
             role=role,
             url_foto=url_foto,
             **extra_fields
@@ -151,10 +96,10 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, identification, email, password=None,**extra_fields):
-        print("Extra Fields:")
-        for key, value in extra_fields.items():
-            print(f"{key}: {value}")
-            
+        # print("Extra Fields:")
+        # for key, value in extra_fields.items():
+        #     print(f"{key}: {value}")
+        
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         
@@ -162,18 +107,22 @@ class UserManager(BaseUserManager):
     
 class Usuario(AbstractBaseUser, PermissionsMixin):
     identification = models.CharField(max_length=255, unique=True, default="20222094040001")
-    usual_name = models.CharField(max_length=255, default="Usuário")
     role = models.CharField(max_length=255, default='Professor')
     full_name = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255, blank=False, null=True)
+    email = models.EmailField(max_length=255, blank=True, null=True)
     url_foto = models.CharField(max_length=255, blank=True, null=True)
     is_active = models.BooleanField(default=True)
+    campus = models.ForeignKey('Campus', on_delete=models.CASCADE)
     is_staff = models.BooleanField(default=False)
 
     objects = UserManager()
 
     USERNAME_FIELD = "identification"
     REQUIRED_FIELDS = ['email', 'full_name', 'role', 'url_foto']
+    
+    def __str__(self):
+        return f"{self.full_name}"
+    
     
 class Jogos(models.Model):
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE, null=True, blank=True)
@@ -183,9 +132,8 @@ class Jogos(models.Model):
     resultado = models.OneToOneField(
         Resultado, on_delete=models.CASCADE, null=True, blank=True)
 
-    def jogadores_do_campus(self):
-        return self.equipe.filter(campus=self.campus)
-
+    def __str__(self):
+        return f"{self.campus} - {self.data_jogo} - {self.torneio}"
 
 class ChangeStudentTeam(models.Model):
     motivo = models.CharField(max_length=100)

@@ -27,8 +27,9 @@ class SuapOAuth2(BaseOAuth2):
         """
         Retorna um dicionário mapeando os fields do settings.AUTH_USER_MODEL.
         você pode fazer aqui outras coisas, como salvar os dados do usuário
-        (`response`) em algum outro model.
+        (`response`) em algum outro model. 
         """
+
         splitted_name = response['nome'].split()
         first_name, last_name = splitted_name[0], ''
         if len(splitted_name) > 1:
@@ -43,6 +44,6 @@ class SuapOAuth2(BaseOAuth2):
             'identification': response['identificacao'],
             'role': response['tipo_usuario'],
             'full_name': response['nome_registro'],
-            'url_foto': response['foto']
+            'url_foto': response['foto'],
         }
         

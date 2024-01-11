@@ -1,7 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block main %}
-  <link rel="stylesheet" href="{% static 'css/change-players.css' %}" />
+
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'css/change-players.css' %}" />
+
+<script>
+  $(document).ready(function() {
+      // Mapeia os jogadores associados a cada campus
+      var jogadoresPorCampus = {
+          'CampusA': ['JogadorA1', 'JogadorA2', 'JogadorA3'],
+          'CampusB': ['JogadorB1', 'JogadorB2', 'JogadorB3'],
+          // Adicione mais campi e jogadores conforme necessário
+      };
+  
+      // Quando o valor do campo de seleção do campus mudar
+      $('#id_campus').change(function() {
+          // Limpa as opções atuais do campo de seleção de jogadores
+          $('#id_jogadores').empty();
+  
+          // Obtém o campus selecionado
+          var campusSelecionado = $(this).val();
+  
+          // Adiciona as opções dos jogadores associados ao campus selecionado
+          jogadoresPorCampus[campusSelecionado].forEach(function(jogador) {
+              $('#id_jogadores').append('<option value="' + jogador + '">' + jogador + '</option>');
+          });
+      });
+  });
+  </script>
 
   <div class="change-container">
     <div class="container-players-change" style="margin-right: 0; margin-left: 0;">
@@ -9,7 +39,17 @@
       <div class="menu-container-edit">
           <form method="post" enctype="multipart/form-data" class="form-edit-team">
             {% csrf_token %}
-            {{ form }}
+            <div class="info-team">
+              <label for="id_nome_equipe">Nome equipe: </label>
+              {{ form.nome_equipe }}
+              
+              <label for="id_campus">Campus: </label>
+              {{form.campus}}
+            </div>
+
+            <label for="id_jogadores">Jogadores: </label>
+            {{form.jogadores}}
+
             <button class="btn-team-edit" type="submit">Enviar</button>
           </form> 
           </div>
@@ -17,4 +57,6 @@
       </div>
     </div>
   </div>
+
+
 {% endblock %}

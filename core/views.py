@@ -1,11 +1,10 @@
 from typing import Any
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.views.generic import TemplateView, FormView
+from django.shortcuts import get_object_or_404, get_list_or_404
+from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import EquipeForm, TorneioForm, ChangeTeamForm
-from .forms import UsuarioForm
 from .forms import PartidaAdminForm
 from django.urls import reverse_lazy
 from .models import *
@@ -13,49 +12,14 @@ from .models import *
 class IndexView(TemplateView):
     template_name = 'index.html'
 
-class CadastrarUsuarioView(FormView):
-    template_name = 'register.html'
-    form_class = UsuarioForm
-    success_url = 'pagina_sucesso'  # Redireciona para uma página de sucesso
-
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-
-class LoginView(TemplateView):
-    template_name = 'login.html'
-
-    def post(self, request, *args, **kwargs):
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(request, email=email, password=password)
-
-        if user is not None:
-            login(request, user)
-            # Redirecione para a página desejada após o login
-            return redirect('página_de_sucesso')
-        else:
-            # Lógica para lidar com credenciais inválidas
-            # Pode adicionar uma mensagem de erro, etc.
-            return render(request, self.template_name, {'erro': 'Credenciais inválidas'})
-
 class ProfileView(TemplateView):
     template_name = 'profile.html'
 
 class ProfileProfView(TemplateView):
     template_name = 'profile-prof.html'
-
-class InfoSecurityView(TemplateView):
-    template_name = 'info-security.html'
-
-class InfoPessoalView(TemplateView):
-    template_name = 'info-pessoal.html'
-
+    
 class ReportBugView(TemplateView):
     template_name = 'report-bug.html'
-
-class RatingView(TemplateView):
-    template_name = 'rating.html'
 
 class AskTeamChangeView(TemplateView):
     template_name = 'ask-team-change.html'
@@ -68,7 +32,6 @@ class AskTeamChangeView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         form = ChangeTeamForm(request.POST)
-        print(form.data)
         equipe_postada = request.POST.get('equipe')
         motivo = request.POST.get('motivo')
         equipe = Equipe.objects.get(id=equipe_postada)
@@ -93,6 +56,41 @@ class RegisterTournamentView(CreateView):
     template_name = 'register-tournament.html'
     form_class = TorneioForm
     success_url = reverse_lazy('tournaments')
+    
+    def post(self, request, *args, **kwargs):
+        form = TorneioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("tournaments")
+        else:
+            HttpResponse("Formulário inválido")
+        
+        return redirect("tournaments", {'form': form})
+    
+
+def realizar_chaveamento(request, torneio_id):
+    torneio = Torneio.objects.get(id=torneio_id)
+
+    equipes = torneio.equipes_torneio.all()
+
+    # Exemplo simples de chaveamento: dividir as equipes em pares
+    jogos = []
+    esporte_torneio = torneio.esporte  # Acesse a relação entre Torneio e Esporte
+
+    for i in range(0, len(equipes), 2):
+        jogo = Partida.objects.create(
+            time1=equipes[i],
+            time2=equipes[i + 1],
+            esporte=esporte_torneio,  # Use o esporte do torneio
+            data=torneio.data,
+        )
+        jogos.append(jogo)
+
+    torneio.chaveamento_realizado = True
+    torneio.save()
+
+    return render(request, 'chave.html', {'jogos': jogos})
+    
 
 class TorneiosView(TemplateView):
     template_name = 'tournaments.html'
@@ -111,6 +109,7 @@ class TournamentView(TemplateView):
         torneio = Torneio.objects.get(id=id)
         return render(request, self.template_name, {'torneio': torneio})
 
+
 class ChangePlayersView(TemplateView):
     template_name = 'change-players.html'
 
@@ -120,19 +119,9 @@ class ChangePlayersView(TemplateView):
 
         return render(request, self.template_name, {'times': times})
 
-    def post(self, request, *args, **kwargs):
-       
-        if form.is_valid():
-
-            return redirect("matches")
-        return redirect("matches")
 
 class EditTeam(UpdateView):
     template_name = 'edit-team.html'
-
-
-class ChangeInformationsView(TemplateView):
-    template_name = 'change-informations.html'
 
 class RegisterMatchView(TemplateView):
 
@@ -162,9 +151,6 @@ class RegisterMatchView(TemplateView):
             partida.save()
             return redirect("matches")
         return redirect("matches")
-
-class AdminBaseView(TemplateView):
-    template_name = 'admin_base.html'
 
 class TeamCriar(CreateView):
     
@@ -212,33 +198,62 @@ class List_teamView(TemplateView):
 class listtransferView(TemplateView):
     template_name = 'view-transfer.html'
     success_url = reverse_lazy('matches')
-    
+
+    def processar_transferencia(self, jogador, time_novo):
+        print(f"Processando transferência de {jogador} para {time_novo}")
+
+        # Obtenha todas as equipes antigas do jogador
+        equipes_antigas = Equipe.objects.filter(jogadores=jogador)
+
+        if equipes_antigas.exists():
+            # Se houver equipes antigas, use a primeira encontrada
+            equipe_antiga = equipes_antigas.first()
+            print(f"Equipe antiga encontrada: {equipe_antiga}")
+            
+            # Remova o jogador da equipe antiga
+            equipe_antiga.jogadores.remove(jogador)
+        else:
+            equipe_antiga = None
+            print(f"O jogador {jogador} não está em nenhuma equipe antiga.")
+
+        # Obtenha a equipe nova
+        equipe_nova = get_object_or_404(Equipe, nome_equipe=time_novo)
+        print(f"Equipe nova encontrada: {equipe_nova}")
+
+        # Adicione o jogador à nova equipe
+        equipe_nova.jogadores.add(jogador)
+
     def get(self, request, *args, **kwargs):
         pedidos = ChangeStudentTeam.objects.all()
         return render(request, self.template_name, {'pedidos': pedidos})
 
     def post(self, request, *args, **kwargs):
+        print(request.POST)
 
         if request.POST.get('nome-jogador-reject'):
             nome_jogador = request.POST.get('nome-jogador-reject')
-            jogador = Usuario.objects.get(usual_name=nome_jogador)
+            jogador = Usuario.objects.get(full_name=nome_jogador)
             pedido = ChangeStudentTeam.objects.get(jogador=jogador)
-            pedido.delete()
-            return redirect('list_transfer')
-        
-        else:
-            nome_jogador = request.POST.get('nome-jogador')
-            time_novo = request.POST.get('time-novo')
-            jogador = Usuario.objects.get(usual_name=nome_jogador)
-            
-            equipe = Equipe.objects.get(nome_equipe=time_novo)
-            
-            equipe_antiga = Equipe.objects.get(jogadores=jogador)
-            equipe_antiga.jogadores.remove(jogador)
-            pedido = ChangeStudentTeam.objects.get(jogador=jogador)
-            equipe.jogadores.add(jogador)
             pedido.delete()
             return redirect('list_transfer')
 
+        elif request.POST.get('nome-jogador'):
+            nome_jogador = request.POST.get('nome-jogador')
+            time_novo = request.POST.get('time-novo')
+
+            if nome_jogador:  # Verifica se o nome do jogador não está vazio
+                # Obtenha o jogador
+                jogador = get_object_or_404(Usuario, full_name=nome_jogador)
+
+                # Obtenha o pedido de transferência
+                pedido = get_object_or_404(ChangeStudentTeam, jogador=jogador)
+                
+                # Processar transferência
+                self.processar_transferencia(jogador, time_novo)
+
+                # Excluir pedido após processamento
+                pedido.delete()
+
+        return redirect('list_transfer')
         
 

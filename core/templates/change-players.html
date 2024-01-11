@@ -9,18 +9,39 @@
       <div class="menu-container">
 
         <!-- Aqui é o menu -->
-            {% for time in times %}
-
-              <div class="team-card" style="margin-right: 0; margin-left: 0;">
-                <p class="team-name">{{time.nome_equipe}}</p>
-                <div class="options">
+        
+        {% comment %} <div class="team-card" style="margin-right: 0; margin-left: 0;">
+          <p class="team-name">{{time.nome_equipe}}</p>
+          <div class="options">
                   <a href="{% url 'edit-team' id=time.id %}" class="team-edit">Editar</a>
                   <a href="{% url 'delete-team' id=time.id %}" class="team-remove">Remover</a>
                 </div>
-              </div>
+              </div> {% endcomment %}
                 
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Campus</th>
+                    <th>Ação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for time in times %}
+                    <tr>
+                      <td>{{time.id}}</td>
+                      <td>{{time.nome_equipe}}</td>
+                      <td>{{time.campus}}</td>
+                      <td>
+                        <a href="{% url 'edit-team' id=time.id %}" class="btn-team-edit">Editar</a>
+                        <a href="{% url 'delete-team' id=time.id %}" class="team-remove">Remover</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
-            {% endfor %}
 
             
           </div>

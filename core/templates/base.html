@@ -90,14 +90,14 @@
             </nav>
             <div id="buttons">
               {% if user.is_authenticated %}
-              {% if user.is_superuser %}
-              <a href="{% url 'profile-prof' %}"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
+                {% if user.is_superuser %}
+                  <a href="{% url 'profile-prof' %}"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
+                {% else %}
+                  <a href="{% url 'profile' %}"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
+                {% endif %}
               {% else %}
-          <a href="{% url 'profile' %}"><img class="img-profile" src="{% static 'images/person.svg' %}" alt="" /></a>
-          {% endif %}
-          {% else %}
-          <a href="{% url 'social:begin' 'suap' %}">Entrar</a>
-          {% endif %}
+                <a href="{% url 'social:begin' 'suap' %}">Entrar</a>
+              {% endif %}
         </div>
       </div>
     </header>

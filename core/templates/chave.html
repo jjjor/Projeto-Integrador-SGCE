@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+    
+<div class="chaveamento-container">
+    <div class="partida">
+        {% for jogo in jogos %}
+        <div class="equipe">
+            <span class="nome-equipe">{{jogo.time1.nome}}</span>
+        </div>
+        <div class="equipe">
+            <span class="nome-equipe">{{jogo.time2.nome}}</span>
+        </div>
+        <div id="placar">Data:{{jogo.data}}</div>
+        <div class="placar">2 - 1</div>
+        {% endfor %}
+    </div>
+    <!-- Adicione mais partidas conforme necessário -->
+</div>
+    
+        <p>{{ jogo }}</p>
+
+{% endblock main %}
+    

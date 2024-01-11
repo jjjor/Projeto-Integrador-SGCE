@@ -1,13 +1,12 @@
 from django.contrib import admin
-from .models import Campus, Jogador, Equipe, ClassificacaoEquipe, Partida, Resultado, Jogos, Torneio, Usuario, Esporte, ChangeStudentTeam
+from .models import Campus, Equipe, ClassificacaoEquipe, Partida, Resultado, Jogos, Torneio, Usuario, Esporte, ChangeStudentTeam
 
 # Register your models here.
 
 admin.site.register(Usuario)
 @admin.register(Campus)
 class CampusAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'cidade')
-    list_filter = ('cidade',)
+    list_display = ('nome',)
     search_fields = ('nome',)
     ordering = ('nome',)
 
@@ -17,13 +16,6 @@ class EquipeAdmin(admin.ModelAdmin):
     list_filter = ('nome_equipe', 'campus')
     search_fields = ('nome_equipe',)
     ordering = ('nome_equipe',)
-
-@admin.register(Jogador)
-class JogadorAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'idade', 'esporte', 'sexo', 'campus')
-    list_filter = ('campus', 'esporte', 'sexo')
-    search_fields = ('nome',)
-    ordering = ('nome',)
     
 @admin.register(ClassificacaoEquipe)
 class ClassificacaoAdmin(admin.ModelAdmin):
@@ -32,10 +24,8 @@ class ClassificacaoAdmin(admin.ModelAdmin):
     search_fields = ('posicao',)
     ordering = ('posicao',)
 
-
 admin.site.register(Partida)
     
-
 @admin.register(Torneio)
 class TorneioAdmin(admin.ModelAdmin):
     list_display = ('nome', 'data')
