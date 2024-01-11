@@ -235,6 +235,7 @@
 .options {
   display: flex;
   border: none;
+  justify-content: center;
 }
 
 .team-card {
@@ -247,13 +248,12 @@
   border-radius: 0.5rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   background-color: #ffffff21;
-  width: 200px;
-  gap: 1em;
+  gap: 0.5rem;
 }
 
 .team-card p {
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .team-card a.team-edit {
@@ -287,11 +287,11 @@
   transform: translate(0, -1px);
 }
 
-.menu-container-edit {
+/* .menu-container-edit {
   display: flex;
   align-items: center;
   flex-direction: column;
-}
+} */
 
 .form-edit-team {
   display: flex;
@@ -349,12 +349,12 @@
 .team-create {
   padding: 0.5em 1em;
   border-radius: 0.5rem;
-
   cursor: pointer;
   background-color: #52ac6c;
   color: white;
   text-decoration: none;
   text-align: center;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 768px) {

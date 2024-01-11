@@ -1,7 +1,7 @@
 import random
 from faker import Faker
 from django.core.management.base import BaseCommand
-from core.models import *
+from core.models import Campus, Jogador, Equipe, Partida, Resultado, Esporte
 
 fake = Faker()
 
@@ -18,9 +18,9 @@ class Command(BaseCommand):
 
         # Criação de Modalidades
         def create_modalidade():
-            return Modalidade.objects.create(
+            return Esporte.objects.create(
                 nome=fake.word(),
-                sexo=random.choice(['M', 'F', 'O'])
+
             )
 
         # Criação de Jogadores
@@ -29,7 +29,6 @@ class Command(BaseCommand):
                 nome=fake.name(),
                 idade=random.randint(18, 40),
                 esporte=modalidade,
-                atuacao=random.choice(['A', 'D', 'G', 'T']),
                 sexo=random.choice(['M', 'F', 'O']),
                 campus=campus
             )
@@ -49,8 +48,11 @@ class Command(BaseCommand):
         # Criação de Partidas
         def create_partida(campus):
             return Partida.objects.create(
-                nome_partida=fake.word(),
-                campus_partida=campus
+                esporte=Esporte.objects.first(),
+                data=fake.date(),
+                time1=Equipe.objects.first(),
+                time2=Equipe.objects.last(),
+                placar=fake.pyint(min_value=0, max_value=3)
             )
 
         # Criação de Resultados
