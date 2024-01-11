@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+  <link rel="stylesheet" href="{% static 'css/change-players.css' %}" />
+
+  <div class="change-container">
+    <div class="container-players-change" style="margin-right: 0; margin-left: 0;">
+      <h1>Registrar Campus</h1>
+      <div class="menu-container-edit">
+          <form method="post" class="form-edit-team">
+            {% csrf_token %}
+            <div class="info-tournament">
+              <label for="id_nome">Nome:</label>
+              {{form.nome}}
+            <button class="btn-team-edit" type="submit">Enviar</button>
+          </form> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

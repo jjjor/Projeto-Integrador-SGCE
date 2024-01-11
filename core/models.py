@@ -47,6 +47,7 @@ class ClassificacaoEquipe(models.Model):
     
     
 class Esporte(models.Model):
+
     nome = models.CharField(max_length=100)
 
     def __str__(self):
@@ -70,7 +71,7 @@ class Resultado(models.Model):
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, identification, email, full_name="", role="", url_foto="", password=None, **extra_fields):
+    def create_user(self, identification, email, full_name="", role="", password=None, **extra_fields):
 
         if identification is None:
             raise TypeError('Usuário deve informar o identification')
@@ -87,7 +88,6 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             full_name=full_name,
             role=role,
-            url_foto=url_foto,
             **extra_fields
         )
         user.set_password(password)
@@ -110,15 +110,14 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     role = models.CharField(max_length=255, default='Professor')
     full_name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, blank=True, null=True)
-    url_foto = models.CharField(max_length=255, blank=True, null=True)
     is_active = models.BooleanField(default=True)
-    campus = models.ForeignKey('Campus', on_delete=models.CASCADE)
+    campus = models.ForeignKey('Campus', on_delete=models.CASCADE, null=True, blank=True)
     is_staff = models.BooleanField(default=False)
 
     objects = UserManager()
 
     USERNAME_FIELD = "identification"
-    REQUIRED_FIELDS = ['email', 'full_name', 'role', 'url_foto']
+    REQUIRED_FIELDS = ['email', 'full_name', 'role']
     
     def __str__(self):
         return f"{self.full_name}"

@@ -2,9 +2,9 @@ from typing import Any
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404, get_list_or_404
-from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import EquipeForm, TorneioForm, ChangeTeamForm
+from django.views.generic import TemplateView, ListView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView 
+from .forms import EquipeForm, TorneioForm, ChangeTeamForm, SportForm, CampusForm
 from .forms import PartidaAdminForm
 from django.urls import reverse_lazy
 from .models import *
@@ -255,5 +255,86 @@ class listtransferView(TemplateView):
                 pedido.delete()
 
         return redirect('list_transfer')
+    
+
+
+
+class ListSportsView(ListView):
+
+    template_name = 'list_sports.html'
+    model = Esporte
+    context_object_name = 'esportes'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['esportes'] = Esporte.objects.all()
+        return context
+
+class CreateSportView(CreateView):
+
+    template_name = 'create_sport.html'
+    form_class = SportForm
+    success_url = reverse_lazy('list_sports')
+
+class EditSportView(UpdateView):
+
+
+    model = Esporte
+    template_name = 'create_sport.html'
+    form_class = SportForm
+    success_url = reverse_lazy('list_sports')
+    pk_url_kwarg = 'id'
+
+class DeleteSportView(DeleteView):
+
+    template_name = 'delete_sport.html'
+    model = Esporte
+    success_url = reverse_lazy('list_sports')
+    pk_url_kwarg = 'id'
+
+    def get(self, *args, **kwargs):
+        return self.delete(*args, **kwargs)
+    
+
+class ListCampusView(ListView):
+
+    template_name = 'list_campus.html'
+    model = Campus
+    context_object_name = 'campus'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['campus'] = Campus.objects.all()
+        return context
+    
+
+class CreateCampusView(CreateView):
+
+    model = Campus
+    template_name = 'create_campus.html'
+    form_class = CampusForm
+    success_url = reverse_lazy('list_campus')
+
+class EditCampusView(UpdateView):
+
+    model = Campus
+    template_name = 'create_campus.html'
+    form_class = CampusForm
+    success_url = reverse_lazy('list_campus')
+    pk_url_kwarg = 'id'
+
+
+class DeleteCampusView(DeleteView):
+
+    template_name = 'delete_campus.html'
+    model = Campus
+    success_url = reverse_lazy('list_campus')
+    pk_url_kwarg = 'id'
+
+    def get(self, *args, **kwargs):
+        return self.delete(*args, **kwargs)
+
         
 

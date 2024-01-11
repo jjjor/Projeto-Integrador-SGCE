@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+  <link rel="stylesheet" href="{% static 'css/change-players.css' %}" />
+
+  <div class="change-container">
+    <div class="container-players-change" style="margin-right: 0; margin-left: 0;">
+      <h1>Campus registrados</h1>
+      <div class="menu-container">
+
+        <!-- Aqui é o menu -->
+        
+        {% comment %} <div class="team-card" style="margin-right: 0; margin-left: 0;">
+          <p class="team-name">{{time.nome_equipe}}</p>
+          <div class="options">
+                  <a href="{% url 'edit-team' id=time.id %}" class="team-edit">Editar</a>
+                  <a href="{% url 'delete-team' id=time.id %}" class="team-remove">Remover</a>
+                </div>
+              </div> {% endcomment %}
+                
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Ação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for campus in campus %}
+                    <tr>
+                      <td>{{campus.id}}</td>
+                      <td>{{campus.nome}}</td>
+                      <td>
+                        <a href="{% url 'edit_campus' id=campus.id %}" class="btn-team-edit">Editar</a>
+                        <a href="{% url 'delete_campus' id=campus.id %}" class="team-remove">Remover</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            
+          </div>
+          <a href="{% url 'create_campus' %}" class="team-create" style="margin: 0 auto;">Registrar novo campus</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

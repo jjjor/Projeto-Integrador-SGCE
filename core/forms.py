@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario, Equipe, Partida, Torneio
+from .models import Usuario, Equipe, Partida, Torneio, Esporte, Campus
 
 class UsuarioForm(forms.ModelForm):
     class Meta:
@@ -42,3 +42,24 @@ class PartidaForm(forms.ModelForm):
 class ChangeTeamForm(forms.Form):
     equipe = forms.ModelChoiceField(queryset=Equipe.objects.all(), empty_label=None)
     motivo = forms.CharField(max_length=200, widget=forms.Textarea)
+
+class SportForm(forms.ModelForm):
+
+    class Meta:
+        model = Esporte
+        fields = '__all__'
+
+        widgets = {
+            'nome': forms.TextInput(attrs={'id': 'nome'}),
+        }
+
+
+class CampusForm(forms.ModelForm):
+
+    class Meta:
+        model = Campus
+        fields = '__all__'
+
+        widgets = {
+            'nome': forms.TextInput(attrs={'id': 'nome'}),
+        }
